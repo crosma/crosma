@@ -24,27 +24,17 @@ server.set('views', app.config.root + app.config.views_errors);
 
 // define a custom res.message() method
 server.response.flash = function(msg) {
-	// reference `req.session` via the `this.req` reference
 	var sess = this.req.session;
-	// simply add the msg to an array for later
 	sess.messages = sess.messages || [];
 	sess.messages.push(msg);
-	
 	return this;
 };
 
 // expose the "messages" local variable when views are rendered
 server.locals.use(function(req, res) {
 	var msgs = req.session.messages || [];
-
-	// expose "messages" local variable
 	res.locals.messages = msgs;
-
-	// expose "hasMessages" 
 	res.locals.hasMessages = !! msgs.length;
-
-	// empty or "flush" the messages so they
-	// don't build up
 	req.session.messages = [];
 });
 
