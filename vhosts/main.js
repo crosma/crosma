@@ -44,6 +44,7 @@ server.locals.use(function(req, res) {
 });
 
 
+
 server.use(express.static(app.config.root + app.config.static_dir));
 
 // parse request bodies (req.body)
