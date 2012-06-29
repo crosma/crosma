@@ -2,45 +2,9 @@
 html
 	head
 		title crosma.us - Coming eventually.
-		style.
-			* {
-				padding: 0;
-				margin: 0;
-				
-				font: font-family: "Times New Roman", Times, serif;
-				
-				font-size: 14px;
-			}
-			
-			body {
-				background: #2B3A42;
-			}
-			
-			#header, #desc {
-				width: 400px;
-				
-				background: #BDD4DE;
-				border: 1px solid #EFEFEF;
-				
-				padding: 20px;
-				
-				text-align: center;
-				
-				margin: 25px auto 0 auto;
-			}
-			
-			#header {
-				font-size: 40px;
-				line-height: 40px;
-				font-weight: bold;
-				color: #FF530D;
-			}
-			
-			#nodelogo {
-				display: block;
-				margin: 75px auto 0 auto;
-			}
-			
+		
+		link(rel="stylesheet" href="http://static.crosma.us/css/woo.css")
+
 	body
 		#header.
 			crosma.us
@@ -48,5 +12,4 @@ html
 		#desc.
 			Node.js and CouchBase developement hosted on Amazon AWS. Maybe MySQL, we'll see. Memcache and Redis could happen some day.
 			
-		img#nodelogo(src="http://nodejs.org/images/logos/nodejs-dark.png")
-		
+		a#nodelink(href="http://nodejs.org/")
