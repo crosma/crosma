@@ -10,7 +10,9 @@ if (process.env.CROSMA_ENV == 'dev')
 		,static_dir: '/static'
 		
 		,controllers_dir: '/controllers'
+		
 		,views_dir: '/views'
+		,cache_views: false
 		
 		,views_errors: '/views_errors'
 		
@@ -32,7 +34,9 @@ else
 		,static_dir: '/static'
 		
 		,controllers_dir: '/controllers'
+		
 		,views_dir: '/views'
+		,cache_views: true
 		
 		,views_errors: '/views_errors'
 		

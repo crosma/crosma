@@ -15,8 +15,8 @@ var  express = require('express')
 	,app = module.exports.express = express()
 ;
 
-module.exports.config = config;
 
+module.exports.config = config;
 module.exports.servers = {};
 
 /******************************************************************************

@@ -1,5 +1,5 @@
 {
-
+ 
 	"name": "crosma",
 	"version": "0.0.1",
 	"private": true,
@@ -11,7 +11,8 @@
 	"dependencies": {
 		"express": "3.0.0beta4",
 		"jade": "*",
-		"connect": "*"
+		"connect": "*",
+		"express-messages": "*"
 	}
   
 }

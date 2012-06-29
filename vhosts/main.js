@@ -12,12 +12,13 @@ server.use(express.session({secret: 'sdfasdfasdfasdf', key: 'sid', cookie: {maxA
 
 server.engine('html', require('jade').renderFile);
 server.set('view engine', 'html');
+if (app.config.cache_views) server.enable('view cache');
+	
+server.set('views', app.config.root + app.config.views_errors);	
 
-//errors views
-server.set('views', app.config.root + app.config.views_errors);
 
 // define a custom res.message() method
-server.response.message = function(msg) {
+server.response.flash = function(msg) {
 	// reference `req.session` via the `this.req` reference
 	var sess = this.req.session;
 	// simply add the msg to an array for later
@@ -34,13 +35,14 @@ server.locals.use(function(req, res) {
 	// expose "messages" local variable
 	res.locals.messages = msgs;
 
-	// expose "hasMessages"
+	// expose "hasMessages" 
 	res.locals.hasMessages = !! msgs.length;
 
 	// empty or "flush" the messages so they
 	// don't build up
 	req.session.messages = [];
 });
+
 
 server.use(express.static(app.config.root + app.config.static_dir));
 
@@ -127,14 +129,12 @@ module.exports.boot = function()
 		res.status(500).render('5xx');
 	});
 
-	
-	server.enable('view cache');
-	
+
 	server.set('views', app.config.root + '/views');
 
 	// assume 404 since no middleware responded
 	server.all('*', function(req, res, next) {
-	
+		res.flash('Fuck it.');
 		
 	
 		res.render('woo.jade');
