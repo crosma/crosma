@@ -8,4 +8,4 @@ server.use(express.responseTime());
 server.use(express.static(app.config.root + app.config.static_dir));
 server.use(express.directory(app.config.root + app.config.static_dir, {icons: true}));
 
-app.express.use(express.vhost('s*.violentsoul.com', server))
+app.express.use(express.vhost(app.config.domains.static, server))

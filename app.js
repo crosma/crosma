@@ -4,7 +4,6 @@ console.log('-------------------------------------------------------------------
 
 var config = require('./config');
 
-
 //maybe use this to pool mysql connections?
 //https://github.com/coopernurse/node-pool
 

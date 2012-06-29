@@ -10,7 +10,7 @@ server.use(express.responseTime());
 server.use(express.cookieParser()); //Can take a secret to encrypt them
 server.use(express.session({secret: 'sdfasdfasdfasdf', key: 'sid', cookie: {maxAge: 60 * 60 * 24 * 1000}}));
 
-server.engine('html', require('ejs').renderFile);
+server.engine('html', require('jade').renderFile);
 server.set('view engine', 'html');
 
 //errors views
@@ -51,7 +51,7 @@ server.use(express.bodyParser());
 server.use(express.methodOverride('action'));
 
 
-app.express.use(express.vhost('*violentsoul.com' , server))
+app.express.use(express.vhost('*' + app.config.domains.main , server))
 
 module.exports.boot = function()
 {
