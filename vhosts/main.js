@@ -11,6 +11,7 @@ server.use(express.cookieParser()); //Can take a secret to encrypt them
 server.use(express.session({secret: 'sdfasdfasdfasdf', key: 'sid', cookie: {maxAge: 60 * 60 * 24 * 1000}}));
 server.use(express.bodyParser()); // parse request bodies (req.body)
 server.use(express.methodOverride('action')); // support _method input element (PUT in forms etc)
+server.use(require('../lib/poweredBy')); //Overwrite the x-powered-by header
 
 
 //Init the view engine
@@ -36,6 +37,7 @@ server.locals.use(function(req, res) {
 	res.locals.hasMessages = !! msgs.length;
 	req.session.messages = [];
 });
+
 
 
 app.express.use(express.vhost('*' + app.config.domains.main , server))

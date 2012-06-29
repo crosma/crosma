@@ -14,11 +14,11 @@ server.use(function(req, res, next) {
 	next();
 });
 
-
+server.use(require('../lib/poweredBy')); //Overwrite the x-powered-by header
 server.use(express.logger('STATIC :method :url - :res[content-type]'));
 server.use(express.responseTime());
 server.use(express.static(app.config.root + app.config.static_dir));
-server.use(express.directory(app.config.root + app.config.static_dir, {icons: true}));
+//server.use(express.directory(app.config.root + app.config.static_dir, {icons: true}));
 
 
 app.express.use(express.vhost(app.config.domains.static, server))

@@ -4,6 +4,7 @@ var	 app = require('../app')
 ;
 
 server.use(express.logger('CATCHALL :method :url - :res[content-type]'));
+server.use(require('../lib/poweredBy')); //Overwrite the x-powered-by header
 
 server.all('*', function(req, res){
 	res.redirect('http://violentsoul.com/'); 

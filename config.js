@@ -46,7 +46,7 @@ else
 		
 		,domains: {
 			 main: 'crosma.us'
-			,static: 'static.crosma.us'
+			,static: 'cf.crosma.us'
 		}
 	};
 }
