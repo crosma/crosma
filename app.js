@@ -44,14 +44,3 @@ module.exports.servers.static = require('./vhosts/catchall');
 app.listen(config.port);
 
 console.log('Running on port ' + config.port);
-
-
-
-
-var http = require('http'), httpProxy = require('http-proxy');
-//
-// Create your proxy server
-//
-httpProxy.createServer(28017, 'localhost').listen(81);
-
-console.log('Proxying port 28017 to port 81');
