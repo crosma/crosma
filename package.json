@@ -1,4 +1,5 @@
 {
+
   "name": "crosma",
   "version": "0.0.1",
   "private": true,
@@ -10,4 +11,5 @@
     "jade": "*",
 	"connect": "*"
   }
+  
 }
