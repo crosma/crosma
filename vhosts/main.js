@@ -103,6 +103,7 @@ module.exports.boot = function()
 			//res.redirect('http://violentsoul.com/'); 
 		}
 	}
+	
 
 
 	server.get('/user', loadUser, function(req, res, next){
@@ -114,6 +115,7 @@ module.exports.boot = function()
 	});
 	*/
 
+	
 	server.use(function(err, req, res, next){
 		// treat as 404
 		if (~err.message.indexOf('not found')) return next();
@@ -132,6 +134,8 @@ module.exports.boot = function()
 
 	// assume 404 since no middleware responded
 	server.all('*', function(req, res, next) {
+	
+		
 	
 		res.render('woo.jade');
 	

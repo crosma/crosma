@@ -32,9 +32,12 @@ body {
 }
 
 #nodelink {
-	background: url(http://nodejs.org/images/logos/nodejs-dark.png);
-
+	width: 212px;
+	height: 114px;
 	display: block;
+
+	background: url('http://nodejs.org/images/logos/nodejs-dark.png');
+
 	margin: 75px auto 0 auto;
 }
 			
