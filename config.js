@@ -22,6 +22,7 @@ if (process.env.CROSMA_ENV == 'dev')
 			,static: 's.violentsoul.com'
 		}
 	};
+	
 }
 else
 {
@@ -47,4 +48,5 @@ else
 			,static: 'static.crosma.us'
 		}
 	};
+	
 }

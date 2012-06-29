@@ -58,67 +58,6 @@ app.express.use(express.vhost('*' + app.config.domains.main , server))
 
 module.exports.boot = function()
 {
-	// load controllers
-	//require('./lib/boot')(server, { verbose: !module.parent });
-
-	//Prep this request
-	// --DB?
-	// --Auth?
-	// --Maybe load the controller *before* this to get its options, then check auth ect
-
-	/*
-	server.use(function(req, res, next){
-		console.log('First use()');
-
-		req.testval = 'yar';
-		
-		//res.send(util.inspect(res));
-		
-		//console.dir(res);
-		//console.log(util.inspect(res));
-		
-		next();
-	});
-	*/
-
-	//var testpage = require('../controllers/testpage');
-
-
-
-	/*
-	function loadUser(req, res, next)
-	{
-		// You would fetch your user from the db
-		var user = 3;
-
-		console.log('Load User -- ' + req.testval);
-	  
-		//res.redirect('http://violentsoul.com/');
-
-		if (user) 
-		{
-			req.user = user;
-			next();
-		} 
-		else 
-		{
-			//next(new Error('Failed to load user ' + req.params.id));
-			//res.redirect('http://violentsoul.com/'); 
-		}
-	}
-	
-
-
-	server.get('/user', loadUser, function(req, res, next){
-		res.write('Viewing user ' + req.user);
-		res.write('\n');
-		res.write('--Test value...' + req.testval);
-		
-		res.end();
-	});
-	*/
-
-	
 	server.use(function(err, req, res, next){
 		// treat as 404
 		if (~err.message.indexOf('not found')) return next();
