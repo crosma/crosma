@@ -1,0 +1,321 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'P:\\Program Files (x86)\\nodejs\\\\node.exe',
+1 verbose cli   'P:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'node-sass' ]
+2 info using npm@1.1.32
+3 info using node@v0.8.0
+4 verbose node symlink P:\Program Files (x86)\nodejs\\node.exe
+5 verbose config file C:\Users\Matt\.npmrc
+6 verbose config file P:\Program Files (x86)\nodejs\etc\npmrc
+7 verbose config file P:\Program Files (x86)\nodejs\node_modules\npm\npmrc
+8 verbose read json C:\Users\Matt\AppData\Roaming\npm\package.json
+9 verbose read json C:\Users\Matt\AppData\Roaming\npm\package.json
+10 verbose cache add [ 'node-sass', null ]
+11 silly cache add name=undefined spec="node-sass" args=["node-sass",null]
+12 verbose parsed url { pathname: 'node-sass', path: 'node-sass', href: 'node-sass' }
+13 verbose addNamed [ 'node-sass', '' ]
+14 verbose addNamed [ null, '' ]
+15 silly addNameRange { name: 'node-sass', range: '', hasData: false }
+16 verbose url raw node-sass
+17 verbose url resolving [ 'https://registry.npmjs.org/', './node-sass' ]
+18 verbose url resolved https://registry.npmjs.org/node-sass
+19 verbose etag "AIZCOWSSNONATQOI6V2EMTGXG"
+20 http GET https://registry.npmjs.org/node-sass
+21 http 304 https://registry.npmjs.org/node-sass
+22 silly registry.get cb [ 304,
+22 silly registry.get   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+22 silly registry.get     etag: '"AIZCOWSSNONATQOI6V2EMTGXG"',
+22 silly registry.get     date: 'Fri, 29 Jun 2012 14:15:25 GMT',
+22 silly registry.get     'content-length': '0' } ]
+23 verbose etag node-sass from cache
+24 silly addNameRange number 2 { name: 'node-sass', range: '', hasData: true }
+25 silly addNameRange versions [ 'node-sass', [ '0.2.0', '0.2.1' ] ]
+26 verbose read json C:\Users\Matt\AppData\Roaming\npm-cache\node-sass\0.2.1\package\package.json
+27 silly resolved [ { author:
+27 silly resolved      { name: 'Andrew Nesbitt',
+27 silly resolved        email: 'andrewnez@gmail.com',
+27 silly resolved        url: 'http://andrew.github.com' },
+27 silly resolved     name: 'node-sass',
+27 silly resolved     description: 'wrapper around libsass',
+27 silly resolved     version: '0.2.1',
+27 silly resolved     homepage: 'http://github.com/andrew/node-sass',
+27 silly resolved     main: './sass.js',
+27 silly resolved     repository: { type: 'git', url: 'git://github.com/andrew/node-sass.git' },
+27 silly resolved     engines: { node: '>=0.6.18' },
+27 silly resolved     dependencies: { mkdirp: '0.3.x' },
+27 silly resolved     devDependencies: {},
+27 silly resolved     optionalDependencies: {},
+27 silly resolved     scripts: { install: 'node-gyp rebuild' },
+27 silly resolved     gypfile: true,
+27 silly resolved     readme: '##node-sass\n\nNode-sass is a library that provides binding for Node.js to libsass, the C version of the popular stylesheet preprocessor, Sass.\n\nIt allows you to natively compile .scss files to css at incredible speed and automatically via a connect middleware.\n\nFind it on npm: <http://search.npmjs.org/#/node-sass>\n\n## Install\n\n    npm install\n\n## Usage\n\n    var sass = require(\'node-sass\');\n    sass.render(\'body{background:blue; a{color:black;}}\', function(err, css){\n      console.log(css)\n    });\n\n## Connect/Express middleware\n\nRecompile `.scss` files automatically for connect and express based http servers\n\n    var server = connect.createServer(\n      sass.middleware({\n          src: __dirname\n        , dest: __dirname + \'/public\'\n        , debug: true\n      }),\n      connect.static(__dirname + \'/public\')\n    );\n\nHeavily inspired by <https://github.com/LearnBoost/stylus>\n\n## TODO\n\n* sass compression options\n* publish npm\n* file context?\n* folder context?\n',
+27 silly resolved     _id: 'node-sass@0.2.1',
+27 silly resolved     _from: 'node-sass' } ]
+28 info install node-sass@0.2.1 into C:\Users\Matt\AppData\Roaming\npm
+29 info installOne node-sass@0.2.1
+30 verbose from cache C:\Users\Matt\AppData\Roaming\npm-cache\node-sass\0.2.1\package\package.json
+31 info C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass unbuild
+32 verbose read json C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass\package.json
+33 verbose tar unpack C:\Users\Matt\AppData\Roaming\npm-cache\node-sass\0.2.1\package.tgz
+34 silly gunzTarPerm modes [ '755', '644' ]
+35 silly gunzTarPerm extractEntry package.json
+36 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+37 silly gunzTarPerm extractEntry .npmignore
+38 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
+39 silly gunzTarPerm extractEntry README.md
+40 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+41 silly gunzTarPerm extractEntry sass.js
+42 silly gunzTarPerm modified mode [ 'sass.js', 438, 420 ]
+43 silly gunzTarPerm extractEntry test.js
+44 silly gunzTarPerm modified mode [ 'test.js', 438, 420 ]
+45 silly gunzTarPerm extractEntry binding.cpp
+46 silly gunzTarPerm modified mode [ 'binding.cpp', 438, 420 ]
+47 silly gunzTarPerm extractEntry lib/middleware.js
+48 silly gunzTarPerm modified mode [ 'lib/middleware.js', 438, 420 ]
+49 silly gunzTarPerm extractEntry precompiled/darwin/binding.node
+50 silly gunzTarPerm modified mode [ 'precompiled/darwin/binding.node', 438, 420 ]
+51 silly gunzTarPerm extractEntry precompiled/linux/binding.node
+52 silly gunzTarPerm modified mode [ 'precompiled/linux/binding.node', 438, 420 ]
+53 silly gunzTarPerm extractEntry examples/middleware.js
+54 silly gunzTarPerm modified mode [ 'examples/middleware.js', 438, 420 ]
+55 silly gunzTarPerm extractEntry examples/public/.npmignore
+56 silly gunzTarPerm modified mode [ 'examples/public/.npmignore', 438, 420 ]
+57 silly gunzTarPerm extractEntry examples/test.scss
+58 silly gunzTarPerm modified mode [ 'examples/test.scss', 438, 420 ]
+59 silly gunzTarPerm extractEntry binding.gyp
+60 silly gunzTarPerm modified mode [ 'binding.gyp', 438, 420 ]
+61 silly gunzTarPerm extractEntry libsass/.npmignore
+62 silly gunzTarPerm modified mode [ 'libsass/.npmignore', 438, 420 ]
+63 silly gunzTarPerm extractEntry libsass/LICENSE
+64 silly gunzTarPerm modified mode [ 'libsass/LICENSE', 438, 420 ]
+65 silly gunzTarPerm extractEntry libsass/Makefile
+66 silly gunzTarPerm modified mode [ 'libsass/Makefile', 438, 420 ]
+67 silly gunzTarPerm extractEntry libsass/context.hpp
+68 silly gunzTarPerm modified mode [ 'libsass/context.hpp', 438, 420 ]
+69 silly gunzTarPerm extractEntry libsass/document.cpp
+70 silly gunzTarPerm modified mode [ 'libsass/document.cpp', 438, 420 ]
+71 silly gunzTarPerm extractEntry libsass/document.hpp
+72 silly gunzTarPerm modified mode [ 'libsass/document.hpp', 438, 420 ]
+73 silly gunzTarPerm extractEntry libsass/document_parser.cpp
+74 silly gunzTarPerm modified mode [ 'libsass/document_parser.cpp', 438, 420 ]
+75 silly gunzTarPerm extractEntry libsass/error.hpp
+76 silly gunzTarPerm modified mode [ 'libsass/error.hpp', 438, 420 ]
+77 silly gunzTarPerm extractEntry libsass/eval_apply.cpp
+78 silly gunzTarPerm modified mode [ 'libsass/eval_apply.cpp', 438, 420 ]
+79 silly gunzTarPerm extractEntry libsass/eval_apply.hpp
+80 silly gunzTarPerm modified mode [ 'libsass/eval_apply.hpp', 438, 420 ]
+81 silly gunzTarPerm extractEntry libsass/extconf.rb
+82 silly gunzTarPerm modified mode [ 'libsass/extconf.rb', 438, 420 ]
+83 silly gunzTarPerm extractEntry libsass/functions.cpp
+84 silly gunzTarPerm modified mode [ 'libsass/functions.cpp', 438, 420 ]
+85 silly gunzTarPerm extractEntry libsass/functions.hpp
+86 silly gunzTarPerm modified mode [ 'libsass/functions.hpp', 438, 420 ]
+87 silly gunzTarPerm extractEntry libsass/context.cpp
+88 silly gunzTarPerm modified mode [ 'libsass/context.cpp', 438, 420 ]
+89 silly gunzTarPerm extractEntry libsass/css_color_names.txt
+90 silly gunzTarPerm modified mode [ 'libsass/css_color_names.txt', 438, 420 ]
+91 silly gunzTarPerm extractEntry libsass/node.cpp
+92 silly gunzTarPerm modified mode [ 'libsass/node.cpp', 438, 420 ]
+93 silly gunzTarPerm extractEntry libsass/node.hpp
+94 silly gunzTarPerm modified mode [ 'libsass/node.hpp', 438, 420 ]
+95 silly gunzTarPerm extractEntry libsass/node_emitters.cpp
+96 silly gunzTarPerm modified mode [ 'libsass/node_emitters.cpp', 438, 420 ]
+97 silly gunzTarPerm extractEntry libsass/node_factory.cpp
+98 silly gunzTarPerm modified mode [ 'libsass/node_factory.cpp', 438, 420 ]
+99 silly gunzTarPerm extractEntry libsass/node_factory.hpp
+100 silly gunzTarPerm modified mode [ 'libsass/node_factory.hpp', 438, 420 ]
+101 silly gunzTarPerm extractEntry libsass/prelexer.cpp
+102 silly gunzTarPerm modified mode [ 'libsass/prelexer.cpp', 438, 420 ]
+103 silly gunzTarPerm extractEntry libsass/prelexer.hpp
+104 silly gunzTarPerm modified mode [ 'libsass/prelexer.hpp', 438, 420 ]
+105 silly gunzTarPerm extractEntry libsass/Readme.md
+106 silly gunzTarPerm modified mode [ 'libsass/Readme.md', 438, 420 ]
+107 silly gunzTarPerm extractEntry libsass/sass_interface.cpp
+108 silly gunzTarPerm modified mode [ 'libsass/sass_interface.cpp', 438, 420 ]
+109 silly gunzTarPerm extractEntry libsass/sass_interface.h
+110 silly gunzTarPerm modified mode [ 'libsass/sass_interface.h', 438, 420 ]
+111 silly gunzTarPerm extractEntry libsass/test_node_factory.cpp
+112 silly gunzTarPerm modified mode [ 'libsass/test_node_factory.cpp', 438, 420 ]
+113 verbose read json C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass\package.json
+114 info preinstall node-sass@0.2.1
+115 verbose from cache C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass\package.json
+116 verbose readDependencies using package.json deps
+117 verbose from cache C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass\package.json
+118 verbose readDependencies using package.json deps
+119 verbose cache add [ 'mkdirp@0.3.x', null ]
+120 silly cache add name=undefined spec="mkdirp@0.3.x" args=["mkdirp@0.3.x",null]
+121 verbose parsed url { pathname: 'mkdirp@0.3.x',
+121 verbose parsed url   path: 'mkdirp@0.3.x',
+121 verbose parsed url   href: 'mkdirp@0.3.x' }
+122 silly cache add name="mkdirp" spec="0.3.x" args=["mkdirp","0.3.x"]
+123 verbose parsed url { pathname: '0.3.x', path: '0.3.x', href: '0.3.x' }
+124 verbose addNamed [ 'mkdirp', '0.3.x' ]
+125 verbose addNamed [ null, '>=0.3.0- <0.4.0-' ]
+126 silly addNameRange { name: 'mkdirp', range: '>=0.3.0- <0.4.0-', hasData: false }
+127 verbose url raw mkdirp
+128 verbose url resolving [ 'https://registry.npmjs.org/', './mkdirp' ]
+129 verbose url resolved https://registry.npmjs.org/mkdirp
+130 verbose etag "CIJB5Q8BQSDXMJZ55H3QTKQOL"
+131 http GET https://registry.npmjs.org/mkdirp
+132 http 304 https://registry.npmjs.org/mkdirp
+133 silly registry.get cb [ 304,
+133 silly registry.get   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+133 silly registry.get     etag: '"CIJB5Q8BQSDXMJZ55H3QTKQOL"',
+133 silly registry.get     date: 'Fri, 29 Jun 2012 14:15:27 GMT',
+133 silly registry.get     'content-length': '0' } ]
+134 verbose etag mkdirp from cache
+135 silly addNameRange number 2 { name: 'mkdirp', range: '>=0.3.0- <0.4.0-', hasData: true }
+136 silly addNameRange versions [ 'mkdirp',
+136 silly addNameRange   [ '0.0.1',
+136 silly addNameRange     '0.0.2',
+136 silly addNameRange     '0.0.3',
+136 silly addNameRange     '0.0.4',
+136 silly addNameRange     '0.0.5',
+136 silly addNameRange     '0.0.6',
+136 silly addNameRange     '0.0.7',
+136 silly addNameRange     '0.1.0',
+136 silly addNameRange     '0.2.0',
+136 silly addNameRange     '0.2.1',
+136 silly addNameRange     '0.2.2',
+136 silly addNameRange     '0.3.0',
+136 silly addNameRange     '0.3.1',
+136 silly addNameRange     '0.3.2',
+136 silly addNameRange     '0.3.3' ] ]
+137 verbose read json C:\Users\Matt\AppData\Roaming\npm-cache\mkdirp\0.3.3\package\package.json
+138 silly resolved [ { name: 'mkdirp',
+138 silly resolved     description: 'Recursively mkdir, like `mkdir -p`',
+138 silly resolved     version: '0.3.3',
+138 silly resolved     author:
+138 silly resolved      { name: 'James Halliday',
+138 silly resolved        email: 'mail@substack.net',
+138 silly resolved        url: 'http://substack.net' },
+138 silly resolved     main: './index',
+138 silly resolved     keywords: [ 'mkdir', 'directory' ],
+138 silly resolved     repository:
+138 silly resolved      { type: 'git',
+138 silly resolved        url: 'http://github.com/substack/node-mkdirp.git' },
+138 silly resolved     scripts: { test: 'tap test/*.js' },
+138 silly resolved     devDependencies: { tap: '~0.2.4' },
+138 silly resolved     license: 'MIT/X11',
+138 silly resolved     engines: { node: '*' },
+138 silly resolved     readme: 'mkdirp\n======\n\nLike `mkdir -p`, but in node.js!\n\n[![build status](https://secure.travis-ci.org/substack/node-mkdirp.png)](http://travis-ci.org/substack/node-mkdirp)\n\nexample\n=======\n\npow.js\n------\n    var mkdirp = require(\'mkdirp\');\n    \n    mkdirp(\'/tmp/foo/bar/baz\', function (err) {\n        if (err) console.error(err)\n        else console.log(\'pow!\')\n    });\n\nOutput\n    pow!\n\nAnd now /tmp/foo/bar/baz exists, huzzah!\n\nmethods\n=======\n\nvar mkdirp = require(\'mkdirp\');\n\nmkdirp(dir, mode, cb)\n---------------------\n\nCreate a new directory and any necessary subdirectories at `dir` with octal\npermission string `mode`.\n\nIf `mode` isn\'t specified, it defaults to `0777 & (~process.umask())`.\n\n`cb(err, made)` fires with the error or the first directory `made`\nthat had to be created, if any.\n\nmkdirp.sync(dir, mode)\n----------------------\n\nSynchronously create a new directory and any necessary subdirectories at `dir`\nwith octal permission string `mode`.\n\nIf `mode` isn\'t specified, it defaults to `0777 & (~process.umask())`.\n\nReturns the first directory that had to be created, if any.\n\ninstall\n=======\n\nWith [npm](http://npmjs.org) do:\n\n    npm install mkdirp\n\nlicense\n=======\n\nMIT/X11\n',
+138 silly resolved     _id: 'mkdirp@0.3.3',
+138 silly resolved     _from: 'mkdirp@0.3.x' } ]
+139 info install mkdirp@0.3.3 into C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass
+140 info installOne mkdirp@0.3.3
+141 verbose from cache C:\Users\Matt\AppData\Roaming\npm-cache\mkdirp\0.3.3\package\package.json
+142 info C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass\node_modules\mkdirp unbuild
+143 verbose read json C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass\node_modules\mkdirp\package.json
+144 verbose tar unpack C:\Users\Matt\AppData\Roaming\npm-cache\mkdirp\0.3.3\package.tgz
+145 silly gunzTarPerm modes [ '755', '644' ]
+146 silly gunzTarPerm extractEntry package.json
+147 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+148 silly gunzTarPerm extractEntry .npmignore
+149 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
+150 silly gunzTarPerm extractEntry LICENSE
+151 silly gunzTarPerm modified mode [ 'LICENSE', 438, 420 ]
+152 silly gunzTarPerm extractEntry index.js
+153 silly gunzTarPerm modified mode [ 'index.js', 438, 420 ]
+154 silly gunzTarPerm extractEntry .gitignore.orig
+155 silly gunzTarPerm modified mode [ '.gitignore.orig', 438, 420 ]
+156 silly gunzTarPerm extractEntry .gitignore.rej
+157 silly gunzTarPerm modified mode [ '.gitignore.rej', 438, 420 ]
+158 silly gunzTarPerm extractEntry .travis.yml
+159 silly gunzTarPerm modified mode [ '.travis.yml', 438, 420 ]
+160 silly gunzTarPerm extractEntry examples/pow.js
+161 silly gunzTarPerm modified mode [ 'examples/pow.js', 438, 420 ]
+162 silly gunzTarPerm extractEntry examples/pow.js.orig
+163 silly gunzTarPerm modified mode [ 'examples/pow.js.orig', 438, 420 ]
+164 silly gunzTarPerm extractEntry examples/pow.js.rej
+165 silly gunzTarPerm modified mode [ 'examples/pow.js.rej', 438, 420 ]
+166 silly gunzTarPerm extractEntry README.markdown
+167 silly gunzTarPerm modified mode [ 'README.markdown', 438, 420 ]
+168 silly gunzTarPerm extractEntry test/chmod.js
+169 silly gunzTarPerm modified mode [ 'test/chmod.js', 438, 420 ]
+170 silly gunzTarPerm extractEntry test/perm.js
+171 silly gunzTarPerm modified mode [ 'test/perm.js', 438, 420 ]
+172 silly gunzTarPerm extractEntry test/perm_sync.js
+173 silly gunzTarPerm modified mode [ 'test/perm_sync.js', 438, 420 ]
+174 silly gunzTarPerm extractEntry test/race.js
+175 silly gunzTarPerm modified mode [ 'test/race.js', 438, 420 ]
+176 silly gunzTarPerm extractEntry test/mkdirp.js
+177 silly gunzTarPerm modified mode [ 'test/mkdirp.js', 438, 420 ]
+178 silly gunzTarPerm extractEntry test/return.js
+179 silly gunzTarPerm modified mode [ 'test/return.js', 438, 420 ]
+180 silly gunzTarPerm extractEntry test/return_sync.js
+181 silly gunzTarPerm modified mode [ 'test/return_sync.js', 438, 420 ]
+182 silly gunzTarPerm extractEntry test/root.js
+183 silly gunzTarPerm modified mode [ 'test/root.js', 438, 420 ]
+184 silly gunzTarPerm extractEntry test/sync.js
+185 silly gunzTarPerm modified mode [ 'test/sync.js', 438, 420 ]
+186 silly gunzTarPerm extractEntry test/umask.js
+187 silly gunzTarPerm modified mode [ 'test/umask.js', 438, 420 ]
+188 silly gunzTarPerm extractEntry test/clobber.js
+189 silly gunzTarPerm modified mode [ 'test/clobber.js', 438, 420 ]
+190 silly gunzTarPerm extractEntry test/umask_sync.js
+191 silly gunzTarPerm modified mode [ 'test/umask_sync.js', 438, 420 ]
+192 silly gunzTarPerm extractEntry test/rel.js
+193 silly gunzTarPerm modified mode [ 'test/rel.js', 438, 420 ]
+194 verbose read json C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass\node_modules\mkdirp\package.json
+195 info preinstall mkdirp@0.3.3
+196 verbose from cache C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass\node_modules\mkdirp\package.json
+197 verbose readDependencies using package.json deps
+198 verbose from cache C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass\node_modules\mkdirp\package.json
+199 verbose readDependencies using package.json deps
+200 silly resolved []
+201 verbose about to build C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass\node_modules\mkdirp
+202 info build C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass\node_modules\mkdirp
+203 verbose from cache C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass\node_modules\mkdirp\package.json
+204 verbose linkStuff [ true,
+204 verbose linkStuff   'C:\\Users\\Matt\\AppData\\Roaming\\npm\\node_modules',
+204 verbose linkStuff   false,
+204 verbose linkStuff   'C:\\Users\\Matt\\AppData\\Roaming\\npm\\node_modules\\node-sass\\node_modules' ]
+205 info linkStuff mkdirp@0.3.3
+206 verbose linkBins mkdirp@0.3.3
+207 verbose linkMans mkdirp@0.3.3
+208 verbose rebuildBundles mkdirp@0.3.3
+209 info install mkdirp@0.3.3
+210 info postinstall mkdirp@0.3.3
+211 verbose about to build C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass
+212 info build C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass
+213 verbose from cache C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass\package.json
+214 verbose linkStuff [ true,
+214 verbose linkStuff   'C:\\Users\\Matt\\AppData\\Roaming\\npm\\node_modules',
+214 verbose linkStuff   true,
+214 verbose linkStuff   'C:\\Users\\Matt\\AppData\\Roaming\\npm\\node_modules' ]
+215 info linkStuff node-sass@0.2.1
+216 verbose linkBins node-sass@0.2.1
+217 verbose linkMans node-sass@0.2.1
+218 verbose rebuildBundles node-sass@0.2.1
+219 verbose rebuildBundles [ 'mkdirp' ]
+220 info install node-sass@0.2.1
+221 verbose unsafe-perm in lifecycle true
+222 silly exec cmd "/c" "node-gyp rebuild"
+223 silly cmd,/c,node-gyp rebuild,C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass spawning
+224 info node-sass@0.2.1 Failed to exec install script
+225 info C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass unbuild
+226 verbose from cache C:\Users\Matt\AppData\Roaming\npm\node_modules\node-sass\package.json
+227 info preuninstall node-sass@0.2.1
+228 info uninstall node-sass@0.2.1
+229 verbose true,C:\Users\Matt\AppData\Roaming\npm\node_modules,C:\Users\Matt\AppData\Roaming\npm\node_modules unbuild node-sass@0.2.1
+230 info postuninstall node-sass@0.2.1
+231 error node-sass@0.2.1 install: `node-gyp rebuild`
+231 error `cmd "/c" "node-gyp rebuild"` failed with 1
+232 error Failed at the node-sass@0.2.1 install script.
+232 error This is most likely a problem with the node-sass package,
+232 error not with npm itself.
+232 error Tell the author that this fails on your system:
+232 error     node-gyp rebuild
+232 error You can get their info via:
+232 error     npm owner ls node-sass
+232 error There is likely additional logging output above.
+233 error System Windows_NT 6.1.7601
+234 error command "P:\\Program Files (x86)\\nodejs\\\\node.exe" "P:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "-g" "node-sass"
+235 error cwd C:\node\crosma
+236 error node -v v0.8.0
+237 error npm -v 1.1.32
+238 error code ELIFECYCLE
+239 error message node-sass@0.2.1 install: `node-gyp rebuild`
+239 error message `cmd "/c" "node-gyp rebuild"` failed with 1
+240 verbose exit [ 1, true ]
