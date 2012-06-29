@@ -1,5 +1,6 @@
 if (process.env.CROSMA_ENV == 'dev')
 {
+
 	console.log('Loaded development config.');
 
 	module.exports = {
@@ -21,9 +22,11 @@ if (process.env.CROSMA_ENV == 'dev')
 			,static: 's.violentsoul.com'
 		}
 	};
+	
 }
 else
 {
+
 	console.log('Loaded production config.');
 
 	module.exports = {
@@ -45,4 +48,5 @@ else
 			,static: 'static.crosma.us'
 		}
 	};
+	
 }
