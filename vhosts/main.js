@@ -7,9 +7,14 @@ var	 app = require('../app')
 server.use(express.favicon()); //Serve before logging so it does not get logged
 server.use(express.logger('MAIN :method :url - :res[content-type]'));
 server.use(express.responseTime());
+server.use(express.static(app.config.root + app.config.static_dir)); //static stuff
 server.use(express.cookieParser()); //Can take a secret to encrypt them
 server.use(express.session({secret: 'sdfasdfasdfasdf', key: 'sid', cookie: {maxAge: 60 * 60 * 24 * 1000}}));
+server.use(express.bodyParser()); // parse request bodies (req.body)
+server.use(express.methodOverride('action')); // support _method input element (PUT in forms etc)
 
+
+//Init the view engine
 server.engine('html', require('jade').renderFile);
 server.set('view engine', 'html');
 if (app.config.cache_views) server.enable('view cache');
@@ -19,39 +24,19 @@ server.set('views',     app.config.root       +     app.config.views_errors);
 
 // define a custom res.message() method
 server.response.flash = function(msg) {
-	// reference `req.session` via the `this.req` reference
 	var sess = this.req.session;
-	// simply add the msg to an array for later
 	sess.messages = sess.messages || [];
 	sess.messages.push(msg);
-	
 	return this;
 };
 
 // expose the "messages" local variable when views are rendered
 server.locals.use(function(req, res) {
 	var msgs = req.session.messages || [];
-
-	// expose "messages" local variable
 	res.locals.messages = msgs;
-
-	// expose "hasMessages" 
 	res.locals.hasMessages = !! msgs.length;
-
-	// empty or "flush" the messages so they
-	// don't build up
 	req.session.messages = [];
 });
-
-
-
-server.use(express.static(app.config.root + app.config.static_dir));
-
-// parse request bodies (req.body)
-server.use(express.bodyParser());
-
-// support _method input element (PUT in forms etc)
-server.use(express.methodOverride('action'));
 
 
 app.express.use(express.vhost('*' + app.config.domains.main , server))
