@@ -7,7 +7,6 @@ var	 app = require('../app')
 server.use(express.favicon()); //Serve before logging so it does not get logged
 server.use(express.logger('MAIN :method :url - :res[content-type]'));
 server.use(express.responseTime());
-server.use(express.static(app.config.root + app.config.static_dir)); //static stuff
 server.use(express.cookieParser()); //Can take a secret to encrypt them
 server.use(express.session({secret: 'sdfasdfasdfasdf', key: 'sid', cookie: {maxAge: 60 * 60 * 24 * 1000}}));
 server.use(express.bodyParser()); // parse request bodies (req.body)
@@ -40,6 +39,8 @@ server.locals.use(function(req, res) {
 
 
 app.express.use(express.vhost('*' + app.config.domains.main , server))
+
+//server.get('/static/*', express.static(app.config.root + app.config.static_dir));
 
 module.exports.boot = function()
 {

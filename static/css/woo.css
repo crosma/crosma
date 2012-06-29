@@ -4,41 +4,107 @@
 	
 	font: font-family: "Times New Roman", Times, serif;
 	
-	font-size: 14px;
+	
 }
 
 body {
-	background: #2B3A42;
+	background: #BDD4DE;
 }
 
-#header, #desc {
+a:link, a:hover, a:visited {
+	color: #3F5765;
+	text-decoration: none;
+}
+a:hover {
+	color #3F5765;
+	text-decoration: underline;
+}
+
+.bigbox {
 	width: 400px;
 	
-	background: #BDD4DE;
-	border: 1px solid #EFEFEF;
+	background: #EFEFEF;
+	border: 5px solid #3F5765;
 	
 	padding: 20px;
 	
 	text-align: center;
 	
 	margin: 25px auto 0 auto;
+	
+	font-size: 15px;
+	
+	color: #2B3A42;
+	
+	font-family: 'Overlock', cursive;
+	//font-weight: 700;
 }
 
+
 #header {
-	font-size: 40px;
-	line-height: 40px;
-	font-weight: bold;
+
+}
+
+#header .name {
+	font-size: 80px;
+	line-height: 80px;
+	
+
+	font-family: 'Dr Sugiyama', cursive;
+	
+	margin-bottom: 10px;
+	
 	color: #FF530D;
 }
 
-#nodelink {
+ #desc {
+
+
+	
+
+}
+
+
+#nodelink a  {
 	width: 212px;
 	height: 114px;
-	display: block;
+	display: inline-block;
 
-	background: url('http://nodejs.org/images/logos/nodejs-dark.png');
-
-	margin: 75px auto 0 auto;
+	background: url('/nodejs-green.png');
 }
-			
-			
+
+#nginxlink a  {
+	width: 259px;
+	height: 92px;
+	display: inline-block;
+
+	background: url('/nginx-logo.png');
+}
+
+#mongolink a  {
+	width: 300px;
+	height: 100px;
+	display: inline-block;
+
+	background: url('/mongodb-logo.png');
+}
+
+#amazonlink a  {
+	width: 300px;
+	height: 109px;
+	display: inline-block;
+	
+	background-size: 300px 109px;
+
+	background: url('/amazon-web-services-logo-large.png');
+}
+
+#footer {
+	width: 400px;
+	text-align: center;
+	
+	font-family: 'Overlock', cursive;
+	font-size: 12px;
+	
+	margin: 35px auto;
+}
