@@ -78,7 +78,7 @@ module.exports.boot = function()
 	});
 	*/
 
-	var testpage = require('../controllers/testpage');
+	//var testpage = require('../controllers/testpage');
 
 
 
@@ -125,10 +125,15 @@ module.exports.boot = function()
 		res.status(500).render('5xx');
 	});
 
+	
+	server.set('views', app.config.root + '/views');
 
 	// assume 404 since no middleware responded
 	server.all('*', function(req, res, next) {
-		res.status(404).render('404', { url: req.originalUrl });
+	
+		res.render('woo.jade');
+	
+		//res.status(404).render('404', { url: req.originalUrl });
 	});
 }
 
