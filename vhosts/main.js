@@ -126,6 +126,8 @@ module.exports.boot = function()
 	});
 
 	
+	server.enable('view cache');
+	
 	server.set('views', app.config.root + '/views');
 
 	// assume 404 since no middleware responded
