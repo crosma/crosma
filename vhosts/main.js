@@ -56,6 +56,10 @@ module.exports.boot = function()
 
 
 	server.set('views', app.config.root + '/views');
+	
+	server.locals.use(function(req, res) {
+		res.locals.static_url = app.config.static_url;
+	});
 
 	// assume 404 since no middleware responded
 	server.all('*', function(req, res, next) {

@@ -20,6 +20,8 @@ if (process.env.CROSMA_ENV == 'dev')
 			 main: 'violentsoul.com'
 			,static: 's.violentsoul.com'
 		}
+		
+		,static_url: '/static'
 	};
 }
 else
@@ -44,5 +46,7 @@ else
 			 main: 'crosma.us'
 			,static: 'static.crosma.us'
 		}
+		
+		,static_url: 'http://static.crosma.us'
 	};
 }
