@@ -1,6 +1,6 @@
 if (process.env.CROSMA_ENV == 'dev')
 {
-	console.log('Loaded dev config.');
+	console.log('Loaded development config.');
 
 	module.exports = {
 		 port: 80
@@ -22,7 +22,7 @@ if (process.env.CROSMA_ENV == 'dev')
 }
 else
 {
-	console.log('Loaded main config.');
+	console.log('Loaded production config.');
 
 	module.exports = {
 		 port: 80
