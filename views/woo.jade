@@ -1,16 +1,16 @@
 !!! 5
 html
 	head
-		title crosma.us - Coming eventually.
+		title #{globals.site_name} - Coming eventually.
 		
-		link(rel="stylesheet", href="http://static.crosma.us/css/woo.css")
+		link(rel="stylesheet", href="#{globals.static_url}/css/woo.css")
 
 	body
-		#header.
-			crosma.us
+	#header.
+			#{globals.site_name}
 			
 		#desc.
 			Node.js and MongoDB developement hosted on Amazon AWS. Maybe MySQL as a backup, we'll see. Memcache and Redis could happen some day.
-			#{static_url}	
+				
 			
 		a#nodelink(href="http://nodejs.org/", target="_blank")

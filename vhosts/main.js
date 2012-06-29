@@ -17,7 +17,7 @@ server.use(express.methodOverride('action')); // support _method input element (
 //Init the view engine
 server.engine('html', require('jade').renderFile);
 server.set('view engine', 'html');
-if (app.config.cache_views) server.enable('view cache');
+//if (app.config.cache_views) server.enable('view cache');
 	
 server.set('views',     app.config.root       +     app.config.views_errors);	
 
@@ -58,7 +58,9 @@ module.exports.boot = function()
 	server.set('views', app.config.root + '/views');
 	
 	server.locals.use(function(req, res) {
-		res.locals.static_url = app.config.static_url;
+		res.locals.globals = {};
+		res.locals.globals.site_name = app.config.site_name;
+		res.locals.globals.static_url = app.config.static_url;
 	});
 
 	// assume 404 since no middleware responded
