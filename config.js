@@ -1,5 +1,6 @@
 if (process.env.CROSMA_ENV == 'dev')
 {
+
 	console.log('Loaded development config.');
 
 	module.exports = {
@@ -24,6 +25,7 @@ if (process.env.CROSMA_ENV == 'dev')
 }
 else
 {
+
 	console.log('Loaded production config.');
 
 	module.exports = {
