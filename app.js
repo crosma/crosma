@@ -11,7 +11,7 @@ var config = require('./config');
 ********* Set up globals
 ******************************************************************************/
 var  express = require('express')
-    ,assert = require('assert')
+	,assert = require('assert')
 	,app = module.exports.express = express()
 ;
 
