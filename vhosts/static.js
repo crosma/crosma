@@ -35,7 +35,7 @@ server.use(express.static(app.config.root + app.config.static_dir));
 //server.use(express.directory(app.config.root + app.config.static_dir, {icons: true}));
 
 server.all('*', function(req, res){
-  res.send('Aint nothin\' there.', 404);
+  res.send('Not found.', 404);
 });
 
 
