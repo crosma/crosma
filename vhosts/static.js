@@ -34,5 +34,9 @@ server.use(express.static(app.config.root + app.config.static_dir));
 //server.use(express.logger('STATIC :method :url - :res[content-type]'));
 //server.use(express.directory(app.config.root + app.config.static_dir, {icons: true}));
 
+server.all('*', function(req, res){
+  res.send('Aint nothin\' there.', 404);
+});
+
 
 app.express.use(express.vhost(app.config.domains.static, server))

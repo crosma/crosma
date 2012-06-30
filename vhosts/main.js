@@ -4,6 +4,14 @@ var	 app = require('../app')
 	,util = require('util')
 ; 
 
+
+//Fuck caching.
+server.use(function(req, res, next) {
+	//http://condor.depaul.edu/dmumaugh/readings/handouts/SE435/HTTP/node24.html
+	res.setHeader('Cache-Control', 'max-age=0, no-store'); //Throw a day on the cache
+	next();
+});
+
 server.use(express.favicon()); //Serve before logging so it does not get logged
 server.use(express.logger('MAIN :method :url - :res[content-type]'));
 server.use(express.responseTime());
