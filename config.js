@@ -36,7 +36,7 @@ else
 		,site_name: 'crosma.us'
 		
 		,static_dir: '/static'
-		,static_url: 'http://static.crosma.us'
+		,static_url: 'http://cf.crosma.us'
 		
 		,controllers_dir: '/controllers'
 		
@@ -46,7 +46,7 @@ else
 		
 		,domains: {
 			 main: 'crosma.us'
-			,static: 'cf.crosma.us'
+			,static: 'static.crosma.us'
 		}
 	};
 }
