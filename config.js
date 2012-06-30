@@ -11,6 +11,7 @@ if (process.env.CROSMA_ENV == 'dev')
 		
 		,static_dir: '/static'
 		,static_url: 'http://s.violentsoul.com'
+		,cache_static: true
 				
 		,controllers_dir: '/controllers'
 		
@@ -37,6 +38,7 @@ else
 		
 		,static_dir: '/static'
 		,static_url: 'http://cf.crosma.us'
+		,cache_static: true
 		
 		,controllers_dir: '/controllers'
 		

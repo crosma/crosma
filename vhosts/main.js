@@ -2,7 +2,7 @@ var	 app = require('../app')
 	,express = require('express')
 	,server = module.exports = express.createServer()
 	,util = require('util')
-;
+; 
 
 server.use(express.favicon()); //Serve before logging so it does not get logged
 server.use(express.logger('MAIN :method :url - :res[content-type]'));
