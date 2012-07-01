@@ -1,54 +1,37 @@
+var conf = {
+	 port: 80
+	 
+	,root: __dirname
+	
+	,site_name: 'violentsoul.com'
+	
+	,static_dir: '/static'
+	,static_url: 'http://s.violentsoul.com'
+	,cache_static: true
+			
+	,controllers_dir: '/controllers'
+	
+	,views_dir: '/views'
+	,views_errors: '/views_errors'
+	,cache_views: false
+	
+	,domains: {
+		 main: 'violentsoul.com'
+		,static: 's.violentsoul.com'
+	}
+};
+
 if (process.env.CROSMA_ENV == 'dev')
 {
-	console.log('Loaded development config.');
+		conf.site_name = 'crosma.us';
 
-	module.exports = {
-		 port: 80
-		 
-		,root: __dirname
+		conf.static_url = 'http ://cf.crosma.us';
+		conf.cache_static = true;
 		
-		,site_name: 'violentsoul.com'
+		conf.cache_views = true;
 		
-		,static_dir: '/static'
-		,static_url: 'http://s.violentsoul.com'
-		,cache_static: true
-				
-		,controllers_dir: '/controllers'
-		
-		,views_dir: '/views'
-		,views_errors: '/views_errors'
-		,cache_views: false
-		
-		,domains: {
-			 main: 'violentsoul.com'
-			,static: 's.violentsoul.com'
-		}
-	};
+		conf.domains.main = 'crosma.us';
+		conf.domains.static = 'static.crosma.us';
 }
-else
-{
-	console.log('Loaded production config.');
 
-	module.exports = {
-		 port: 80
-		 
-		,root: __dirname
-		
-		,site_name: 'crosma.us'
-		
-		,static_dir: '/static'
-		,static_url: 'http://cf.crosma.us'
-		,cache_static: true
-		
-		,controllers_dir: '/controllers'
-		
-		,views_dir: '/views'
-		,views_errors: '/views_errors'
-		,cache_views: true
-		
-		,domains: {
-			 main: 'crosma.us'
-			,static: 'static.crosma.us'
-		}
-	};
-}
+module.exports = conf;
