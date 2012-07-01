@@ -27,7 +27,7 @@ if (process.env.CROSMA_ENV == 'production')
 {
 		conf.site_name = 'crosma.us';
 
-		conf.static_url = 'http ://cf.crosma.us';
+		conf.static_url = 'http://cf.crosma.us';
 		conf.cache_static = true;
 		
 		conf.cache_views = true;
