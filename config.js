@@ -21,7 +21,7 @@ var conf = {
 	}
 };
 
-if (process.env.CROSMA_ENV == 'dev')
+if (process.env.NODE_ENV == 'production')
 {
 		conf.site_name = 'crosma.us';
 
