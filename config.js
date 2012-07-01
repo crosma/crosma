@@ -1,4 +1,4 @@
-console.log('NODE_ENV = ' + process.env.NODE_ENV);
+console.log('CROSMA_ENV = ' + process.env.CROSMA_ENV);
 
 var conf = {
 	 port: 80
@@ -23,7 +23,7 @@ var conf = {
 	}
 };
 
-if (process.env.NODE_ENV == 'production')
+if (process.env.CROSMA_ENV == 'production')
 {
 		conf.site_name = 'crosma.us';
 
