@@ -1,3 +1,5 @@
+console.log('NODE_ENV = ' + process.env.NODE_ENV);
+
 var conf = {
 	 port: 80
 	 
