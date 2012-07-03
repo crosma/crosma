@@ -25,15 +25,17 @@ var conf = {
 
 if (process.env.CROSMA_ENV == 'production')
 {
-		conf.site_name = 'crosma.us';
+	conf.porn = 8000;
 
-		conf.static_url = 'http://cf.crosma.us';
-		conf.cache_static = true;
-		
-		conf.cache_views = true;
-		
-		conf.domains.main = 'crosma.us';
-		conf.domains.static = 'static.crosma.us';
+	conf.site_name = 'crosma.us';
+
+	conf.static_url = 'http://cf.crosma.us';
+	conf.cache_static = true;
+	
+	conf.cache_views = true;
+	
+	conf.domains.main = 'crosma.us';
+	conf.domains.static = 'static.crosma.us';
 }
 
 module.exports = conf;
