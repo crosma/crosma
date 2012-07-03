@@ -6,18 +6,16 @@ html
 		meta(name="description", content="")
 		meta(name="author", content="Matt Crossley")
 	
-		//each css_file in config.css_files
-		//link(rel="stylesheet", type='text/css', href="#{config.static_url}/css/#{css_file}")
-	
-		link(rel="stylesheet", type='text/css', href="#{config.static_url}/css/bootstrap.css")
+
+		link(rel="stylesheet", type='text/css', href=versionPath("#{config.static_url}/css/#{config.bootstrap_css}"))
 		style(type="text/css").
 			body {
 				padding-top: 60px;
 				padding-bottom: 40px;
 			}
+		each css_file in config.css_files
+			link(rel="stylesheet", type='text/css', href=versionPath("#{config.static_url}/css/#{css_file}"))
 			
-		link(rel="stylesheet", type='text/css', href="#{config.static_url}/css/bootstrap-responsive.css")
-
 		//if lt IE 8
 			script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
 		

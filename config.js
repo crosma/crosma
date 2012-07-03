@@ -22,7 +22,8 @@ var conf = {
 		,static: 's.violentsoul.com'
 	}
 	
-	,local_css_files: ['bootstrap.css', 'bootstrap-responsive.css']
+	,bootstrap_css: 'bootstrap.css'
+	,local_css_files: ['bootstrap-responsive.css']
 	,local_js_files: ['jquery-1.7.2.js', 'bootstrap.js']
 };
 

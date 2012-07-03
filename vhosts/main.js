@@ -71,6 +71,8 @@ module.exports.boot = function()
 		res.status(500).render('5xx');
 	});
 	*/
+	
+	server.use(express.errorHandler({dumpExceptions: true, showStack: true}));
 
 
 	server.set('views', app.config.root + '/views');
@@ -81,6 +83,7 @@ module.exports.boot = function()
 		//res.locals.globals.config should consist of things set for every page, making config a reserved global
 		res.locals.config.site_name = app.config.site_name;
 		res.locals.config.static_url = app.config.static_url;
+		res.locals.config.bootstrap_css = app.config.bootstrap_css;
 		res.locals.config.css_files = app.config.local_css_files;
 		res.locals.config.js_files = app.config.local_js_files;
 	});

@@ -9,11 +9,7 @@ var	 app = require('../app')
 
 server.use(express.responseTime());
 
-//console.log(util.inspect(versionator, false, null));
-
-//server.locals.use(versionator.versionPath);
-
-//Lookup and set the mime type for this file.
+server.use(express.logger('STATIC :method :url - :res[content-type]'));
 
 server.use(function(req, res, next) {
 	var type = mime.lookup(req.url);
@@ -27,30 +23,24 @@ server.use(function(req, res, next) {
 if (app.config.cache_static)
 {
 	server.use(function(req, res, next) {
-		//http://condor.depaul.edu/dmumaugh/readings/handouts/SE435/HTTP/node24.html
-		res.setHeader('Cache-Control', 'max-age=3600, must-revalidate'); //Throw a day on the cache
+		res.setHeader('Cache-Control', 'max-age=3600, public'); //Throw a day on the cache
 		next();
 	});
-	
-	//server.use(express.staticCache());
+}
+else
+{
+	server.use(function(req, res, next) {
+		res.setHeader('Cache-Control', 'max-age=0, no-store, private'); 
+		next();
+	});
 }
 
-server.use(require('../lib/poweredBy')); //Overwrite the x-powered-by header
+server.use(require('../lib/poweredBy')); //Overwrite the x-powered-by header 
 
 server.use(versionator.middleware);
 
 server.use(express.static(app.config.root + app.config.static_dir));
 
-server.use(function(req, res, next) {
-	//http://condor.depaul.edu/dmumaugh/readings/handouts/SE435/HTTP/node24.html
-	res.setHeader('Cache-Control', 'max-age=0, no-store, private'); 
-	next();
-});
-
-
-//server.use(express.logger('STATIC :method :url - :res[content-type]'));
-//server.use(express.directory(app.config.root + app.config.static_dir, {icons: true}));
-	
 server.all('*', function(req, res){
   res.send('Not found.', 404);
 });
