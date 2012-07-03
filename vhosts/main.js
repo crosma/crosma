@@ -26,7 +26,7 @@ server.use(server.router);
 //Init the view engine
 server.engine('html', require('jade').renderFile);
 server.set('view engine', 'html');
-//if (app.config.cache_views) server.enable('view cache');
+if (app.config.cache_views) server.enable('view cache');
 	
 server.set('views',     app.config.root       +     app.config.views_errors);	
 
