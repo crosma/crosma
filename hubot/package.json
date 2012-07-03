@@ -10,14 +10,19 @@
   }],
 
   "repository" : {
-    "type" : "git",
-    "url" : "http://github.com/github/hubot.git"
+    "type": "git",
+    "url":  "https://github.com/github/hubot.git"
   },
 
   "dependencies": {
     "hubot": "2.2.0",
     "hubot-scripts": ">=2.0.8",
     "optparse": "1.0.3"
+  },
+
+  "engines": {
+    "node": "0.6.x",
+    "npm": "1.0.x"
   }
 }
 
