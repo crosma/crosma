@@ -2,6 +2,7 @@ var	 app = require('../app')
 	,express = require('express')
 	,server = module.exports = express.createServer()
 	,util = require('util')
+	,versionator = require('versionator').createBasic(app.config.unique)
 ; 
 
 
@@ -47,6 +48,9 @@ server.locals.use(function(req, res) {
 	req.session.messages = [];
 });
 
+server.locals({
+	versionPath: versionator.versionPath
+});
 
 
 app.express.use(express.vhost('*' + app.config.domains.main , server))

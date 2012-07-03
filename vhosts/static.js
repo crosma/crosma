@@ -2,9 +2,19 @@ var	 app = require('../app')
 	,express = require('express')
 	,server = module.exports = express.createServer()
 	,mime = require('connect').mime 
+	,versionator = require('versionator').createBasic(app.config.unique)
+	,util = require('util')
 ;  
- 
+
+
+server.use(express.responseTime());
+
+//console.log(util.inspect(versionator, false, null));
+
+//server.locals.use(versionator.versionPath);
+
 //Lookup and set the mime type for this file.
+
 server.use(function(req, res, next) {
 	var type = mime.lookup(req.url);
 	var charset = mime.charsets.lookup(type);
@@ -27,16 +37,22 @@ if (app.config.cache_static)
 
 server.use(require('../lib/poweredBy')); //Overwrite the x-powered-by header
 
-server.use(express.responseTime());
+server.use(versionator.middleware);
 
 server.use(express.static(app.config.root + app.config.static_dir));
 
+server.use(function(req, res, next) {
+	//http://condor.depaul.edu/dmumaugh/readings/handouts/SE435/HTTP/node24.html
+	res.setHeader('Cache-Control', 'max-age=0, no-store, private'); 
+	next();
+});
+
+
 //server.use(express.logger('STATIC :method :url - :res[content-type]'));
 //server.use(express.directory(app.config.root + app.config.static_dir, {icons: true}));
-
+	
 server.all('*', function(req, res){
   res.send('Not found.', 404);
 });
-
 
 app.express.use(express.vhost(app.config.domains.static, server))

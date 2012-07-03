@@ -2,10 +2,8 @@ console.log('-------------------------------------------------------------------
 console.log('--------------------------------------------------------------------------------');
 console.log('--------------------------------------------------------------------------------');
 
-var config = require('./config');
+var config = module.exports.config = require('./config');
 
-//maybe use this to pool mysql connections?
-//https://github.com/coopernurse/node-pool
 
 /******************************************************************************
 ********* Set up globals
@@ -13,11 +11,19 @@ var config = require('./config');
 var  express = require('express')
 	,assert = require('assert')
 	,app = module.exports.express = express()
+	,fs = require('fs')
+	,crypto = require('crypto')
+	,shasum = crypto.createHash('sha1');
 ;
 
 
-module.exports.config = config;
+/******************************************************************************
+********* Set some stuff up
+******************************************************************************/
 module.exports.servers = {};
+
+shasum.update((new Date()).getTime().toString());
+config.unique = shasum.digest('hex').substr(0, 8);
 
 
 /******************************************************************************
