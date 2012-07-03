@@ -8,7 +8,7 @@ var	 app = require('../app')
 //Fuck caching.
 server.use(function(req, res, next) {
 	//http://condor.depaul.edu/dmumaugh/readings/handouts/SE435/HTTP/node24.html
-	res.setHeader('Cache-Control', 'max-age=0, no-store, private'); //Throw a day on the cache
+	res.setHeader('Cache-Control', 'max-age=0, no-store, private'); 
 	next();
 });
 
@@ -20,6 +20,7 @@ server.use(express.session({secret: 'sdfasdfasdfasdf', key: 'sid', cookie: {maxA
 server.use(express.bodyParser()); // parse request bodies (req.body)
 server.use(express.methodOverride('action')); // support _method input element (PUT in forms etc)
 server.use(require('../lib/poweredBy')); //Overwrite the x-powered-by header
+server.use(server.router);
 
 
 //Init the view engine
@@ -54,6 +55,7 @@ app.express.use(express.vhost('*' + app.config.domains.main , server))
 
 module.exports.boot = function()
 {
+	/*
 	server.use(function(err, req, res, next){
 		// treat as 404
 		if (~err.message.indexOf('not found')) return next();
@@ -64,14 +66,19 @@ module.exports.boot = function()
 		// error page
 		res.status(500).render('5xx');
 	});
+	*/
 
 
 	server.set('views', app.config.root + '/views');
 	
 	server.locals.use(function(req, res) {
-		res.locals.globals = {};
-		res.locals.globals.site_name = app.config.site_name;
-		res.locals.globals.static_url = app.config.static_url;
+		res.locals.config = {};
+		
+		//res.locals.globals.config should consist of things set for every page, making config a reserved global
+		res.locals.config.site_name = app.config.site_name;
+		res.locals.config.static_url = app.config.static_url;
+		res.locals.config.css_files = app.config.local_css_files;
+		res.locals.config.js_files = app.config.local_js_files;
 	});
 
 	// assume 404 since no middleware responded
@@ -79,7 +86,7 @@ module.exports.boot = function()
 		res.flash('Fuck it.');
 		
 	
-		res.render('woo.jade');
+		res.render('bs.jade');
 	
 		//res.status(404).render('404', { url: req.originalUrl });
 	});

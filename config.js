@@ -21,6 +21,9 @@ var conf = {
 		 main: 'violentsoul.com'
 		,static: 's.violentsoul.com'
 	}
+	
+	,local_css_files: ['bootstrap.css', 'bootstrap-responsive.css']
+	,local_js_files: ['jquery-1.7.2.js', 'bootstrap.js']
 };
 
 if (process.env.CROSMA_ENV == 'production')
