@@ -25,7 +25,7 @@ var conf = {
 
 if (process.env.CROSMA_ENV == 'production')
 {
-	conf.porn = 8000;
+	conf.port = 8000;
 
 	conf.site_name = 'crosma.us';
 
