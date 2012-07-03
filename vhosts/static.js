@@ -2,7 +2,7 @@ var	 app = require('../app')
 	,express = require('express')
 	,server = module.exports = express.createServer()
 	,mime = require('connect').mime 
-	,versionator = require('versionator').createBasic(app.config.unique)
+	,versionator = require('../lib/versionator')(app.config.unique)
 	,util = require('util')
 ;  
 

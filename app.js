@@ -50,4 +50,5 @@ module.exports.servers.static = require('./vhosts/catchall');
 ******************************************************************************/
 app.listen(config.port);
 
-console.log('Running on port ' + config.port);
+
+console.log('CROSMA_ENV = ' + process.env.CROSMA_ENV + ', Port ' + config.port + ', Unique = ' + config.unique);
