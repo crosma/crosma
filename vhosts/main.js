@@ -8,7 +8,7 @@ var	 app = require('../app')
 //Fuck caching.
 server.use(function(req, res, next) {
 	//http://condor.depaul.edu/dmumaugh/readings/handouts/SE435/HTTP/node24.html
-	res.setHeader('Cache-Control', 'max-age=0, no-store'); //Throw a day on the cache
+	res.setHeader('Cache-Control', 'max-age=0, no-store, private'); //Throw a day on the cache
 	next();
 });
 
