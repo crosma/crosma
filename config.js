@@ -43,7 +43,7 @@ if (process.env.CROSMA_ENV == 'production')
 	conf.cache_views = true;
 	
 	conf.domains.main = 'crosma.us';
-	conf.domains.admin = 'admin.cromsa.us';
+	conf.domains.admin = 'admin.crosma.us';
 	conf.domains.static = 'static.crosma.us';
 }
 
