@@ -9,7 +9,7 @@ var conf = {
 	
 	,static_dir: '/static'
 	,static_url: 'http://s.violentsoul.com'
-	,cache_static: true
+	,cache_static: false
 			
 	,controllers_dir: '/controllers'
 	
@@ -17,8 +17,12 @@ var conf = {
 	,views_errors: '/views_errors'
 	,cache_views: false
 	
+	,admin_dir: '/admin'
+	,admin_views_dir: '/admin/views'
+	
 	,domains: {
 		 main: 'violentsoul.com'
+		,admin: 'admin.violentsoul.com'
 		,static: 's.violentsoul.com'
 	}
 	
@@ -39,6 +43,7 @@ if (process.env.CROSMA_ENV == 'production')
 	conf.cache_views = true;
 	
 	conf.domains.main = 'crosma.us';
+	conf.domains.admin = 'admin.cromsa.us';
 	conf.domains.static = 'static.crosma.us';
 }
 

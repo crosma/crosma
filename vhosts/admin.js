@@ -29,7 +29,7 @@ server.engine('html', require('jade').renderFile);
 server.set('view engine', 'html');
 if (app.config.cache_views) server.enable('view cache');
 	
-server.set('views', app.config.root + app.config.views_errors);	
+server.set('views',     app.config.root       +     app.config.views_errors);	
 
 
 // define a custom res.message() method
@@ -53,9 +53,7 @@ server.locals({
 });
 
 
-app.express.use(express.vhost('*' + app.config.domains.main , server))
-
-//server.get('/static/*', express.static(app.config.root + app.config.static_dir));
+app.express.use(express.vhost('*' + app.config.domains.admin , server))
 
 module.exports.boot = function()
 {
@@ -75,7 +73,7 @@ module.exports.boot = function()
 	server.use(express.errorHandler({dumpExceptions: true, showStack: true}));
 
 
-	server.set('views', app.config.root + '/views');
+	server.set('views', app.config.root + app.config.admin_views_dir);
 	
 	server.locals.use(function(req, res) {
 		res.locals.config = {};
@@ -91,9 +89,8 @@ module.exports.boot = function()
 	// assume 404 since no middleware responded
 	server.all('*', function(req, res, next) {
 		res.flash('Fuck it.');
-		
-	
-		res.render('woo.jade');
+
+		res.render('bs.jade');
 	
 		//res.status(404).render('404', { url: req.originalUrl });
 	});

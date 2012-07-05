@@ -70,7 +70,7 @@ a:hover {
 	height: 114px;
 	display: inline-block;
 
-	background: url('/nodejs-green.png');
+	background: url('/img/nodejs-green.png');
 }
 
 #nginxlink a  {
@@ -78,7 +78,7 @@ a:hover {
 	height: 92px;
 	display: inline-block;
 
-	background: url('/nginx-logo.png');
+	background: url('/img/nginx-logo.png');
 }
 
 #mongolink a  {
@@ -86,7 +86,7 @@ a:hover {
 	height: 100px;
 	display: inline-block;
 
-	background: url('/mongodb-logo.png');
+	background: url('/img/mongodb-logo.png');
 }
 
 #amazonlink a  {
@@ -96,7 +96,7 @@ a:hover {
 	
 	background-size: 300px 109px;
 
-	background: url('/amazon-web-services-logo-large.png');
+	background: url('/img/amazon-web-services-logo-large.png');
 }
 
 #footer {

@@ -33,7 +33,14 @@ module.exports.servers.static = require('./vhosts/static');
 
 
 /******************************************************************************
+********* set up the admin vhost
+*******************************************(**********************************/
+module.exports.servers.admin = require('./vhosts/admin');
+module.exports.servers.admin.boot();
+
+/******************************************************************************
 ********* set up the main vhost
+********* should be the last before the catchall.
 ******************************************************************************/
 module.exports.servers.main = require('./vhosts/main');
 module.exports.servers.main.boot();
