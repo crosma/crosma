@@ -1,6 +1,11 @@
-html
-	head
-		title 404
+extends layout-error
+
+
+block content
+
+	|  
 	
-	body
-		| Fuck. That's not found. Where did it go?
+	.hero-unit
+		h1 Fuck.
+		p.
+			Can't find <em>#{url}</em>. Where did it go?
