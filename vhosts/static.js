@@ -7,10 +7,13 @@ var	 app = require('../app')
 ;  
 
 
-server.use(express.responseTime());
+console.log(app.config.root + '/work');
+console.log(app.config.root + app.config.static_dir + '');
 
+server.use(express.responseTime());
 server.use(express.logger('STATIC :method :url - :res[content-type]'));
 
+//Set the Content-Type header to the assumed mime type
 server.use(function(req, res, next) {
 	var type = mime.lookup(req.url);
 	var charset = mime.charsets.lookup(type);
@@ -38,6 +41,12 @@ else
 server.use(require('../lib/poweredBy')); //Overwrite the x-powered-by header 
 
 server.use(versionator.middleware);
+
+server.use(require('less-middleware')({
+	 src: app.config.root + '/work'
+	,dest: app.config.root + app.config.static_dir + ''
+	,once: false //app.config.cache_static //Only check for changes once if static cache is enabled //Dont really need to, varnish fixes the need
+}));
 
 server.use(express.static(app.config.root + app.config.static_dir));
 

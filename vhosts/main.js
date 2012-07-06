@@ -74,7 +74,6 @@ module.exports.boot = function()
 	
 	server.use(express.errorHandler({dumpExceptions: true, showStack: true}));
 
-
 	server.set('views', app.config.root + '/views');
 	
 	server.locals.use(function(req, res) {

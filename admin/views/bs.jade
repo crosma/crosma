@@ -1,87 +1,32 @@
-!!! 5
-html
-	head
-		title #{config.site_name}
-		meta(name="viewport", content="width=device-width, initial-scale=1.0")
-		meta(name="description", content="")
-		meta(name="author", content="Matt Crossley")
-	
+extends layout-main
 
-		link(rel="stylesheet", type='text/css', href=versionPath("#{config.static_url}/css/#{config.bootstrap_css}"))
-		style(type="text/css").
-			body {
-				padding-top: 60px;
-				padding-bottom: 40px;
-			}
-		each css_file in config.css_files
-			link(rel="stylesheet", type='text/css', href=versionPath("#{config.static_url}/css/#{css_file}"))
-			
-		//if lt IE 8
-			script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
-		
-		link(rel="apple-touch-icon-precomposed", sizes="144x144", href="../assets/ico/apple-touch-icon-144-precomposed.png")
-		link(rel="apple-touch-icon-precomposed", sizes="114x114", href="../assets/ico/apple-touch-icon-114-precomposed.png")
-		link(rel="apple-touch-icon-precomposed", sizes="72x72", href="../assets/ico/apple-touch-icon-72-precomposed.png")
-		link(rel="apple-touch-icon-precomposed", href="../assets/ico/apple-touch-icon-57-precomposed.png")
-		
-	
-	body
-		.navbar.navbar-fixed-top
-			.navbar-inner
-				.container
-					button.btn.btn-navbar(type="button", data-toggle="collapse", data-target=".nav-collapse")
-						span.icon-bar
-						span.icon-bar
-						span.icon-bar
-					a.brand(href="#") #{config.site_name}
-					.nav-collapse.collapse
-						ul.nav
-							li.active 
-								a(href="#") Home
-							li
-								a(href="#about") About
-							li
-								a(href="#contact") Contact
-		
-		.container
-			.hero-unit
-				h1 Hello, world!
-				p.
-					Some stuff.
-				p
-					a.btn.btn-primary.btn-large Learn More.
+
+block content
+
+	.hero-unit
+		h1 Hello, world!
+		p.
+			Some stuff.
+		p
+			a.btn.btn-primary.btn-large Learn More.
+
+
+	.row
+		.span3
+			h2 Heading
+			p Test In span4
+			p
+				a.btn(href="#") View details...
 		
 		
-			.row
-				.span4
-					h2 Heading
-					p Test In span4
-					p
-						a.btn(href="#") View details...
-				
-				
-				.span4
-					h2 Heading
-					p.
-						Test In span4
-					p
-						a.btn(href="#") View details...
-						
-				.span4
-					h2 Heading
-					p.
-						Test In span4
-					p
-						a.btn(href="#") View details...
-						
-						
-			hr
-			
-			footer
-				p &copy; Company 2012
-	
+		.span9
+			h2 Heading
+			p.
+				Test In span4
+			p
+				a.btn(href="#") View details...
+					
+
 	
 
 	
-		each js_file in config.js_files
-			script(type="text/javascript", src=versionPath("#{config.static_url}/js/#{js_file}"))

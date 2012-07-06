@@ -13,8 +13,10 @@ server.use(function(req, res, next) {
 	next();
 });
 
+
+//Basic configuration
 server.use(express.favicon()); //Serve before logging so it does not get logged
-server.use(express.logger('MAIN :method :url - :res[content-type]'));
+server.use(express.logger('dev'));
 server.use(express.responseTime());
 server.use(express.cookieParser()); //Can take a secret to encrypt them
 server.use(express.session({secret: 'sdfasdfasdfasdf', key: 'sid', cookie: {maxAge: 60 * 60 * 24 * 1000}}));
@@ -25,11 +27,8 @@ server.use(server.router);
 
 
 //Init the view engine
-server.engine('html', require('jade').renderFile);
-server.set('view engine', 'html');
+server.set('view engine', 'jade');
 if (app.config.cache_views) server.enable('view cache');
-	
-server.set('views',     app.config.root       +     app.config.views_errors);	
 
 
 // define a custom res.message() method
@@ -57,23 +56,12 @@ app.express.use(express.vhost('*' + app.config.domains.admin , server))
 
 module.exports.boot = function()
 {
-	/*
-	server.use(function(err, req, res, next){
-		// treat as 404
-		if (~err.message.indexOf('not found')) return next();
-
-		// log it
-		console.error(err.stack);
-
-		// error page
-		res.status(500).render('5xx');
-	});
-	*/
-	
-	server.use(express.errorHandler({dumpExceptions: true, showStack: true}));
-
-
 	server.set('views', app.config.root + app.config.admin_views_dir);
+	
+	/*
+		res.flash('Fuck it.');
+		res.render('bs.jade');
+	*/
 	
 	server.locals.use(function(req, res) {
 		res.locals.config = {};
@@ -81,18 +69,17 @@ module.exports.boot = function()
 		//res.locals.globals.config should consist of things set for every page, making config a reserved global
 		res.locals.config.site_name = app.config.site_name;
 		res.locals.config.static_url = app.config.static_url;
-		res.locals.config.bootstrap_css = app.config.bootstrap_css;
 		res.locals.config.css_files = app.config.local_css_files;
 		res.locals.config.js_files = app.config.local_js_files;
 	});
 
+	server.use(express.errorHandler({dumpExceptions: true, showStack: true}));
+	
 	// assume 404 since no middleware responded
 	server.all('*', function(req, res, next) {
-		res.flash('Fuck it.');
-
-		res.render('bs.jade');
-	
-		//res.status(404).render('404', { url: req.originalUrl });
+		//server.set('views', );
+		 
+		res.status(404).render(app.config.root + app.config.views_errors + '/404', { url: req.originalUrl });
 	});
 }
 

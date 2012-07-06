@@ -23,7 +23,7 @@ var  express = require('express')
 module.exports.servers = {};
 
 shasum.update((new Date()).getTime().toString());
-config.unique = shasum.digest('hex').substr(0, 8);
+config.unique = 'v'+shasum.digest('hex').substr(0, 4);
 
 
 /******************************************************************************

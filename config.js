@@ -26,8 +26,7 @@ var conf = {
 		,static: 's.violentsoul.com'
 	}
 	
-	,bootstrap_css: 'bootstrap.css'
-	,local_css_files: ['bootstrap-responsive.css']
+	,local_css_files: ['bootstrap.css', 'admin.css', 'bootstrap-responsive.css']
 	,local_js_files: ['jquery-1.7.2.js', 'bootstrap.js']
 };
 
@@ -45,6 +44,11 @@ if (process.env.CROSMA_ENV == 'production')
 	conf.domains.main = 'crosma.us';
 	conf.domains.admin = 'admin.crosma.us';
 	conf.domains.static = 'static.crosma.us';
+	
+	conf.local_css_files = ['bootstrap.min.css', 'admin.min.css', 'bootstrap-responsive.min.css'];
+	conf.local_js_files = ['jquery-1.7.2.min.js', 'bootstrap.min.js'];
 }
+
+	
 
 module.exports = conf;
