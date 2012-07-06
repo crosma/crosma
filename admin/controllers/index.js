@@ -1,5 +1,6 @@
 var	 app = require('../../app')
 	,util = require('util')
+	,mongoose = require('mongoose')
 	,page = require('../../lib/controller')(app.servers.admin, {
 		 title: 'Log In'
 		,require_auth: false

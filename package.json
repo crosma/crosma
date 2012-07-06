@@ -12,6 +12,7 @@
 		,"jade": "*"
 		,"less-middleware": "*"
 		,"connect": "2.3.4"
+		,"connect-memcached": "*"
 		,"mongoose": "2.7.x"
 		,"bootstrap": "*"
 		,"generic-pool" : "*"

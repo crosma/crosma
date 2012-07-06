@@ -3,6 +3,7 @@ var	 app = require('../app')
 	,server = module.exports = express.createServer()
 	,util = require('util')
 	,versionator = require('../lib/versionator')(app.config.unique)
+	,MemcachedStore = require('connect-memcached')(express)
 ; 
 
 
@@ -19,7 +20,11 @@ server.use(express.favicon()); //Serve before logging so it does not get logged
 server.use(express.logger('dev'));
 server.use(express.responseTime());
 server.use(express.cookieParser()); //Can take a secret to encrypt them
-server.use(express.session({secret: 'sdfasdfasdfasdf', key: 'sid', cookie: {maxAge: 60 * 60 * 24 * 1000}}));
+server.use(express.session({
+	 secret: 'sdfasdfasdfasdf'
+	,key: 'sid'
+	,store: new MemcachedStore 
+})); //,cookie: {maxAge: 60 * 60 * 24 * 1000}}
 server.use(express.bodyParser()); // parse request bodies (req.body)
 server.use(express.methodOverride('action')); // support _method input element (PUT in forms etc)
 server.use(require('../lib/poweredBy')); //Overwrite the x-powered-by header
@@ -31,7 +36,7 @@ server.set('views', app.config.root + app.config.admin_views_dir);
 if (app.config.cache_views) server.enable('view cache');
 
 
-server.locals({
+server.locals({ 
 	versionPath: versionator.versionPath
 });
 
@@ -86,6 +91,7 @@ module.exports.boot = function()
 	require('../admin/controllers/index');
 	require('../admin/controllers/main');
 	require('../admin/controllers/purge');
+	require('../admin/controllers/mongo');
 	
 	server.get('/test', function(req, res, next) {
 		res.render('bs.jade');
