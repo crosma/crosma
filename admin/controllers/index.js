@@ -9,7 +9,7 @@ var	 app = require('../../app')
 page.handles('/', 'get', function(req, res, next) {
 	if (req.session.logged_in)
 	{
-		res.render('main.jade');
+		res.redirect('/main');
 	}
 	else
 	{
@@ -22,13 +22,14 @@ page.handles('/', 'login', function(req, res, next) {
 
 	req.session.logged_in = true;
 	
-	res.render('main.jade');
+	res.redirect('/main');
 });
+
 
 page.handles('/logout', 'get', function(req, res, next) {
 	res.msg('You have been logged out.');
 
 	req.session.logged_in = false;
 	
-	res.render('index.jade');
+	res.redirect('/');
 });

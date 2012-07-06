@@ -84,6 +84,7 @@ module.exports.boot = function()
 	});
 	
 	require('../admin/controllers/index');
+	require('../admin/controllers/main');
 	require('../admin/controllers/purge');
 	
 	server.get('/test', function(req, res, next) {
@@ -105,8 +106,6 @@ module.exports.boot = function()
 		res.status(404).render(app.config.root + app.config.views_errors + '/404', { url: req.originalUrl });
 	});
 
-
-	
 	app.express.use(express.vhost('*' + app.config.domains.admin , server))
 }
 
