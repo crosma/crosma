@@ -1,31 +1,27 @@
 !!! 5
 html
 	head
-		title #{config.site_name}
+		title #{config.page_title} - #{config.site_name}
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		meta(name="description", content="")
 		meta(name="author", content="Matt Crossley")
 	
 		each css_file in config.css_files
-			link(rel="stylesheet", type='text/css', href=versionPath("#{config.static_url}/css/#{css_file}"))
-
+			link(rel="stylesheet", type='text/css', href=versionPath(config.static_url + '/css/' + css_file))
+			
 		//if lt IE 8
 			script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
 		
 		block head
 		
 	body
-		
-	
+
 		.navbar.navbar-fixed-top
 			.navbar-inner
 				.container
-					button.btn.btn-navbar(type="button", data-toggle="collapse", data-target=".nav-collapse")
-						span.icon-bar
-						span.icon-bar
-						span.icon-bar
 					a.brand(href="/") Admin Tools
-					.nav-collapse.collapse
+					if config.logged_in
+					
 						ul.nav
 							li.active 
 								a(href="#") Home
@@ -33,16 +29,41 @@ html
 								a(href="#about") About
 							li
 								a(href="#contact") Contact
-		
+							li.dropdown
+								a(href="#", data-toggle="dropdown").dropdown-toggle Tools
+									b.caret
+								ul.dropdown-menu
+									li
+										a(href="/purge") Purge Caches
+							li
+								a(href="/logout") Log Out
+									
+
+						
+			
 		.container
+			
+			if !!flash_errs.length
+				.alert.alert-error
+					ul
+						each msg in flash_errs
+							li= msg
+			
+			if !!flash_msgs.length
+				.alert.alert-info
+					ul
+						each msg in flash_msgs
+							li= msg
+			
+
+			
+		
 			block content				
 						
-				
-
 			hr
 
 			footer
 				p &copy; Company 2012
 							
 		each js_file in config.js_files
-			script(type="text/javascript", src=versionPath("#{config.static_url}/js/#{js_file}"))
+			script(type="text/javascript", src=versionPath(config.static_url + '/js/' + js_file))

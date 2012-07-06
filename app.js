@@ -13,7 +13,7 @@ var  express = require('express')
 	,app = module.exports.express = express()
 	,fs = require('fs')
 	,crypto = require('crypto')
-	,shasum = crypto.createHash('sha1');
+	,shasum = crypto.createHash('sha1')
 ;
 
 

@@ -1,0 +1,22 @@
+extends layout-main
+block content
+	.row
+		.span4.offset4
+			form(method="POST")
+				fieldset
+					input(name="action", value="login", type="hidden")
+					
+					.control-group
+						label.control-label(for="email") Email Address
+						.controls
+							input(id="email", name="email", type="text", class="input-xlarge", placeholder="Email Address")
+					
+					.control-group
+						label.control-label(for="password") Password
+						.controls
+							input(id="password", name="password", type="password", class="input-xlarge", placeholder="Password")
+					
+				
+					input(type="submit", value="Log In").btn.btn-primary
+
+	

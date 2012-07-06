@@ -2,3 +2,6 @@ body {
   padding-top: 60px;
   padding-bottom: 40px;
 }
+.alert ul {
+  margin-bottom: 0;
+}
