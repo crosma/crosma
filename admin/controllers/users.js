@@ -12,10 +12,11 @@ var	 app = require('../../app')
 page.handles('/users', 'get', function(req, res, next) {
 	var query = schema.User.find()
 		.select('email', 'name')
-		.asc('name.last', 'name.first')
+		.sort('name.last', 1)
+		.sort('name.first', 1)
 	;
 	
-	query.run(function (err, users) {
+	query.exec(function (err, users) {
 		if (err)
 		{
 			throw Error('Can\'t get users...');
@@ -32,9 +33,6 @@ page.handles('/users', 'get', function(req, res, next) {
 });
 
 page.handles('/user/:id/edit', 'get', function(req, res, next) {
-	//console.log(util.inspect(UserModel, false, 3, true));
-	
-	//if ()
 
 	schema.User.findByEmail('vbaspcppguy@gmail.com').exec(function (err, user) {
 		if (err)

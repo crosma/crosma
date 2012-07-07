@@ -1,2 +1,3 @@
-nodemon -L app.js
-#forever -w -d --spinSleepTime 5000 app.js
+always app.js
+#nodemon -L --delay 0 app.js
+#forever -w app.js

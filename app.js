@@ -13,7 +13,29 @@ var  express = require('express')
 	,fs = require('fs')
 	,crypto = require('crypto')
 	,shasum = crypto.createHash('sha1')
+	,util = require('util')
 ;
+
+
+
+process.on("uncaughtException", function(err) {
+  console.error("[uncaughtException]", err);
+  console.error(err.stack);
+  return process.exit(1);
+});
+
+//This all doesnt work because of a bug in node
+/*
+process.on("SIGTERM", function() {
+  console.log("SIGTERM (killed by supervisord or another process management tool)");
+  return process.exit(0);
+});
+
+process.on("SIGINT", function() {
+  console.log("SIGINT");
+  return process.exit(0);
+});
+*/
 
 
 /******************************************************************************

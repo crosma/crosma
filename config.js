@@ -1,5 +1,3 @@
-console.log('CROSMA_ENV = ' + process.env.CROSMA_ENV);
-
 var conf = {
 	 port: 80
 	 
