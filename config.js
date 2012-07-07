@@ -28,6 +28,8 @@ var conf = {
 	
 	,local_css_files: ['bootstrap.css', 'admin.css', 'bootstrap-responsive.css']
 	,local_js_files: ['jquery-1.7.2.js', 'bootstrap.js']
+	
+	,mongodb_uri: 'mongodb://crosma.us/crosma'
 };
 
 if (process.env.CROSMA_ENV == 'production')
@@ -47,6 +49,8 @@ if (process.env.CROSMA_ENV == 'production')
 	
 	conf.local_css_files = ['bootstrap.min.css', 'admin.min.css', 'bootstrap-responsive.min.css'];
 	conf.local_js_files = ['jquery-1.7.2.min.js', 'bootstrap.min.js'];
+	
+	conf.mongodb_uri = 'mongodb://localhost/crosma';
 }
 
 	

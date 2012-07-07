@@ -1,0 +1,19 @@
+extends ../layout-main
+
+block content
+	table.table.table-striped.table-bordered.table-condensed
+		tr
+			th Last Name
+			th First Name
+			th Email Address
+			th Object Id
+			th View \ Edit
+		
+		for user in users
+			tr
+				td #{user.name.last}
+				td #{user.name.first}
+				td #{user.email}
+				td #{user._id}
+				td
+					a(href="/user/" + user.email + "/edit") View \ Edit

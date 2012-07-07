@@ -4,6 +4,7 @@ var	 app = require('../app')
 	,util = require('util')
 	,versionator = require('../lib/versionator')(app.config.unique)
 	,MemcachedStore = require('connect-memcached')(express)
+	,mongoose = require('mongoose')
 ; 
 
 
@@ -42,6 +43,20 @@ server.locals({
 
 module.exports.boot = function()
 {
+
+	mongoose.connect(app.config.mongodb_uri, function(err) {
+		if (err)
+		{
+			console.error('Error connecting to MongoDB ('+app.config.mongodb_uri+')');
+			console.error(err);
+		}
+		else
+		{
+			console.log('Connected to MongoDB ('+app.config.mongodb_uri+')');
+		}
+	});
+
+
 	// define a custom res.message() method
 	server.response.err = function(msg) {
 		var sess = this.req.session;
@@ -66,8 +81,7 @@ module.exports.boot = function()
 		res.locals.flash_msgs = req.session.flash_msgs || [];
 		delete req.session.flash_msgs;
 		
-		console.log('Handling flash messages...');
-		
+		console.log('Setting up flash messages.');
 	});
 	
 	
@@ -83,8 +97,6 @@ module.exports.boot = function()
 		res.locals.config.css_files = app.config.local_css_files;
 		res.locals.config.js_files = app.config.local_js_files;
 		
-		console.log('Config...');
-		
 		next();
 	});
 	
@@ -92,6 +104,7 @@ module.exports.boot = function()
 	require('../admin/controllers/main');
 	require('../admin/controllers/purge');
 	require('../admin/controllers/mongo');
+	require('../admin/controllers/users');
 	
 	server.get('/test', function(req, res, next) {
 		res.render('bs.jade');

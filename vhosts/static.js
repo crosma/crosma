@@ -7,9 +7,6 @@ var	 app = require('../app')
 ;  
 
 
-console.log(app.config.root + '/work');
-console.log(app.config.root + app.config.static_dir + '');
-
 server.use(express.responseTime());
 server.use(express.logger('STATIC :method :url - :res[content-type]'));
 

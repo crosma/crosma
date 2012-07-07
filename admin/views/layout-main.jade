@@ -1,7 +1,7 @@
 !!! 5
 html
 	head
-		title #{config.page_title} - #{config.site_name}
+		title #{config.title} - #{config.site_name}
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		meta(name="description", content="")
 		meta(name="author", content="Matt Crossley")
@@ -23,16 +23,14 @@ html
 					if config.logged_in
 					
 						ul.nav
-							li.active 
-								a(href="#") Home
-							li
-								a(href="#about") About
 							li
 								a(href="/mongo") MongoDB
 							li.dropdown
 								a(href="#", data-toggle="dropdown").dropdown-toggle Tools
 									b.caret
 								ul.dropdown-menu
+									li
+										a(href="/users") Manage Users
 									li
 										a(href="/purge") Purge Caches
 							li
@@ -47,13 +45,13 @@ html
 				.alert.alert-error
 					ul
 						each msg in flash_errs
-							li= msg
+							li!= msg
 			
 			if !!flash_msgs.length
 				.alert.alert-info
 					ul
 						each msg in flash_msgs
-							li= msg
+							li!= msg
 			
 
 			

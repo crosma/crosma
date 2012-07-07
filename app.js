@@ -4,7 +4,6 @@ console.log('-------------------------------------------------------------------
 
 var config = module.exports.config = require('./config');
 
-
 /******************************************************************************
 ********* Set up globals
 ******************************************************************************/
@@ -56,6 +55,5 @@ module.exports.servers.static = require('./vhosts/catchall');
 ********* Go go go go go
 ******************************************************************************/
 app.listen(config.port);
-
 
 console.log('CROSMA_ENV = ' + process.env.CROSMA_ENV + ', Port ' + config.port + ', Unique = ' + config.unique);
