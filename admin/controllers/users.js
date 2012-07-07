@@ -10,6 +10,7 @@ var	 app = require('../../app')
 
 
 page.handles('/users', 'get', function(req, res, next) {
+
 	var query = schema.User.find()
 		.select('email', 'name')
 		.sort('name.last', 1)
@@ -29,36 +30,46 @@ page.handles('/users', 'get', function(req, res, next) {
 		}
 	});
 
-	
 });
 
-page.handles('/user/:id/edit', 'get', function(req, res, next) {
+page.handles('/user/:who/edit', 'get', function(req, res, next) {
+	var who = req.params.who;
+	var query = who.indexOf('@') >= 0 ? schema.User.findOne({email_lower: who.toLowerCase()}) : schema.User.findById(who);
+	
 
-	schema.User.findByEmail('vbaspcppguy@gmail.com').exec(function (err, user) {
+	query.exec(function (err, user) {
 		if (err)
 		{
-			res.err('Can\'t find user...');
+			res.msg('huh');
+			throw Error('Can\'t get users...');
 		}
 		else
 		{
-			console.log(user);
+			if (user)
+			{
+				res.locals.user = user;
+				res.render('./users/edit');
+			}
+			else
+			{
+				res.err('Could not find "' + who + '".');
+				res.redirect('/users');
+			}
 		}
-		
-		res.render('./users/list');
 	});
-
 	
 });
 
-page.handles('/user/:id/edit', 'post', function(req, res, next) {
-	//console.log(util.inspect(UserModel, false, 3, true));
+page.handles('/user/:who/edit', 'save', function(req, res, next) {
+	var who = req.params.who;
+	var query = who.indexOf('@') >= 0 ? schema.User.findOne({email_lower: who.toLowerCase()}) : schema.User.findById(who);
 	
 
 	var instance = new schema.User;
-	instance.name.first = 'Matt';
-	instance.name.last = 'Crossley';
-	instance.email = 'vbaspcppguy@gmail.com';
-	instance.password_hashed = 'test';
+	instance.name.first = 'CAp';
+	instance.name.last = 'tEsT';
+	instance.email = 'cApTeSt@gmail.com';
+	instance.password = 'captest';
 	
 	instance.save(function (err) {
 		if (err)
@@ -68,8 +79,11 @@ page.handles('/user/:id/edit', 'post', function(req, res, next) {
 		else
 		{
 			res.msg('User saved.');
+			
 		}
-		 
-		res.render('./users/list');
 	});
+	
+	res.locals.user = instance;
+	res.render('./users/edit');
+	
 });

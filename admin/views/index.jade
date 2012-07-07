@@ -1,9 +1,9 @@
 extends layout-main
 block content
 	.row
-		.span4.offset4
-			form(method="POST")
-				fieldset
+		.span4
+			form.form-horizontal(method="POST")
+				fieldset.well
 					input(name="action", value="login", type="hidden")
 					
 					.control-group
@@ -16,7 +16,6 @@ block content
 						.controls
 							input(id="password", name="password", type="password", class="input-xlarge", placeholder="Password")
 					
-				
-					input(type="submit", value="Log In").btn.btn-primary
-
+					.controls
+						input(type="submit", value="Log In").btn.btn-primary.btn-large
 	

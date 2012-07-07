@@ -1,0 +1,46 @@
+extends ../layout-main
+
+block content
+	.row
+		.span4
+			form.form-horizontal(method="POST", autocomplete="off")
+				h2 Edit User
+				fieldset.well
+					input(name="action", value="save", type="hidden")
+
+					.control-group
+						label.control-label Object Id
+						.controls
+							code.input-xlarge.objectid #{user._id}
+							
+					.control-group
+						label.control-label(for="email") Email Address
+						.controls
+							input.input-xlarge(id="email", name="email", type="text", placeholder="Email Address", value=user.email)
+							
+					.control-group
+						label.control-label(for="name.first") First Name
+						.controls
+							input.input-xlarge(id="name.first", name="name.first", type="text", placeholder="First Name", value=user.name.first)
+					
+					.control-group
+						label.control-label(for="name.last") Last Name
+						.controls
+							input.input-xlarge(id="name.last", name="name.last", type="text", placeholder="Last Name", value=user.name.last)					
+					
+					.control-group
+						label.control-label(for="password") Password
+						.controls
+							input.input-xlarge(id="password", name="password", type="password", placeholder="Password")
+					
+					.control-group
+						label.control-label(for="password") Repeat Password
+						.controls
+							input.input-xlarge(id="password", name="password", type="password", placeholder="Repeat Password")
+							.p.help-block Fill both password boxes to change. They are ignored otherwise.
+							
+					.controls
+						input(type="submit", value="Save User").btn.btn-primary.btn-large
+
+						
+						

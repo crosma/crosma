@@ -14,6 +14,26 @@ block content
 				td #{user.name.last}
 				td #{user.name.first}
 				td #{user.email}
-				td #{user._id}
+				td
+					code #{user._id}
 				td
 					a(href="/user/" + user.email + "/edit") View \ Edit
+					
+	
+	.pagination
+		ul
+			li 
+				a(href="#") Prev
+			li 
+				a(href="#") 1
+			li 
+				a(href="#") 2
+			li.active 
+				a(href="#") 3
+			li 
+				a(href="#") 4
+			li 
+				a(href="#") 5
+			li 
+				a(href="#") Next
+			
