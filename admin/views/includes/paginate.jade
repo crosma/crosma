@@ -1,0 +1,21 @@
+mixin paginate(prepend, page, page_count)
+	.pagination
+		ul
+			if page > 1
+				li
+					a(href=prepend + (page - 1)) &laquo;
+			else
+				li.disabled
+					a(href="#") &laquo;
+				
+			- for(p=1; p<=page_count; p++)
+				li(class=(p==page?"active":null))
+					a(href=prepend + p) #{p}
+			
+					
+			if page < page_count
+				li
+					a(href=prepend + (page + 1)) &raquo;
+			else
+				li.disabled
+					a(href="#") &raquo;

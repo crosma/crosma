@@ -4,33 +4,40 @@ block content
 
 	.row-fluid
 		.span6
-			h3 Purge Static Caches
-			form.well(method="POST")
-				input(name="action", value="purge_static", type="hidden")
-			
-				label(for="the_file") File To Purge
-				input(id="the_file", name="the_file", type="text", class="input-xlarge", placeholder="Url...", value=the_file)
-				p.help-block Static or relative url to throw a PURGE request at.
-				
-				label.checkbox Purge Varnish
-					input(id="varnish", name="varnish", type="checkbox", value="yes", checked=varnish)
+			form.form-horizontal(method="POST", autocomplete="off")
+				fieldset.well
+					legend Purge Static Caches
 					
-				label.checkbox Invalidate CloudFront
-					input(id="cloudfront", name="cloudfront", type="checkbox", value="yes", checked=cloudfront)
+					input(name="action", value="purge_static", type="hidden")
 				
-				input(type="submit", value="Purge Static").btn
+					label(for="the_file") File To Purge
+					input(id="the_file", name="the_file", type="text", class="input-xlarge", placeholder="Url...", value=the_file)
+					p.help-block Static or relative url to throw a PURGE request at.
+					
+					label.checkbox Purge Varnish
+						input(id="varnish", name="varnish", type="checkbox", value="yes", checked=varnish)
+						
+					label.checkbox Invalidate CloudFront
+						input(id="cloudfront", name="cloudfront", type="checkbox", value="yes", checked=cloudfront)
+					
+					input(type="submit", value="Purge Static").btn
 				
-		.span6		
-			h3 Purge View Cache
-			form.well(method="POST")
-				input(name="action", value="purge_views", type="hidden")
-			
-				input(type="submit", value="Purge Views").btn
+		.span6
+			form.form-horizontal(method="POST", autocomplete="off")
+				fieldset.well
+					legend Purge View Cache
+					
+					input(name="action", value="purge_views", type="hidden")
+				
+					input(type="submit", value="Purge Views").btn
 	
 	
 		.span6		
-			h3 Change Static Version
-			form.well(method="POST")
-				input(name="action", value="change_static", type="hidden")
+			form.form-horizontal(method="POST", autocomplete="off")
+				fieldset.well
 			
-				input(type="submit", value="Change It").btn
+					legend Change Static Version
+					
+					input(name="action", value="change_static", type="hidden")
+				
+					input(type="submit", value="Change It").btn

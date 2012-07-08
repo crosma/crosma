@@ -2,7 +2,6 @@ var	 app = require('../../app')
 	,util = require('util')
 	,crypto = require('crypto')
 	,mongoose = require('mongoose')
-	,schema = require('../../lib/mongo/schema')
 	,page = require('../../lib/controller')(app.servers.admin, {
 		title: 'MongoDB Testing'
 	})

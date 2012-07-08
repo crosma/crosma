@@ -38,6 +38,57 @@ process.on("SIGINT", function() {
 });
 */
 
+/******************************************************************************
+********* Set up mongoose
+******************************************************************************/
+var mongoose = require('mongoose');
+
+mongoose.schema = require('./lib/mongodb/schema');
+
+mongoose.handler = function CreateHandler(req, res, cb)
+{
+	var hnd = function(err, result) {
+		if (err)
+		{
+			console.log('---Mongo---' + err + '---Mongo---');
+			throw Error('MongoDB Error: ' + err);
+		}
+		else
+		{
+			cb(result);
+		}
+	}
+	
+	return hnd;
+};
+
+
+mongoose.connect(config.mongodb_uri, function(err) {
+	if (err)
+	{
+		console.error('Error connecting to MongoDB ('+config.mongodb_uri+')');
+		console.error(err);
+	}
+	else
+	{
+		console.log('Connected to MongoDB ('+config.mongodb_uri+')');
+	}
+});
+
+
+/******************************************************************************
+********* Set up validator
+******************************************************************************/
+var Validator = require('validator').Validator;
+
+Validator.prototype.error = function (msg) {
+    this._errors = (this._errors || []).push(msg);
+}
+
+Validator.prototype.getErrors = function () {
+    return this._errors || [];
+}
+
 
 /******************************************************************************
 ********* Set some stuff up

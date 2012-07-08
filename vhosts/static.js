@@ -8,7 +8,6 @@ var	 app = require('../app')
 
 
 server.use(express.responseTime());
-//server.use(express.logger('STATIC :method :url - :res[content-type]'));
 
 //Set the Content-Type header to the assumed mime type
 server.use(function(req, res, next) {
@@ -22,6 +21,9 @@ server.use(function(req, res, next) {
 
 if (app.config.cache_static)
 {
+	//only log if caching, otherwise it gets overwhelming
+	server.use(express.logger('STATIC :method :url - :res[content-type]'));
+
 	server.use(function(req, res, next) {
 		res.setHeader('Cache-Control', 'max-age=3600, public'); //Throw a day on the cache
 		next();

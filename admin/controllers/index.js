@@ -1,7 +1,6 @@
 var	 app = require('../../app')
 	,util = require('util')
-	,mongoose = require('mongoose')
-	,schema = require('../../lib/mongo/schema')
+	,mdb = require('mongoose')
 	,page = require('../../lib/controller')(app.servers.admin, {
 		 title: 'Log In'
 		,require_auth: false
@@ -25,31 +24,22 @@ page.handles('/', 'login', function(req, res, next) {
 
 	if (email != '' && password != '')
 	{
-		var query = schema.User.find({email: email});
+		var query = mdb.schema.User.find({email: email});
 	
-		query.exec(function (err, user) {
-			if (err)
+		query.exec(mdb.handler(req, res, function (user) {
+			if (user.length > 0 && user[0].authenticate(password))
 			{
-				res.err('Error tryign to find email address');
-				res.err(err);
-				res.render('index.jade');
+				req.session.logged_in = true;
+				//req.session._user = user[0]._id;
+				
+				res.redirect('/main');
 			}
 			else
 			{
-				if (user.length > 0 && user[0].authenticate(password))
-				{
-					req.session.logged_in = true;
-					//req.session._user = user[0]._id;
-					
-					res.redirect('/main');
-				}
-				else
-				{
-					res.err('Invalid email or password.');
-					res.render('index.jade');
-				}
+				res.err('Invalid email or password.');
+				res.render('index.jade');
 			}
-		});
+		}));
 	}
 	else
 	{

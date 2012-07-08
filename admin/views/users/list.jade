@@ -1,5 +1,7 @@
-extends ../layout-main
 
+extends ../layout-main
+include ../includes/paginate
+ 
 block content
 	table.table.table-striped.table-bordered.table-condensed
 		tr
@@ -19,23 +21,11 @@ block content
 				td
 					code #{user._id}
 				td
-					a(href="/user/" + user.email + "/edit") Edit
+					a(href="/user/" + user._id + "/edit") Edit
 					
-	
-	.pagination
-		ul
-			li 
-				a(href="#") Prev
-			li 
-				a(href="#") 1
-			li 
-				a(href="#") 2
-			li.active 
-				a(href="#") 3
-			li 
-				a(href="#") 4
-			li 
-				a(href="#") 5
-			li 
-				a(href="#") Next
-			
+	.row
+		.span11
+			mixin paginate("/users/", page, page_count)
+		.span1
+			a(href="/user/create") Create User
+				

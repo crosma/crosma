@@ -33,6 +33,7 @@ html
 										a(href="/users") Manage Users
 									li
 										a(href="/purge") Purge Caches
+						ul.nav.pull-right
 							li
 								a(href="/logout") Log Out
 									
@@ -42,16 +43,20 @@ html
 		.container
 			
 			if !!flash_errs.length
-				.alert.alert-error
-					ul
-						each msg in flash_errs
-							li!= msg
+				.row
+					.offset1.span10
+						.alert.alert-error
+							ul
+								each msg in flash_errs
+									li!= msg
 			
 			if !!flash_msgs.length
-				.alert.alert-info
-					ul
-						each msg in flash_msgs
-							li!= msg
+				.row
+					.offset1.span10
+						.alert.alert-info
+							ul
+								each msg in flash_msgs
+									li!= msg
 			
 
 			

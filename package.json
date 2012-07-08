@@ -13,9 +13,11 @@
 		,"less-middleware": "*"
 		,"connect": "2.3.4"
 		,"connect-memcached": "*"
-		
+		,"validator": "*"
+		,"express-validator": "*"
 		,"mongoose": "2.7.x"
 		,"bootstrap": "*"
+		,"form2json": "*"
 		
 		,"generic-pool" : "*"
 		

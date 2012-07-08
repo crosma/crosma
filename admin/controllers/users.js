@@ -1,41 +1,23 @@
 var	 app = require('../../app')
 	,util = require('util')
 	,crypto = require('crypto')
-	,mongoose = require('mongoose')
-	,schema = require('../../lib/mongo/schema')
+	,mdb = require('mongoose')
 	,page = require('../../lib/controller')(app.servers.admin, {
 		title: 'Users'
 	})
 ;
 
 
-function handler(req, res, cb)
-{
-	var hnd = function(err, result) {
-		if (err)
-		{
-			console.log('---Mongo---' + err + '---Mongo---');
-			throw Error('MongoDB Error: ' + err);
-		}
-		else
-		{
-			cb(result);
-		}
-	}
-	
-	return hnd;
-}
-
 page.handles('/users/:page?', 'get', function(req, res, next) {
 	var filter = {};
 
-	schema.User.count(filter, handler(req, res, function (count) {
+	mdb.schema.User.count(filter, mdb.handler(req, res, function (count) {
 
-		var per_page = 2;
-		var pages = Math.ceil(count / per_page);
-		var page = Math.max(1, Math.min(pages, req.params.page ? req.params.page : 1));
+		var per_page = 20;
+		var page_count = Math.ceil(count / per_page);
+		var page = Math.max(1, Math.min(page_count, req.params.page ? req.params.page : 1));
 		
-		var query = schema.User
+		var query = mdb.schema.User
 			.find(filter)
 			.select('email', 'name.first', 'name.last', 'name.abbr')
 			.sort('name.last', 1)
@@ -44,8 +26,18 @@ page.handles('/users/:page?', 'get', function(req, res, next) {
 			.limit(per_page)
 		;
 		
-		query.exec(handler(req, res, function (users) {
+		var pages = [];
+		for (i=1; i<=page_count; i++)
+		{
+			pages.push([i, '/users/' + i]);
+		}
+		
+		
+		query.exec(mdb.handler(req, res, function (users) {
 			res.locals.users = users;
+			res.locals.page = page;
+			res.locals.page_count = page_count;
+			res.locals.pages = pages;
 
 			res.render('./users/list');
 		}));
@@ -54,108 +46,127 @@ page.handles('/users/:page?', 'get', function(req, res, next) {
 	
 });
 
-/*
-page.handles('/users/:page?', 'get', function(req, res, next) {
-	var filter = {'name.first': 'Matt'};
 
-	schema.User.count(filter, function (err, count) {
-		if (err) {throw Error('Can\'t count users...');} else {
-			var per_page = 2;
-			var pages = Math.ceil(count / per_page)
-			var page = Math.min(pages, req.params.page ? req.params.page : 1);
-			
-			
-			var query = schema.User
-				.find(filter)
-				.select('email', 'name.first', 'name.last', 'name.abbr')
-				.sort('name.last', 1)
-				.sort('name.first', 1)
-			;
-	
-			console.log('--- ' + count);
-
-			query.exec(function (err, users) {
-				if (err) {
-					throw Error('Can\'t get users...');
-					
-				} else {
-					res.locals.users = users;
-					
-					console.log('----users ' + users);
-					
-					res.render('./users/list');
-				}
-				
-			});
-		}
-
-	})
-	
-});
-*/
 
 page.handles('/user/:who/edit', 'get', function(req, res, next) {
 	var who = req.params.who;
 
-	schema.User.findUnique(who, function (err, user) {
-		if (err) {
-			res.msg('huh');
-			throw Error('Can\'t get users...');
+	mdb.schema.User.findUnique(who, mdb.handler(req, res, function (user) {
+		if (user) {
+			res.locals.method = 'save';
+			res.locals.user = user;
+			res.render('./users/edit');
 			
 		} else {
-			if (user) {
-				res.locals.user = user;
-				res.render('./users/edit');
-				
-			} else {
-				res.err('Could not find "' + who + '".');
-				res.redirect('/users');
-			}
+			res.err('Could not find "' + who + '".');
+			res.redirect('/users');
 		}
-		
-	});
+	}));
 	
 });
 
+
 page.handles('/user/:who/edit', 'post', function(req, res, next) {
 	var who = req.params.who;
+	
+	mdb.schema.User.findUnique(who, mdb.handler(req, res, function (user) {
+		if (user) {
+			console.log(util.inspect(req.body));
+		
+			user.email = req.body.email.toString().trim();
+			user.name.first = req.body.name.first.toString().trim();
+			user.name.last = req.body.name.last.toString().trim();
+			
+			//check the password first so that there can be no errors cluttering it.
+			if (req.body.password != '' || req.body.password2 != '') //only check if either has a value
+			{
+				req.check('password', 'The passwords you entered do not match.').equals(req.body.password2);
+				req.check('password', 'Passwords must be at least 6 characters.').len(6);
+				
+				//only set if no errors
+				if (res.err_count() == 0)
+				{
+					user.password = req.body.password;
+				}
+			}
+			
+			req.check('email', 'Please enter a valid email').isEmail();
+			req.check('name.first', 'Please enter a first name').notEmpty();
+			req.check('name.last', 'Please enter a last name').notEmpty();
+			
+			//Woo, we can save
+			if (res.err_count() == 0)
+			{
+				user.save();
+			
+				res.msg('The user has been saved.');
+			}
+			
+			res.locals.method = 'save';
+			res.locals.user = user;
+			res.render('./users/edit');
 
-	schema.User.findUnique(who, function (err, user) {
-		if (err) {
-			res.msg('huh');
-			throw Error('Can\'t get users...');
+		} else {
+			res.err('Could not find "' + who + '".');
+			res.redirect('/users');
+		}
+	}));
+	
+});
+
+
+page.handles('/user/create', 'get', function(req, res, next) {
+	res.locals.method = 'create';
+	res.locals.user = {name: {first: '', last: ''}, email: ''};
+	res.render('./users/edit');
+});
+
+
+page.handles('/user/create', 'post', function(req, res, next) {
+	var user = new mdb.schema.User;
+	user.email = req.body.email.trim();
+	user.name.first = req.body.firstname.trim();
+	user.name.last = req.body.lastname.trim();
+	
+	res.locals.method = 'create';
+
+	mdb.schema.User.findUnique(user.email, mdb.handler(req, res, function (exists) {
+		if (exists) {
+			res.err('User with that email already exists.');
+			
+			res.locals.method = 'create';
+			res.locals.user = user;
+			res.render('./users/edit');
 			
 		} else {
-			if (user) {
+			//check the password first so that there can be no errors cluttering it.
+			req.check('password', 'The passwords you entered do not match.').equals(req.body.password2);
+			req.check('password', 'Passwords must be at least 6 characters.').len(6);
+			
+			//only set if no errors
+			if (res.err_count() == 0)
+			{
+				user.password = req.body.password;
+			}
+			
+			req.check('email', 'Please enter a valid email').isEmail();
+			req.check('firstname', 'Please enter a first name').notEmpty();
+			req.check('lastname', 'Please enter a last name').notEmpty();
+			
+			//Woo, we can save
+			if (res.err_count() == 0) {
+				user.save(mdb.handler(req, res, function (exists) {
+					res.msg('The user has been created.');
+					
+					res.redirect('/user/' + user._id + '/edit');
+				}));
+			}
+			else
+			{
+				res.locals.method = 'create';
 				res.locals.user = user;
 				res.render('./users/edit');
-				
-			} else {
-				res.err('Could not find "' + who + '".');
-				res.redirect('/users');
 			}
 		}
-	});
-	
-	
-	/*
-	var instance = new schema.User;
-	instance.name.first = 'CAp';
-	instance.name.last = 'tEsT';
-	instance.email = 'cApTeSt@gmail.com';
-	instance.password = 'captest';
-	
-	instance.save(function (err) {
-		if (err) {
-			res.err('<b>Error saving user:</b> ' + err);
-			
-		} else {
-			res.msg('User saved.');
-		}
-		
-	});
-	
-	res.locals.user = instance;
-	res.render('./users/edit');
-	*/
+	}));
 });
