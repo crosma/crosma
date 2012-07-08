@@ -15,8 +15,6 @@
 		,"connect-memcached": "*"
 		
 		,"mongoose": "2.7.x"
-		,"mongoose-paginate": "*"
-		
 		,"bootstrap": "*"
 		
 		,"generic-pool" : "*"
