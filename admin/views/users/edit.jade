@@ -6,8 +6,6 @@ block content
 			form.form-horizontal(method="POST", autocomplete="off")
 				h2 Edit User
 				fieldset.well
-					input(name="action", value="save", type="hidden")
-
 					.control-group
 						label.control-label Object Id
 						.controls
@@ -34,9 +32,9 @@ block content
 							input.input-xlarge(id="password", name="password", type="password", placeholder="Password")
 					
 					.control-group
-						label.control-label(for="password") Repeat Password
+						label.control-label(for="password2") Repeat Password
 						.controls
-							input.input-xlarge(id="password", name="password", type="password", placeholder="Repeat Password")
+							input.input-xlarge(id="password2", name="password2", type="password", placeholder="Repeat Password")
 							.p.help-block Fill both password boxes to change. They are ignored otherwise.
 							
 					.controls

@@ -7,6 +7,8 @@ var	 app = require('../app')
 	,mongoose = require('mongoose')
 ; 
 
+//server.use(require('../lib/responseTime')()); //accurate response time
+server.use(express.responseTime());
 
 //Fuck caching.
 server.use(function(req, res, next) {
@@ -15,11 +17,9 @@ server.use(function(req, res, next) {
 	next();
 });
 
-
 //Basic configuration
 server.use(express.favicon()); //Serve before logging so it does not get logged
 server.use(express.logger('dev'));
-server.use(express.responseTime());
 server.use(express.cookieParser()); //Can take a secret to encrypt them
 server.use(express.session({
 	 secret: 'sdfasdfasdfasdf'

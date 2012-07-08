@@ -3,21 +3,23 @@ extends ../layout-main
 block content
 	table.table.table-striped.table-bordered.table-condensed
 		tr
+			th Name
 			th Last Name
 			th First Name
 			th Email Address
 			th Object Id
-			th View \ Edit
+			th Edit
 		
 		for user in users
 			tr
+				td #{user.name.abbr}
 				td #{user.name.last}
 				td #{user.name.first}
 				td #{user.email}
 				td
 					code #{user._id}
 				td
-					a(href="/user/" + user.email + "/edit") View \ Edit
+					a(href="/user/" + user.email + "/edit") Edit
 					
 	
 	.pagination

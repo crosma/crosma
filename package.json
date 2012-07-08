@@ -13,9 +13,16 @@
 		,"less-middleware": "*"
 		,"connect": "2.3.4"
 		,"connect-memcached": "*"
+		
 		,"mongoose": "2.7.x"
+		,"mongoose-paginate": "*"
+		
 		,"bootstrap": "*"
+		
 		,"generic-pool" : "*"
+		
+		,"connect-compiler" : "*"
+		,"uglify-js" : "*"
 		
 	}
 }

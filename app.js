@@ -17,12 +17,13 @@ var  express = require('express')
 ;
 
 
-
+/*
 process.on("uncaughtException", function(err) {
   console.error("[uncaughtException]", err);
   console.error(err.stack);
   return process.exit(1);
 });
+*/
 
 //This all doesnt work because of a bug in node
 /*
