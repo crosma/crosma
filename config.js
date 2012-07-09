@@ -24,8 +24,8 @@ var conf = {
 		,static: 's.violentsoul.com'
 	}
 	
-	,local_css_files: ['bootstrap.css', 'admin.css', 'bootstrap-responsive.css']
-	,local_js_files: ['jquery-1.7.2.js', 'bootstrap.js']
+	,local_css_files: ['lib/bootstrap.css', 'admin.css', 'lib/bootstrap-responsive.css']
+	,local_js_files: ['lib/jquery-1.7.2.js', 'lib/bootstrap.js']
 	
 	,mongodb_uri: 'mongodb://crosma.us/crosma'
 	
@@ -59,8 +59,8 @@ if (process.env.CROSMA_ENV == 'production')
 	conf.domains.admin = 'admin.crosma.us';
 	conf.domains.static = 'static.crosma.us';
 	
-	conf.local_css_files = ['bootstrap.min.css', 'admin.min.css', 'bootstrap-responsive.min.css'];
-	conf.local_js_files = ['jquery-1.7.2.min.js', 'bootstrap.min.js'];
+	conf.local_css_files = ['lib/bootstrap.css', 'admin.min.css', 'lib/bootstrap-responsive.min.css'];
+	conf.local_js_files = ['lib/jquery-1.7.2.min.js', 'lib/bootstrap.min.js'];
 	
 	conf.mongodb_uri = 'mongodb://localhost/crosma';
 }
