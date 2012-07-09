@@ -68,6 +68,8 @@ mongoose.handler = function CreateHandler(req, res, cb)
 
 var uri = 'mongodb://' + config.mongodb.user + ':' + config.mongodb.pass + '@' + config.mongodb.address + ':' + config.mongodb.port + '/' + config.mongodb.db;
 
+console.log(uri);
+
 mongoose.connect(uri, function(err) {
 	if (err)
 	{
