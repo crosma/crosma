@@ -5,7 +5,6 @@ var	 app = require('../app')
 	,versionator = require('../lib/versionator')(app.config.unique)
 	,MemcachedStore = require('connect-memcached')(express)
 	,mongoose = require('mongoose')
-	,form2json = require('form2json')
 ; 
 
 
