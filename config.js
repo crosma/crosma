@@ -28,6 +28,20 @@ var conf = {
 	,local_js_files: ['jquery-1.7.2.js', 'bootstrap.js']
 	
 	,mongodb_uri: 'mongodb://crosma.us/crosma'
+	
+	,amazon: {
+		 key: process.env.AMAZON_KEY
+		,secret: process.env.AMAZON_SECRET
+	}
+	
+	,mongodb: {
+		 address: process.env.MONGODB_ADDRESS
+		,port: process.env.MONGODB_PORT
+		,user: process.env.MONGODB_USER
+		,pass: process.env.MONGODB_PASSWORD
+		,db: process.env.MONGODB_DB
+	}
+	
 };
 
 if (process.env.CROSMA_ENV == 'production')

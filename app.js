@@ -3,6 +3,7 @@ console.log('-------------------------------------------------------------------
 console.log('--------------------------------------------------------------------------------');
 
 var config = module.exports.config = require('./config');
+//console.log(util.inspect(config));
 
 /******************************************************************************
 ********* Set up globals
@@ -15,6 +16,8 @@ var  express = require('express')
 	,shasum = crypto.createHash('sha1')
 	,util = require('util')
 ;
+
+
 
 
 /*
@@ -63,32 +66,19 @@ mongoose.handler = function CreateHandler(req, res, cb)
 };
 
 
-mongoose.connect(config.mongodb_uri, function(err) {
+var uri = 'mongodb://' + config.mongodb.user + ':' + config.mongodb.pass + '@' + config.mongodb.address + ':' + config.mongodb.port + '/' + config.mongodb.db;
+
+mongoose.connect(uri, function(err) {
 	if (err)
 	{
-		console.error('Error connecting to MongoDB ('+config.mongodb_uri+')');
+		console.error('Error connecting to MongoDB');
 		console.error(err);
 	}
 	else
 	{
-		console.log('Connected to MongoDB ('+config.mongodb_uri+')');
+		console.log('Connected to MongoDB');
 	}
 });
-
-
-/******************************************************************************
-********* Set up validator
-******************************************************************************/
-var Validator = require('validator').Validator;
-
-Validator.prototype.error = function (msg) {
-    this._errors = (this._errors || []).push(msg);
-}
-
-Validator.prototype.getErrors = function () {
-    return this._errors || [];
-}
-
 
 /******************************************************************************
 ********* Set some stuff up

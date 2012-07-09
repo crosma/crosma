@@ -21,8 +21,9 @@
 		
 		,"generic-pool" : "*"
 		
-		,"connect-compiler" : "*"
-		,"uglify-js" : "*"
+		,"connect-compiler": "*"
+		,"uglify-js": "*"
+		,"nodemailer": "*" 
 		
 	}
 }
