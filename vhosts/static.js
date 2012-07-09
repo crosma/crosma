@@ -21,8 +21,10 @@ server.use(function(req, res, next) {
 
 if (app.config.cache_static)
 {
-	//only log if caching, otherwise it gets overwhelming
-	server.use(express.logger('dev'));
+	//only log if caching, otherwise it gets overwhelming during development
+	//Logger is kind of two parts
+	server.use(function(req, res, next) { req.vhost_for_logger = 'STATIC'; next(); });
+	server.use(express.logger({format: 'mydev'}));
 
 	server.use(function(req, res, next) {
 		res.setHeader('Cache-Control', 'max-age=' + 60 * 60 * 24 * 7 + ', public'); //Throw a day on the cache

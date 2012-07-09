@@ -24,6 +24,7 @@
 		,"connect-compiler": "*"
 		,"uglify-js": "*"
 		,"nodemailer": "*" 
+		,"debug": "*"
 		
 	}
 }

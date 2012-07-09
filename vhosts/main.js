@@ -14,7 +14,12 @@ server.use(function(req, res, next) {
 });
 
 server.use(express.favicon()); //Serve before logging so it does not get logged
-server.use(express.logger('MAIN :method :url - :res[content-type]'));
+
+//Logger is kind of two parts
+server.use(function(req, res, next) { req.vhost_for_logger = 'MAIN'; next(); });
+server.use(express.logger({format: 'mydev'}));
+
+
 server.use(express.responseTime());
 server.use(express.cookieParser()); //Can take a secret to encrypt them
 server.use(express.session({secret: 'sdfasdfasdfasdf', key: 'sid', cookie: {maxAge: 60 * 60 * 24 * 1000}}));

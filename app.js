@@ -68,8 +68,6 @@ mongoose.handler = function CreateHandler(req, res, cb)
 
 var uri = 'mongodb://' + config.mongodb.user + ':' + config.mongodb.pass + '@' + config.mongodb.address + ':' + config.mongodb.port + '/' + config.mongodb.db;
 
-console.log(uri);
-
 mongoose.connect(uri, function(err) {
 	if (err)
 	{
@@ -81,6 +79,29 @@ mongoose.connect(uri, function(err) {
 		console.log('Connected to MongoDB');
 	}
 });
+
+
+/******************************************************************************
+********* Set up dev logger format
+******************************************************************************/
+express.logger.format('mydev', function(tokens, req, res){
+  var status = res.statusCode
+    , color = 32
+	, remote = tokens['remote-addr'](req, res)
+	, vhost = req.vhost_for_logger;
+	
+  if (status >= 500) color = 31
+  else if (status >= 400) color = 33
+  else if (status >= 300) color = 36;
+
+  return '\033[90m' + (new Date().toUTCString()) + ' :' + vhost + ': ' + remote + ' ' + req.method
+    + ' ' + req.originalUrl + ' '
+    + '\033[' + color + 'm' + res.statusCode
+    + ' \033[90m'
+    + (new Date - req._startTime)
+    + 'ms\033[0m';
+});
+
 
 /******************************************************************************
 ********* Set some stuff up
