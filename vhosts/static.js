@@ -22,10 +22,10 @@ server.use(function(req, res, next) {
 if (app.config.cache_static)
 {
 	//only log if caching, otherwise it gets overwhelming
-	server.use(express.logger('STATIC :method :url - :res[content-type]'));
+	server.use(express.logger('dev'));
 
 	server.use(function(req, res, next) {
-		res.setHeader('Cache-Control', 'max-age=3600, public'); //Throw a day on the cache
+		res.setHeader('Cache-Control', 'max-age=' + 60 * 60 * 24 * 7 + ', public'); //Throw a day on the cache
 		next();
 	});
 }
