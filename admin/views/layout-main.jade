@@ -9,6 +9,8 @@ html
 		each css_file in config.css_files
 			link(rel="stylesheet", type='text/css', href=versionPath(config.static_url + '/css/' + css_file))
 			
+		block css
+			
 		//if lt IE 8
 			script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
 		
@@ -24,15 +26,23 @@ html
 					
 						ul.nav
 							li
-								a(href="/mongo") MongoDB
+								a(href="/mongo")
+									i.icon-info-sign.icon-white
+									|  MongoDB
 							li.dropdown
-								a(href="#", data-toggle="dropdown").dropdown-toggle Tools
+								a(href="#", data-toggle="dropdown").dropdown-toggle
+									i.icon-tasks.icon-white
+									|  Tools
 									b.caret
 								ul.dropdown-menu
 									li
-										a(href="/users") Manage Users
+										a(href="/users")
+											i.icon-user
+											|  Manage Users
 									li
-										a(href="/purge") Purge Caches
+										a(href="/purge")
+											i.icon-ban-circle
+											|  Purge Caches
 						ul.nav.pull-right
 							li
 								a(href="/logout") Log Out
@@ -70,3 +80,5 @@ html
 							
 		each js_file in config.js_files
 			script(type="text/javascript", src=versionPath(config.static_url + '/js/' + js_file))
+			
+		block scripts

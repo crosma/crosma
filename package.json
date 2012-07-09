@@ -17,7 +17,7 @@
 		,"express-validator": "*"
 		,"mongoose": "2.7.x"
 		,"bootstrap": "*"
-		,"form2json": "*"
+		,"dateformat": "*"
 		
 		,"generic-pool" : "*"
 		

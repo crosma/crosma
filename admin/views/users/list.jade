@@ -9,6 +9,7 @@ block content
 			th Last Name
 			th First Name
 			th Email Address
+			th Created
 			th Object Id
 			th Edit
 		
@@ -18,6 +19,7 @@ block content
 				td #{user.name.last}
 				td #{user.name.first}
 				td #{user.email}
+				td #{dateFormat(user.registered_date, 'dd/mm/yyyy HH:MM:ss')}
 				td
 					code #{user._id}
 				td

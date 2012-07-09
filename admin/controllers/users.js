@@ -19,7 +19,7 @@ page.handles('/users/:page?', 'get', function(req, res, next) {
 		
 		var query = mdb.schema.User
 			.find(filter)
-			.select('email', 'name.first', 'name.last', 'name.abbr')
+			.select('email', 'name.first', 'name.last', 'name.abbr', 'registered_date')
 			.sort('name.last', 1)
 			.sort('name.first', 1)
 			.skip((page - 1) * per_page)
@@ -53,6 +53,13 @@ page.handles('/user/:who/edit', 'get', function(req, res, next) {
 
 	mdb.schema.User.findUnique(who, mdb.handler(req, res, function (user) {
 		if (user) {
+			res.locals.config.css_files.push('lib/jquery-ui-timepicker-addon.css');
+			res.locals.config.css_files.push('lib/jquery-ui-1.8.21.custom.css');
+			
+			res.locals.config.js_files.push('lib/jquery-ui-1.8.21.custom.min.js');
+			res.locals.config.js_files.push('lib/jquery-ui-sliderAccess.js');
+			res.locals.config.js_files.push('lib/jquery-ui-timepicker-addon.js');
+		
 			res.locals.method = 'save';
 			res.locals.user = user;
 			res.render('./users/edit');
@@ -71,11 +78,10 @@ page.handles('/user/:who/edit', 'post', function(req, res, next) {
 	
 	mdb.schema.User.findUnique(who, mdb.handler(req, res, function (user) {
 		if (user) {
-			console.log(util.inspect(req.body));
-		
 			user.email = req.body.email.toString().trim();
-			user.name.first = req.body.name.first.toString().trim();
-			user.name.last = req.body.name.last.toString().trim();
+			user.name.first = req.body.firstname.toString().trim();
+			user.name.last = req.body.lastname.toString().trim();
+			user.registered_date = Date.parse(req.body.registered_date.toString().trim());
 			
 			//check the password first so that there can be no errors cluttering it.
 			if (req.body.password != '' || req.body.password2 != '') //only check if either has a value
@@ -91,8 +97,10 @@ page.handles('/user/:who/edit', 'post', function(req, res, next) {
 			}
 			
 			req.check('email', 'Please enter a valid email').isEmail();
-			req.check('name.first', 'Please enter a first name').notEmpty();
-			req.check('name.last', 'Please enter a last name').notEmpty();
+			req.check('firstname', 'Please enter a first name').notEmpty();
+			req.check('lastname', 'Please enter a last name').notEmpty();
+			req.check('registered_date', 'Please enter a valid created date\time').isDate();
+			
 			
 			//Woo, we can save
 			if (res.err_count() == 0)
@@ -124,9 +132,9 @@ page.handles('/user/create', 'get', function(req, res, next) {
 
 page.handles('/user/create', 'post', function(req, res, next) {
 	var user = new mdb.schema.User;
-	user.email = req.body.email.trim();
-	user.name.first = req.body.firstname.trim();
-	user.name.last = req.body.lastname.trim();
+	user.email = req.body.email.toString().trim();
+	user.name.first = req.body.firstname.toString().trim();
+	user.name.last = req.body.lastname.toString().trim();
 	
 	res.locals.method = 'create';
 

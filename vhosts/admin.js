@@ -35,19 +35,7 @@ server.use(express.session({
 
 server.use(require('../lib/poweredBy')); //Overwrite the x-powered-by header
 
-
-/******************************************************************************
-********* Handle form data
-******************************************************************************/
 server.use(express.bodyParser()); // parse request bodies (req.body)
-
-server.use(function(req, res, next) {
-	req.body = req.body ? form2json.transform(req.body) : {};
-	req.params = req.params ? form2json.transform(req.params) : {};
-	
-	next();
-});
-
 server.use(express.methodOverride('action')); // support _method input element (PUT in forms etc)
 
 
@@ -58,9 +46,10 @@ server.set('view engine', 'jade');
 server.set('views', app.config.root + app.config.admin_views_dir);
 if (app.config.cache_views) server.enable('view cache');
 
-//helper to add version path to static urls
-server.locals({ 
-	versionPath: versionator.versionPath
+
+server.locals({
+	 versionPath: versionator.versionPath //helper to add version path to static urls
+	,dateFormat: require('dateformat') //helper for date\time formatting
 });
 
 
@@ -101,9 +90,6 @@ server.locals.use(function(req, res) {
 /******************************************************************************
 ********* Set up the form validator
 ******************************************************************************/
-
-//TODO: roll own version of this that just takes a value rather than this one.
-
 server.use(require('express-validator'));
 
 server.use(function(req, res, next) {
@@ -125,9 +111,9 @@ server.use(function(req, res, next) {
 	res.locals.config.logged_in = req.session.logged_in;//req.session.logged_in;
 	
 	res.locals.config.site_name = app.config.site_name;
-	res.locals.config.static_url = app.config.static_url;
-	res.locals.config.css_files = app.config.local_css_files;
-	res.locals.config.js_files = app.config.local_js_files;
+	res.locals.config.static_url = app.config.static_url.slice(0);
+	res.locals.config.css_files = app.config.local_css_files.slice(0);
+	res.locals.config.js_files = app.config.local_js_files.slice(0);
 	
 	next();
 });

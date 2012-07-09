@@ -19,15 +19,21 @@ block content
 							input.input-xlarge(id="email", name="email", type="text", placeholder="Email Address", value=user.email)
 							
 					.control-group
-						label.control-label(for="name.first") First Name
+						label.control-label(for="firstname") First Name
 						.controls
-							input.input-xlarge(id="name.first", name="name.first", type="text", placeholder="First Name", value=user.name.first)
+							input.input-xlarge(id="firstname", name="firstname", type="text", placeholder="First Name", value=user.name.first)
 					
 					.control-group
-						label.control-label(for="name.last") Last Name
+						label.control-label(for="lastname") Last Name
 						.controls
-							input.input-xlarge(id="name.last", name="name.last", type="text", placeholder="Last Name", value=user.name.last)					
+							input.input-xlarge(id="lastname", name="lastname", type="text", placeholder="Last Name", value=user.name.last)					
 					
+					if method == 'save'
+						.control-group
+							label.control-label(for="registered_date") Created
+							.controls
+								input.input-xlarge(id="registered_date", name="registered_date", type="text", placeholder="Created Date\Time", value=dateFormat(user.registered_date, 'dd/mm/yyyy HH:MM:ss'))
+								
 					.control-group
 						label.control-label(for="password") Password
 						.controls
@@ -40,11 +46,13 @@ block content
 							if method == 'save'
 								.p.help-block Fill both password boxes to change. They are ignored otherwise.
 							
+							
+							
+							
 					.controls
 						input(type="submit", value="Save User").btn.btn-primary.btn-large
 						
-						
-
-						
-
-						
+if method == 'save'
+	block scripts
+		script.
+			$(function() {$('#registered_date').datetimepicker({showSecond: true, timeFormat: 'hh:mm:ss'});})

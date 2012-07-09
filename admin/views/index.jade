@@ -1,22 +1,30 @@
 extends layout-main
 block content
 	.row
-		.span4
+		.span5
 			form.form-horizontal(method="POST")
 				fieldset.well
 					legend Log In
 				
 					input(name="action", value="login", type="hidden")
 					
+					
+					
 					.control-group
 						label.control-label(for="email") Email Address
 						.controls
-							input(id="email", name="email", type="text", class="input-xlarge", placeholder="Email Address")
-					
+							.input-prepend
+								.add-on
+									i.icon-user
+								input.input-large(id="email", name="email", type="text", placeholder="Email Address", size="16")
+						
 					.control-group
 						label.control-label(for="password") Password
 						.controls
-							input(id="password", name="password", type="password", class="input-xlarge", placeholder="Password")
+							.input-prepend
+								.add-on
+									i.icon-question-sign
+								input.input-large(id="password", name="password", type="password", placeholder="Password")
 					
 					.controls
 						input(type="submit", value="Log In").btn.btn-primary.btn-large
