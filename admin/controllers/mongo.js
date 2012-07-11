@@ -10,84 +10,23 @@ var	 app = require('../../app')
 ;
 
 page.handles('/mongo', 'get', function(req, res, next) {
-	var counts = [];
-
-	async.parallel([
-		function(callback){
-			mdb.schema.User.count({}, function (err, count) {
-				counts.push(['User1', count]);
-				callback(err);
-			});
-		},
-		function(callback){
-			mdb.schema.User.count({}, function (err, count) {
-				counts.push(['User2', count]);
-				callback(err);
-			});
-		},
-		function(callback){
-			mdb.schema.User.count({}, function (err, count) {
-				counts.push(['User3', count]);
-				callback(err);
-			});
-		},
-		function(callback){
-			mdb.schema.User.count({}, function (err, count) {
-				counts.push(['User4', count]);
-				callback(err);
-			});
-		},
-		function(callback){
-			mdb.schema.User.count({}, function (err, count) {
-				counts.push(['User5', count]);
-				callback(err);
-			});
-		},
-		function(callback){
-			mdb.schema.User.count({}, function (err, count) {
-				counts.push(['User6', count]);
-				callback(err);
-			});
-		},
-		function(callback){
-			mdb.schema.Post.count({}, function (err, count) {
-				counts.push(['Post1', count]);
-				callback(err);
-			});
-		},
-		function(callback){
-			mdb.schema.Post.count({}, function (err, count) {
-				counts.push(['Post2', count]);
-				callback(err);
-			});
-		},
-		function(callback){
-			mdb.schema.Post.count({}, function (err, count) {
-				counts.push(['Post3', count]);
-				callback(err);
-			});
-		},
-		function(callback){
-			mdb.schema.Post.count({}, function (err, count) {
-				counts.push(['Post4', count]);
-				callback(err);
-			});
-		},
-		function(callback){
-			mdb.schema.Post.count({}, function (err, count) {
-				counts.push(['Post5', count]);
-				callback(err);
-			});
-		},
-		function(callback){
-			mdb.schema.Post.count({}, function (err, count) {
-				counts.push(['Post6', count]);
-				callback(err);
-			});
-		},
-	],
-	function(err, results) {
-		counts.sort(function(a, b) {return a[1] > b[1]});
+	var cnt = 1;
+	
+	var queries = {};
+	
+	for (i=1; i<=100; i++) {
+		queries['User-' + i] = function(callback){ mdb.schema.User.where('name.first').gte(i*Math.random()).count(callback); };
+		queries['Post-' + i] =  function(callback){ mdb.schema.Post.where('title').gte(i*Math.random()).count(callback); }
+	}
+	
+	async.parallel(queries, function(err, results) {
+		var counts = [];
+		
+		for (var c in results) {
+			counts.push([c, results[c]])
+		}
+		
+		counts.sort(function(a, b) { return a[0] > b[0] });
 	
 		res.locals.counts = counts;
 		res.render('mongo');

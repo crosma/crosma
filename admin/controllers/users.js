@@ -2,47 +2,49 @@ var	 app = require('../../app')
 	,util = require('util')
 	,crypto = require('crypto')
 	,mdb = require('mongoose')
+	,async = require('async')
 	,page = require('../../lib/controller')(app.servers.admin, {
 		title: 'Users'
 	})
 ;
 
 
+
+
+
 page.handles('/users/:page?', 'get', function(req, res, next) {
 	var filter = {};
-
-	mdb.schema.User.count(filter, mdb.handler(req, res, function (count) {
-
-		var per_page = 20;
-		var page_count = Math.ceil(count / per_page);
-		var page = Math.max(1, Math.min(page_count, req.params.page ? req.params.page : 1));
+	var per_page = 5;
+	
+	async.waterfall([
+		function(callback) { //get user count
+			mdb.schema.User.count(filter, callback); //just send callback to the query
+		},
 		
-		var query = mdb.schema.User
-			.find(filter)
-			.select('email', 'name.first', 'name.last', 'name.abbr', 'registered_date')
-			.sort('name.last', 1)
-			.sort('name.first', 1)
-			.skip((page - 1) * per_page)
-			.limit(per_page)
-		;
-		
-		var pages = [];
-		for (i=1; i<=page_count; i++)
-		{
-			pages.push([i, '/users/' + i]);
-		}
-		
-		
-		query.exec(mdb.handler(req, res, function (users) {
-			res.locals.users = users;
-			res.locals.page = page;
-			res.locals.page_count = page_count;
-			res.locals.pages = pages;
+		function(count, callback) { //get a page of users
+			var page_count = Math.ceil(count / per_page);
+			var page = Math.max(1, Math.min(page_count, req.params.page ? req.params.page : 1));
+			
+			var query = mdb.schema.User
+				.find(filter)
+				.select('email', 'name.first', 'name.last', 'name.abbr', 'registered_date')
+				.sort('name.last', 1)
+				.sort('name.first', 1)
+				.skip((page - 1) * per_page)
+				.limit(per_page)
+			;
+			
+			query.exec(function (err, users) {
+				callback(err, users, page, page_count);
+			});
+		},
+	], function (err, users, page, page_count) { //render page
+		res.locals.users = users;
+		res.locals.page = page;
+		res.locals.page_count = page_count;
 
-			res.render('./users/list');
-		}));
-
-	}));
+		res.render('./users/list');
+	});
 	
 });
 

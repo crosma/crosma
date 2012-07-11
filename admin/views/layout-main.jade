@@ -7,7 +7,7 @@ html
 		meta(name="author", content="Matt Crossley")
 	
 		each css_file in config.css_files
-			link(rel="stylesheet", type='text/css', href=versionPath(config.static_url + '/css/' + css_file))
+			link(rel="stylesheet", type='text/css', href=config.static_url + '/css/' + css_file)
 			
 		block css
 			
@@ -79,6 +79,6 @@ html
 				p &copy; Company 2012
 							
 		each js_file in config.js_files
-			script(type="text/javascript", src=versionPath(config.static_url + '/js/' + js_file))
+			script(type="text/javascript", src=config.static_url + '/js/' + js_file)
 			
 		block scripts

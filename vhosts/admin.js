@@ -55,6 +55,15 @@ server.locals({
 	,dateFormat: require('dateformat') //helper for date\time formatting
 });
 
+//Pre version these so we don't have to every page load.
+for (i=0; i<app.config.local_css_files.length; i++) {
+	app.config.local_css_files[i] = versionator.versionPath(app.config.local_css_files[i]);
+}
+
+for (i=0; i<app.config.local_js_files.length; i++) {
+	app.config.local_js_files[i] = versionator.versionPath(app.config.local_js_files[i]);
+}
+
 
 /******************************************************************************
 ********* Set up res.err() and res.msg() stuff
@@ -102,6 +111,7 @@ server.use(function(req, res, next) {
 	
 	next();
 });
+
 
 /******************************************************************************
 ********* Set up res.locals.config 
