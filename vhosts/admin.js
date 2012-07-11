@@ -31,7 +31,7 @@ server.use(express.logger({format: 'mydev'}));
 
 server.use(express.cookieParser()); //Can take a secret to encrypt them
 server.use(express.session({
-	 secret: 'sdfasdfasdfasdf'
+	 secret: 'F5fRU2rap3G7hutR'
 	,key: 'sid'
 	,store: new MemcachedStore 
 })); //,cookie: {maxAge: 60 * 60 * 24 * 1000}}

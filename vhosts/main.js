@@ -22,7 +22,11 @@ server.use(express.logger({format: 'mydev'}));
 
 server.use(express.responseTime());
 server.use(express.cookieParser()); //Can take a secret to encrypt them
-server.use(express.session({secret: 'sdfasdfasdfasdf', key: 'sid', cookie: {maxAge: 60 * 60 * 24 * 1000}}));
+server.use(express.session({
+	 secret: 'F5fRU2rap3G7hutR'
+	,key: 'sid'
+	,store: new MemcachedStore 
+})); //,cookie: {maxAge: 60 * 60 * 24 * 1000}}
 server.use(express.bodyParser()); // parse request bodies (req.body)
 server.use(express.methodOverride('action')); // support _method input element (PUT in forms etc)
 server.use(require('../lib/poweredBy')); //Overwrite the x-powered-by header
