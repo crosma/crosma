@@ -1,0 +1,617 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'P:\\Program Files (x86)\\nodejs\\\\node.exe',
+1 verbose cli   'P:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'msgpack' ]
+2 info using npm@1.1.33
+3 info using node@v0.8.1
+4 verbose node symlink P:\Program Files (x86)\nodejs\\node.exe
+5 verbose config file C:\Users\Matt\.npmrc
+6 verbose config file P:\Program Files (x86)\nodejs\etc\npmrc
+7 verbose config file P:\Program Files (x86)\nodejs\node_modules\npm\npmrc
+8 verbose read json C:\Users\Matt\AppData\Roaming\npm\package.json
+9 verbose read json C:\Users\Matt\AppData\Roaming\npm\package.json
+10 verbose cache add [ 'msgpack', null ]
+11 silly cache add name=undefined spec="msgpack" args=["msgpack",null]
+12 verbose parsed url { pathname: 'msgpack', path: 'msgpack', href: 'msgpack' }
+13 verbose lock msgpack C:\Users\Matt\AppData\Roaming\npm-cache\a836d599a56b33ba506999ee3583e58e1f21b0e9-msgpack.lock
+14 verbose addNamed [ 'msgpack', '' ]
+15 verbose addNamed [ null, '' ]
+16 verbose lock msgpack@ C:\Users\Matt\AppData\Roaming\npm-cache\7f9d0373ffb9b43bedeb1c9d5d2be026be9d0614-msgpack-.lock
+17 silly addNameRange { name: 'msgpack', range: '', hasData: false }
+18 verbose url raw msgpack
+19 verbose url resolving [ 'https://registry.npmjs.org/', './msgpack' ]
+20 verbose url resolved https://registry.npmjs.org/msgpack
+21 info retry registry request attempt 1 at 15:38:06
+22 http GET https://registry.npmjs.org/msgpack
+23 http 200 https://registry.npmjs.org/msgpack
+24 silly registry.get cb [ 200,
+24 silly registry.get   { vary: 'Accept',
+24 silly registry.get     server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+24 silly registry.get     etag: '"D5YGTZ3QDN60KEQUNZKX7O65D"',
+24 silly registry.get     date: 'Mon, 09 Jul 2012 19:38:56 GMT',
+24 silly registry.get     'content-type': 'application/json',
+24 silly registry.get     'content-length': '1985' } ]
+25 silly addNameRange number 2 { name: 'msgpack', range: '', hasData: true }
+26 silly addNameRange versions [ 'msgpack', [ '0.1.2', '0.1.3' ] ]
+27 verbose addNamed [ 'msgpack', '0.1.3' ]
+28 verbose addNamed [ '0.1.3', '0.1.3' ]
+29 verbose lock msgpack@0.1.3 C:\Users\Matt\AppData\Roaming\npm-cache\d50ad2109a02412a934ccabc21bab02223155acb-msgpack-0-1-3.lock
+30 verbose lock https://registry.npmjs.org/msgpack/-/msgpack-0.1.3.tgz C:\Users\Matt\AppData\Roaming\npm-cache\9cecaa823c79026ad3b8606f739ca4f0b83efc2a-https-registry-npmjs-org-msgpack-msgpack-0-1-3-tgz.lock
+31 verbose addRemoteTarball [ 'https://registry.npmjs.org/msgpack/-/msgpack-0.1.3.tgz',
+31 verbose addRemoteTarball   undefined ]
+32 info retry fetch attempt 1 at 15:38:06
+33 verbose fetch to= C:\Users\Matt\AppData\Local\Temp\npm-9548\1341862686856-0.7299148531164974\tmp.tgz
+34 http GET https://registry.npmjs.org/msgpack/-/msgpack-0.1.3.tgz
+35 http 200 https://registry.npmjs.org/msgpack/-/msgpack-0.1.3.tgz
+36 verbose tar unpack C:\Users\Matt\AppData\Local\Temp\npm-9548\1341862686856-0.7299148531164974\tmp.tgz
+37 silly gunzTarPerm modes [ '755', '644' ]
+38 silly gunzTarPerm extractEntry
+39 silly gunzTarPerm extractEntry ._.DS_Store
+40 silly gunzTarPerm extractEntry .DS_Store
+41 silly gunzTarPerm extractEntry .gitignore
+42 silly gunzTarPerm extractEntry bench.js
+43 silly gunzTarPerm extractEntry bin/
+44 silly gunzTarPerm extractEntry deps/
+45 silly gunzTarPerm extractEntry lib/
+46 silly gunzTarPerm extractEntry LICENSE
+47 silly gunzTarPerm extractEntry Makefile
+48 silly gunzTarPerm extractEntry package.json
+49 silly gunzTarPerm extractEntry README.md
+50 silly gunzTarPerm extractEntry src/
+51 silly gunzTarPerm extractEntry test/
+52 silly gunzTarPerm extractEntry test/test-stream-disjoint.js
+53 silly gunzTarPerm extractEntry test/test-stream.js
+54 silly gunzTarPerm extractEntry test/test-unpack-extra.js
+55 silly gunzTarPerm extractEntry test/test.js
+56 silly gunzTarPerm extractEntry src/msgpack.cc
+57 silly gunzTarPerm extractEntry src/wscript
+58 silly gunzTarPerm extractEntry lib/msgpack.js
+59 silly gunzTarPerm extractEntry deps/msgpack/
+60 silly gunzTarPerm extractEntry deps/msgpack/ac/
+61 silly gunzTarPerm extractEntry deps/msgpack/aclocal.m4
+62 silly gunzTarPerm extractEntry deps/msgpack/AUTHORS
+63 silly gunzTarPerm extractEntry deps/msgpack/ChangeLog
+64 silly gunzTarPerm extractEntry deps/msgpack/config.h.in
+65 silly gunzTarPerm extractEntry deps/msgpack/configure
+66 silly gunzTarPerm extractEntry deps/msgpack/configure.in
+67 silly gunzTarPerm extractEntry deps/msgpack/COPYING
+68 silly gunzTarPerm extractEntry deps/msgpack/INSTALL
+69 silly gunzTarPerm extractEntry deps/msgpack/LICENSE
+70 silly gunzTarPerm extractEntry deps/msgpack/Makefile.am
+71 silly gunzTarPerm extractEntry deps/msgpack/Makefile.in
+72 silly gunzTarPerm extractEntry deps/msgpack/msgpack/
+73 silly gunzTarPerm extractEntry deps/msgpack/msgpack.h
+74 silly gunzTarPerm extractEntry deps/msgpack/msgpack.hpp
+75 silly gunzTarPerm extractEntry deps/msgpack/msgpack_test.cpp
+76 silly gunzTarPerm extractEntry deps/msgpack/msgpack_vc8.postbuild.bat
+77 silly gunzTarPerm extractEntry deps/msgpack/msgpack_vc8.sln
+78 silly gunzTarPerm extractEntry deps/msgpack/msgpack_vc8.vcproj
+79 silly gunzTarPerm extractEntry deps/msgpack/msgpackc_test.cpp
+80 silly gunzTarPerm extractEntry deps/msgpack/NEWS
+81 silly gunzTarPerm extractEntry deps/msgpack/NOTICE
+82 silly gunzTarPerm extractEntry deps/msgpack/object.cpp
+83 silly gunzTarPerm extractEntry deps/msgpack/objectc.c
+84 silly gunzTarPerm extractEntry deps/msgpack/README
+85 silly gunzTarPerm extractEntry deps/msgpack/README.md
+86 silly gunzTarPerm extractEntry deps/msgpack/test/
+87 silly gunzTarPerm extractEntry deps/msgpack/unpack.c
+88 silly gunzTarPerm extractEntry deps/msgpack/vrefbuffer.c
+89 silly gunzTarPerm extractEntry deps/msgpack/zone.c
+90 silly gunzTarPerm extractEntry deps/msgpack/test/buffer.cc
+91 silly gunzTarPerm extractEntry deps/msgpack/test/convert.cc
+92 silly gunzTarPerm extractEntry deps/msgpack/test/Makefile.am
+93 silly gunzTarPerm extractEntry deps/msgpack/test/Makefile.in
+94 silly gunzTarPerm extractEntry deps/msgpack/test/object.cc
+95 silly gunzTarPerm extractEntry deps/msgpack/test/pack_unpack.cc
+96 silly gunzTarPerm extractEntry deps/msgpack/test/streaming.cc
+97 silly gunzTarPerm extractEntry deps/msgpack/test/zone.cc
+98 silly gunzTarPerm extractEntry deps/msgpack/msgpack/object.h
+99 silly gunzTarPerm extractEntry deps/msgpack/msgpack/object.hpp
+100 silly gunzTarPerm extractEntry deps/msgpack/msgpack/pack.h
+101 silly gunzTarPerm extractEntry deps/msgpack/msgpack/pack.hpp
+102 silly gunzTarPerm extractEntry deps/msgpack/msgpack/pack_define.h
+103 silly gunzTarPerm extractEntry deps/msgpack/msgpack/pack_template.h
+104 silly gunzTarPerm extractEntry deps/msgpack/msgpack/sbuffer.h
+105 silly gunzTarPerm extractEntry deps/msgpack/msgpack/sbuffer.hpp
+106 silly gunzTarPerm extractEntry deps/msgpack/msgpack/sysdep.h
+107 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/
+108 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type.hpp
+109 silly gunzTarPerm extractEntry deps/msgpack/msgpack/unpack.h
+110 silly gunzTarPerm extractEntry deps/msgpack/msgpack/unpack.hpp
+111 silly gunzTarPerm extractEntry deps/msgpack/msgpack/unpack_define.h
+112 silly gunzTarPerm extractEntry deps/msgpack/msgpack/unpack_template.h
+113 silly gunzTarPerm extractEntry deps/msgpack/msgpack/vrefbuffer.h
+114 silly gunzTarPerm extractEntry deps/msgpack/msgpack/vrefbuffer.hpp
+115 silly gunzTarPerm extractEntry deps/msgpack/msgpack/zbuffer.h
+116 silly gunzTarPerm extractEntry deps/msgpack/msgpack/zbuffer.hpp
+117 silly gunzTarPerm extractEntry deps/msgpack/msgpack/zone.h
+118 silly gunzTarPerm extractEntry deps/msgpack/msgpack/zone.hpp
+119 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/bool.hpp
+120 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/define.hpp
+121 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/deque.hpp
+122 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/float.hpp
+123 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/int.hpp
+124 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/list.hpp
+125 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/map.hpp
+126 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/nil.hpp
+127 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/pair.hpp
+128 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/raw.hpp
+129 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/set.hpp
+130 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/string.hpp
+131 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/tr1/
+132 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/tuple.hpp
+133 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/vector.hpp
+134 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/tr1/unordered_map.hpp
+135 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/tr1/unordered_set.hpp
+136 silly gunzTarPerm extractEntry deps/msgpack/ac/compile
+137 silly gunzTarPerm extractEntry deps/msgpack/ac/config.guess
+138 silly gunzTarPerm extractEntry deps/msgpack/ac/config.sub
+139 silly gunzTarPerm extractEntry deps/msgpack/ac/depcomp
+140 silly gunzTarPerm extractEntry deps/msgpack/ac/install-sh
+141 silly gunzTarPerm extractEntry deps/msgpack/ac/ltmain.sh
+142 silly gunzTarPerm extractEntry deps/msgpack/ac/missing
+143 silly gunzTarPerm extractEntry bin/json2msgpack
+144 silly gunzTarPerm extractEntry bin/msgpack2json
+145 verbose read json C:\Users\Matt\AppData\Local\Temp\npm-9548\1341862686856-0.7299148531164974\package\package.json
+146 verbose from cache C:\Users\Matt\AppData\Local\Temp\npm-9548\1341862686856-0.7299148531164974\package\package.json
+147 verbose tar pack [ 'C:\\Users\\Matt\\AppData\\Roaming\\npm-cache\\msgpack\\0.1.3\\package.tgz',
+147 verbose tar pack   'C:\\Users\\Matt\\AppData\\Local\\Temp\\npm-9548\\1341862686856-0.7299148531164974\\package' ]
+148 verbose tarball C:\Users\Matt\AppData\Roaming\npm-cache\msgpack\0.1.3\package.tgz
+149 verbose folder C:\Users\Matt\AppData\Local\Temp\npm-9548\1341862686856-0.7299148531164974\package
+150 verbose tar unpack C:\Users\Matt\AppData\Roaming\npm-cache\msgpack\0.1.3\package.tgz
+151 silly gunzTarPerm modes [ '755', '644' ]
+152 silly gunzTarPerm extractEntry package.json
+153 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+154 silly gunzTarPerm extractEntry .npmignore
+155 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
+156 silly gunzTarPerm extractEntry README.md
+157 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+158 silly gunzTarPerm extractEntry LICENSE
+159 silly gunzTarPerm modified mode [ 'LICENSE', 438, 420 ]
+160 silly gunzTarPerm extractEntry bench.js
+161 silly gunzTarPerm modified mode [ 'bench.js', 438, 420 ]
+162 silly gunzTarPerm extractEntry lib/msgpack.js
+163 silly gunzTarPerm modified mode [ 'lib/msgpack.js', 438, 420 ]
+164 silly gunzTarPerm extractEntry Makefile
+165 silly gunzTarPerm modified mode [ 'Makefile', 438, 420 ]
+166 silly gunzTarPerm extractEntry deps/msgpack/README
+167 silly gunzTarPerm modified mode [ 'deps/msgpack/README', 438, 420 ]
+168 silly gunzTarPerm extractEntry deps/msgpack/README.md
+169 silly gunzTarPerm modified mode [ 'deps/msgpack/README.md', 438, 420 ]
+170 silly gunzTarPerm extractEntry deps/msgpack/LICENSE
+171 silly gunzTarPerm modified mode [ 'deps/msgpack/LICENSE', 438, 420 ]
+172 silly gunzTarPerm extractEntry deps/msgpack/msgpackc_test.cpp
+173 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpackc_test.cpp', 438, 420 ]
+174 silly gunzTarPerm extractEntry deps/msgpack/config.h.in
+175 silly gunzTarPerm modified mode [ 'deps/msgpack/config.h.in', 438, 420 ]
+176 silly gunzTarPerm extractEntry deps/msgpack/configure
+177 silly gunzTarPerm modified mode [ 'deps/msgpack/configure', 438, 420 ]
+178 silly gunzTarPerm extractEntry deps/msgpack/configure.in
+179 silly gunzTarPerm modified mode [ 'deps/msgpack/configure.in', 438, 420 ]
+180 silly gunzTarPerm extractEntry deps/msgpack/COPYING
+181 silly gunzTarPerm modified mode [ 'deps/msgpack/COPYING', 438, 420 ]
+182 silly gunzTarPerm extractEntry deps/msgpack/INSTALL
+183 silly gunzTarPerm modified mode [ 'deps/msgpack/INSTALL', 438, 420 ]
+184 silly gunzTarPerm extractEntry deps/msgpack/ac/compile
+185 silly gunzTarPerm modified mode [ 'deps/msgpack/ac/compile', 438, 420 ]
+186 silly gunzTarPerm extractEntry deps/msgpack/ac/config.guess
+187 silly gunzTarPerm modified mode [ 'deps/msgpack/ac/config.guess', 438, 420 ]
+188 silly gunzTarPerm extractEntry deps/msgpack/ac/config.sub
+189 silly gunzTarPerm modified mode [ 'deps/msgpack/ac/config.sub', 438, 420 ]
+190 silly gunzTarPerm extractEntry deps/msgpack/ac/depcomp
+191 silly gunzTarPerm modified mode [ 'deps/msgpack/ac/depcomp', 438, 420 ]
+192 silly gunzTarPerm extractEntry deps/msgpack/ac/install-sh
+193 silly gunzTarPerm modified mode [ 'deps/msgpack/ac/install-sh', 438, 420 ]
+194 silly gunzTarPerm extractEntry deps/msgpack/ac/ltmain.sh
+195 silly gunzTarPerm modified mode [ 'deps/msgpack/ac/ltmain.sh', 438, 420 ]
+196 silly gunzTarPerm extractEntry deps/msgpack/ac/missing
+197 silly gunzTarPerm modified mode [ 'deps/msgpack/ac/missing', 438, 420 ]
+198 silly gunzTarPerm extractEntry deps/msgpack/Makefile.am
+199 silly gunzTarPerm modified mode [ 'deps/msgpack/Makefile.am', 438, 420 ]
+200 silly gunzTarPerm extractEntry deps/msgpack/Makefile.in
+201 silly gunzTarPerm modified mode [ 'deps/msgpack/Makefile.in', 438, 420 ]
+202 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type.hpp
+203 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type.hpp', 438, 420 ]
+204 silly gunzTarPerm extractEntry deps/msgpack/msgpack/object.h
+205 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/object.h', 438, 420 ]
+206 silly gunzTarPerm extractEntry deps/msgpack/msgpack/pack.h
+207 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/pack.h', 438, 420 ]
+208 silly gunzTarPerm extractEntry deps/msgpack/msgpack/pack.hpp
+209 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/pack.hpp', 438, 420 ]
+210 silly gunzTarPerm extractEntry deps/msgpack/msgpack/pack_define.h
+211 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/pack_define.h', 438, 420 ]
+212 silly gunzTarPerm extractEntry deps/msgpack/msgpack/pack_template.h
+213 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/pack_template.h', 438, 420 ]
+214 silly gunzTarPerm extractEntry deps/msgpack/msgpack/sbuffer.h
+215 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/sbuffer.h', 438, 420 ]
+216 silly gunzTarPerm extractEntry deps/msgpack/msgpack/sbuffer.hpp
+217 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/sbuffer.hpp', 438, 420 ]
+218 silly gunzTarPerm extractEntry deps/msgpack/msgpack/sysdep.h
+219 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/sysdep.h', 438, 420 ]
+220 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/nil.hpp
+221 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/nil.hpp', 438, 420 ]
+222 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/bool.hpp
+223 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/bool.hpp', 438, 420 ]
+224 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/deque.hpp
+225 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/deque.hpp', 438, 420 ]
+226 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/float.hpp
+227 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/float.hpp', 438, 420 ]
+228 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/int.hpp
+229 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/int.hpp', 438, 420 ]
+230 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/list.hpp
+231 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/list.hpp', 438, 420 ]
+232 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/map.hpp
+233 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/map.hpp', 438, 420 ]
+234 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/define.hpp
+235 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/define.hpp', 438, 420 ]
+236 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/pair.hpp
+237 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/pair.hpp', 438, 420 ]
+238 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/raw.hpp
+239 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/raw.hpp', 438, 420 ]
+240 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/set.hpp
+241 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/set.hpp', 438, 420 ]
+242 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/string.hpp
+243 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/string.hpp', 438, 420 ]
+244 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/tr1/unordered_map.hpp
+245 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/tr1/unordered_map.hpp', 438, 420 ]
+246 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/tr1/unordered_set.hpp
+247 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/tr1/unordered_set.hpp', 438, 420 ]
+248 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/tuple.hpp
+249 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/tuple.hpp', 438, 420 ]
+250 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/vector.hpp
+251 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/vector.hpp', 438, 420 ]
+252 silly gunzTarPerm extractEntry deps/msgpack/msgpack/object.hpp
+253 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/object.hpp', 438, 420 ]
+254 silly gunzTarPerm extractEntry deps/msgpack/msgpack/unpack.h
+255 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/unpack.h', 438, 420 ]
+256 silly gunzTarPerm extractEntry deps/msgpack/msgpack/unpack.hpp
+257 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/unpack.hpp', 438, 420 ]
+258 silly gunzTarPerm extractEntry deps/msgpack/msgpack/unpack_define.h
+259 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/unpack_define.h', 438, 420 ]
+260 silly gunzTarPerm extractEntry deps/msgpack/msgpack/unpack_template.h
+261 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/unpack_template.h', 438, 420 ]
+262 silly gunzTarPerm extractEntry deps/msgpack/msgpack/vrefbuffer.h
+263 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/vrefbuffer.h', 438, 420 ]
+264 silly gunzTarPerm extractEntry deps/msgpack/msgpack/vrefbuffer.hpp
+265 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/vrefbuffer.hpp', 438, 420 ]
+266 silly gunzTarPerm extractEntry deps/msgpack/msgpack/zbuffer.h
+267 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/zbuffer.h', 438, 420 ]
+268 silly gunzTarPerm extractEntry deps/msgpack/msgpack/zbuffer.hpp
+269 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/zbuffer.hpp', 438, 420 ]
+270 silly gunzTarPerm extractEntry deps/msgpack/msgpack/zone.h
+271 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/zone.h', 438, 420 ]
+272 silly gunzTarPerm extractEntry deps/msgpack/msgpack/zone.hpp
+273 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/zone.hpp', 438, 420 ]
+274 silly gunzTarPerm extractEntry deps/msgpack/msgpack.h
+275 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack.h', 438, 420 ]
+276 silly gunzTarPerm extractEntry deps/msgpack/msgpack.hpp
+277 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack.hpp', 438, 420 ]
+278 silly gunzTarPerm extractEntry deps/msgpack/aclocal.m4
+279 silly gunzTarPerm modified mode [ 'deps/msgpack/aclocal.m4', 438, 420 ]
+280 silly gunzTarPerm extractEntry deps/msgpack/msgpack_test.cpp
+281 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack_test.cpp', 438, 420 ]
+282 silly gunzTarPerm extractEntry deps/msgpack/msgpack_vc8.postbuild.bat
+283 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack_vc8.postbuild.bat', 438, 420 ]
+284 silly gunzTarPerm extractEntry deps/msgpack/msgpack_vc8.sln
+285 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack_vc8.sln', 438, 420 ]
+286 silly gunzTarPerm extractEntry deps/msgpack/msgpack_vc8.vcproj
+287 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack_vc8.vcproj', 438, 420 ]
+288 silly gunzTarPerm extractEntry deps/msgpack/NEWS
+289 silly gunzTarPerm modified mode [ 'deps/msgpack/NEWS', 438, 420 ]
+290 silly gunzTarPerm extractEntry deps/msgpack/NOTICE
+291 silly gunzTarPerm modified mode [ 'deps/msgpack/NOTICE', 438, 420 ]
+292 silly gunzTarPerm extractEntry deps/msgpack/object.cpp
+293 silly gunzTarPerm modified mode [ 'deps/msgpack/object.cpp', 438, 420 ]
+294 silly gunzTarPerm extractEntry deps/msgpack/objectc.c
+295 silly gunzTarPerm modified mode [ 'deps/msgpack/objectc.c', 438, 420 ]
+296 silly gunzTarPerm extractEntry deps/msgpack/AUTHORS
+297 silly gunzTarPerm modified mode [ 'deps/msgpack/AUTHORS', 438, 420 ]
+298 silly gunzTarPerm extractEntry deps/msgpack/ChangeLog
+299 silly gunzTarPerm modified mode [ 'deps/msgpack/ChangeLog', 438, 420 ]
+300 silly gunzTarPerm extractEntry deps/msgpack/test/buffer.cc
+301 silly gunzTarPerm modified mode [ 'deps/msgpack/test/buffer.cc', 438, 420 ]
+302 silly gunzTarPerm extractEntry deps/msgpack/test/convert.cc
+303 silly gunzTarPerm modified mode [ 'deps/msgpack/test/convert.cc', 438, 420 ]
+304 silly gunzTarPerm extractEntry deps/msgpack/test/Makefile.am
+305 silly gunzTarPerm modified mode [ 'deps/msgpack/test/Makefile.am', 438, 420 ]
+306 silly gunzTarPerm extractEntry deps/msgpack/test/Makefile.in
+307 silly gunzTarPerm modified mode [ 'deps/msgpack/test/Makefile.in', 438, 420 ]
+308 silly gunzTarPerm extractEntry deps/msgpack/test/object.cc
+309 silly gunzTarPerm modified mode [ 'deps/msgpack/test/object.cc', 438, 420 ]
+310 silly gunzTarPerm extractEntry deps/msgpack/test/pack_unpack.cc
+311 silly gunzTarPerm modified mode [ 'deps/msgpack/test/pack_unpack.cc', 438, 420 ]
+312 silly gunzTarPerm extractEntry deps/msgpack/test/streaming.cc
+313 silly gunzTarPerm modified mode [ 'deps/msgpack/test/streaming.cc', 438, 420 ]
+314 silly gunzTarPerm extractEntry deps/msgpack/test/zone.cc
+315 silly gunzTarPerm modified mode [ 'deps/msgpack/test/zone.cc', 438, 420 ]
+316 silly gunzTarPerm extractEntry deps/msgpack/unpack.c
+317 silly gunzTarPerm modified mode [ 'deps/msgpack/unpack.c', 438, 420 ]
+318 silly gunzTarPerm extractEntry deps/msgpack/vrefbuffer.c
+319 silly gunzTarPerm modified mode [ 'deps/msgpack/vrefbuffer.c', 438, 420 ]
+320 silly gunzTarPerm extractEntry deps/msgpack/zone.c
+321 silly gunzTarPerm modified mode [ 'deps/msgpack/zone.c', 438, 420 ]
+322 silly gunzTarPerm extractEntry bin/json2msgpack
+323 silly gunzTarPerm modified mode [ 'bin/json2msgpack', 438, 420 ]
+324 silly gunzTarPerm extractEntry bin/msgpack2json
+325 silly gunzTarPerm modified mode [ 'bin/msgpack2json', 438, 420 ]
+326 silly gunzTarPerm extractEntry src/msgpack.cc
+327 silly gunzTarPerm modified mode [ 'src/msgpack.cc', 438, 420 ]
+328 silly gunzTarPerm extractEntry src/wscript
+329 silly gunzTarPerm modified mode [ 'src/wscript', 438, 420 ]
+330 silly gunzTarPerm extractEntry test/test-stream-disjoint.js
+331 silly gunzTarPerm modified mode [ 'test/test-stream-disjoint.js', 438, 420 ]
+332 silly gunzTarPerm extractEntry test/test-stream.js
+333 silly gunzTarPerm modified mode [ 'test/test-stream.js', 438, 420 ]
+334 silly gunzTarPerm extractEntry test/test-unpack-extra.js
+335 silly gunzTarPerm modified mode [ 'test/test-unpack-extra.js', 438, 420 ]
+336 silly gunzTarPerm extractEntry test/test.js
+337 silly gunzTarPerm modified mode [ 'test/test.js', 438, 420 ]
+338 verbose read json C:\Users\Matt\AppData\Roaming\npm-cache\msgpack\0.1.3\package\package.json
+339 silly shasum updated bytes 40960
+340 silly shasum updated bytes 40960
+341 silly shasum updated bytes 40960
+342 silly shasum updated bytes 40960
+343 silly shasum updated bytes 40960
+344 silly shasum updated bytes 40960
+345 silly shasum updated bytes 40960
+346 silly shasum updated bytes 40960
+347 silly shasum updated bytes 40960
+348 silly shasum updated bytes 21017
+349 info shasum 2dce99ac93c25db625ff897316b5fa0b4070405d
+349 info shasum C:\Users\Matt\AppData\Roaming\npm-cache\msgpack\0.1.3\package.tgz
+350 verbose from cache C:\Users\Matt\AppData\Roaming\npm-cache\msgpack\0.1.3\package\package.json
+351 verbose chmod C:\Users\Matt\AppData\Roaming\npm-cache\msgpack\0.1.3\package.tgz 644
+352 silly chown skipping for windows C:\Users\Matt\AppData\Roaming\npm-cache\msgpack\0.1.3\package.tgz
+353 silly resolved [ { name: 'msgpack',
+353 silly resolved     description: 'A space-efficient object serialization library for node.js',
+353 silly resolved     version: '0.1.3',
+353 silly resolved     homepage: 'https://github.com/pgriess/node-msgpack',
+353 silly resolved     author: { name: 'Peter Griess', email: 'pg@std.in' },
+353 silly resolved     contributors: [ [Object] ],
+353 silly resolved     repository:
+353 silly resolved      { type: 'git',
+353 silly resolved        url: 'https://github.com/pgriess/node-msgpack.git' },
+353 silly resolved     main: './lib/msgpack',
+353 silly resolved     directories: { lib: 'lib' },
+353 silly resolved     engines: { node: '>=0.1.97' },
+353 silly resolved     scripts: { preinstall: 'make', preuninstall: 'make clean' },
+353 silly resolved     bin:
+353 silly resolved      { json2msgpack: './bin/json2msgpack',
+353 silly resolved        msgpack2json: './bin/msgpack2json' },
+353 silly resolved     readme: '`node-msgpack` is an addon for [NodeJS](http://nodejs.org) that provides an\nAPI for serializing and de-serializing JavaScript objects using the\n[MessagePack](http://msgpack.sourceforge.net) library. The performance of this\naddon compared to the native `JSON` object is quite good, and the space\nrequired for serialized data is far less than JSON.\n\n### Performance\n\n`node-msgpack` outperforms the built-in `JSON.stringify()` and `JSON.parse()`\nmethods handily. The following tests were performed with 500,000 instances of\nthe JavaScript object `{\'abcdef\' : 1, \'qqq\' : 13, \'19\' : [1, 2, 3, 4]}`:\n\n   * `JSON.stringify()` 7.17 seconds\n   * `JSON.parse(JSON.stringify())` 22.18 seconds\n   * `msgpack.pack()` 5.80 seconds\n   * `msgpack.unpack(msgpack.pack())` 8.62 seconds\n\nNote that `node-msgpack` produces and consumes Buffer objects, and a such does\nnot incur encoding/decoding overhead when performing I/O with native strings.\n\n### Usage\n\nThis module provides two methods: `pack()`, which consumes a JavaScript object\nand produces a node Buffer object; and `unpack()`, which consumes a node Buffer\nobject and produces a JavaScript object. Packing of all native JavaScript types\n(undefined, boolean, numbers, strings, arrays and objects) is supported, as\nis the node Buffer type.\n\nThe below code snippet packs and then unpacks a JavaScript object, verifying\nthe resulting object at the end using `assert.deepEqual()`.\n\n    var assert = require(\'assert\');\n    var msgpack = require(\'msgpack\');\n\n    var o = {"a" : 1, "b" : 2, "c" : [1, 2, 3]};\n    var b = msgpack.pack(o);\n    var oo = msgpack.unpack(b);\n\n    assert.deepEqual(oo, o);\n\nAs a convenience, a higher level streaming API is provided in the\n`msgpack.Stream` class, which can be constructed around a `net.Stream`\ninstance. This object emits `msg` events when an object has been received.\n\n    var msgpack = require(\'msgpack\');\n\n    // ... get a net.Stream instance, s, from somewhere\n    \n    var ms = new msgpack.Stream(s);\n    ms.addListener(\'msg\', function(m) {\n        sys.debug(\'received message: \' + sys.inspect(m));\n    });\n\n### Type Mapping\n\nThe JavaScript type system does not map cleanly on to the MsgPack type system,\nthough it\'s pretty close.\n\nWhen packing, JavaScript values are mapped to MsgPack types as follows\n\n   * `undefined` and `null` values map to `MSGPACK_OBJECT_NIL`\n   * `boolean` values map to `MSGPACK_OBJECT_BOOLEAN`\n   * `number` values map differently depending on their value\n      * Floating point values map to `MSGPACK_OBJECT_DOUBLE`\n      * Positive values map to `MSGPACK_OBJECT_POSITIVE_INTEGER`\n      * Negative values map to `MSGPACK_OBJECT_NEGATIVE_INTEGER`\n   * `string` values map to `MSGPACK_OBJECT_RAW`; all strings are serialized\n     with UTF-8 encoding\n   * Array values (as defined by `Array.isArray()`) map to\n     `MSGPACK_OBJECT_ARRAY`; each element in the array is packed individually\n     the rules in this list\n   * NodeJS Buffer values map to `MSGPACK_OBJECT_RAW`\n   * Everything else maps to `MSGPACK_OBJECT_MAP`, where we iterate over the object\'s\n     properties and pack them and their values as per the mappings in this list\n\nWhen unpacking, MsgPack types are mapped to JavaScript values as follows\n\n   * `MSGPACK_OBJECT_NIL` values map to the `null` value\n   * `MSGPACK_OBJECT_BOOLEAN` values map to `boolean` values\n   * `MSGPACK_OBJECT_POSITIVE_INTEGER`, `MSGPACK_OBJECT_NEGATIVE_INTEGER` and\n     `MSGPACK_OBJECT_DOUBLE` values map to `number` values\n   * `MSGPACK_OBJECT_ARRAY` values map to arrays; each object in the array is\n      packed individually using the rules in this list\n   * `MSGPACK_OBJECT_RAW` values are mapped to `string` values; these values are\n     unpacked using either UTF-8 or ASCII encoding, depending on the contents\n     of the raw buffer\n   * `MSGPACK_OBJECT_MAP` values are mapped to JavaScript objects; keys and values\n     are unpacked individually using the rules in this list\n\nStrings are particularly problematic here, as it\'s difficult to get hints down\ninto the packing and unpacking codepaths about how to interpret a particular\nstring or `MSGPACK_OBJECT_RAW`. If you have strict requirements about the\nencoding of your strings, it\'s recommended that you populate a Buffer object\nyourself (e.g. using `Buffer.write()`) and pack that buffer rather than the\nstring. This will ensure that you can control what gets packed.\n\nWhen unpacking, things are trickier as there is no way to know the encoding\nused when a string was packed. There is an [an open\nticket](http://github.com/msgpack/msgpack/issues/issue/13) for the MsgPack\nformat to address this.\n\n### Command Line Utilities\n\nAs a convenience and for debugging, `bin/json2msgpack` and `bin/msgpack2json`\nare provided to convert JSON data to and from MessagePack data, reading from\nstdin and writing to stdout.\n\n    % echo \'[1, 2, 3]\' | ./bin/json2msgpack | xxd -\n    0000000: 9301 0203                                ....\n    % echo \'[1, 2, 3]\' | ./bin/json2msgpack | ./bin/msgpack2json \n    [1,2,3]\n\n### Building and installation\n\nThere are two ways to install msgpack.\n\n## npm\n\n\t\tnpm install msgpack\n\nThis should build and install msgpack for you. Then just `require(\'msgpack\')`.\n\n## Manually\n\nUse `make` to build the add-on, then manually copy `build/default/mpBindings.node` \nand `lib/msgpack.js` it to wherever your node.js installation will look for it (or\nadd the build directory to your `$NODE_PATH`).\n\n    % ls\n    LICENSE  Makefile  README.md  deps/  src/  tags  test.js\n    % make\n\nThe MessagePack library on which this depends is packaged with `node-msgpack`\nand will be built as part of this process.\n\n**Note:** MessagePack may fail to build if you do not have a modern version of\ngcc in your `$PATH`. On Mac OS X Snow Leopard (10.5.x), you may have to use\n`gcc-4.2`, which should come with your box but is not used by default.\n\n    % make CC=gcc-4.2 CXX=gcc-4.2\n',
+353 silly resolved     _id: 'msgpack@0.1.3',
+353 silly resolved     dist: { shasum: '2dce99ac93c25db625ff897316b5fa0b4070405d' },
+353 silly resolved     _from: 'msgpack' } ]
+354 info install msgpack@0.1.3 into C:\Users\Matt\AppData\Roaming\npm
+355 info installOne msgpack@0.1.3
+356 verbose from cache C:\Users\Matt\AppData\Roaming\npm-cache\msgpack\0.1.3\package\package.json
+357 info C:\Users\Matt\AppData\Roaming\npm\node_modules\msgpack unbuild
+358 verbose read json C:\Users\Matt\AppData\Roaming\npm\node_modules\msgpack\package.json
+359 verbose tar unpack C:\Users\Matt\AppData\Roaming\npm-cache\msgpack\0.1.3\package.tgz
+360 silly gunzTarPerm modes [ '755', '644' ]
+361 silly gunzTarPerm extractEntry package.json
+362 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+363 silly gunzTarPerm extractEntry .npmignore
+364 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
+365 silly gunzTarPerm extractEntry README.md
+366 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+367 silly gunzTarPerm extractEntry LICENSE
+368 silly gunzTarPerm modified mode [ 'LICENSE', 438, 420 ]
+369 silly gunzTarPerm extractEntry bench.js
+370 silly gunzTarPerm modified mode [ 'bench.js', 438, 420 ]
+371 silly gunzTarPerm extractEntry lib/msgpack.js
+372 silly gunzTarPerm modified mode [ 'lib/msgpack.js', 438, 420 ]
+373 silly gunzTarPerm extractEntry Makefile
+374 silly gunzTarPerm modified mode [ 'Makefile', 438, 420 ]
+375 silly gunzTarPerm extractEntry deps/msgpack/README
+376 silly gunzTarPerm modified mode [ 'deps/msgpack/README', 438, 420 ]
+377 silly gunzTarPerm extractEntry deps/msgpack/README.md
+378 silly gunzTarPerm modified mode [ 'deps/msgpack/README.md', 438, 420 ]
+379 silly gunzTarPerm extractEntry deps/msgpack/LICENSE
+380 silly gunzTarPerm modified mode [ 'deps/msgpack/LICENSE', 438, 420 ]
+381 silly gunzTarPerm extractEntry deps/msgpack/msgpackc_test.cpp
+382 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpackc_test.cpp', 438, 420 ]
+383 silly gunzTarPerm extractEntry deps/msgpack/config.h.in
+384 silly gunzTarPerm modified mode [ 'deps/msgpack/config.h.in', 438, 420 ]
+385 silly gunzTarPerm extractEntry deps/msgpack/configure
+386 silly gunzTarPerm modified mode [ 'deps/msgpack/configure', 438, 420 ]
+387 silly gunzTarPerm extractEntry deps/msgpack/configure.in
+388 silly gunzTarPerm modified mode [ 'deps/msgpack/configure.in', 438, 420 ]
+389 silly gunzTarPerm extractEntry deps/msgpack/COPYING
+390 silly gunzTarPerm modified mode [ 'deps/msgpack/COPYING', 438, 420 ]
+391 silly gunzTarPerm extractEntry deps/msgpack/INSTALL
+392 silly gunzTarPerm modified mode [ 'deps/msgpack/INSTALL', 438, 420 ]
+393 silly gunzTarPerm extractEntry deps/msgpack/ac/compile
+394 silly gunzTarPerm modified mode [ 'deps/msgpack/ac/compile', 438, 420 ]
+395 silly gunzTarPerm extractEntry deps/msgpack/ac/config.guess
+396 silly gunzTarPerm modified mode [ 'deps/msgpack/ac/config.guess', 438, 420 ]
+397 silly gunzTarPerm extractEntry deps/msgpack/ac/config.sub
+398 silly gunzTarPerm modified mode [ 'deps/msgpack/ac/config.sub', 438, 420 ]
+399 silly gunzTarPerm extractEntry deps/msgpack/ac/depcomp
+400 silly gunzTarPerm modified mode [ 'deps/msgpack/ac/depcomp', 438, 420 ]
+401 silly gunzTarPerm extractEntry deps/msgpack/ac/install-sh
+402 silly gunzTarPerm modified mode [ 'deps/msgpack/ac/install-sh', 438, 420 ]
+403 silly gunzTarPerm extractEntry deps/msgpack/ac/ltmain.sh
+404 silly gunzTarPerm modified mode [ 'deps/msgpack/ac/ltmain.sh', 438, 420 ]
+405 silly gunzTarPerm extractEntry deps/msgpack/ac/missing
+406 silly gunzTarPerm modified mode [ 'deps/msgpack/ac/missing', 438, 420 ]
+407 silly gunzTarPerm extractEntry deps/msgpack/Makefile.am
+408 silly gunzTarPerm modified mode [ 'deps/msgpack/Makefile.am', 438, 420 ]
+409 silly gunzTarPerm extractEntry deps/msgpack/Makefile.in
+410 silly gunzTarPerm modified mode [ 'deps/msgpack/Makefile.in', 438, 420 ]
+411 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type.hpp
+412 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type.hpp', 438, 420 ]
+413 silly gunzTarPerm extractEntry deps/msgpack/msgpack/object.h
+414 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/object.h', 438, 420 ]
+415 silly gunzTarPerm extractEntry deps/msgpack/msgpack/pack.h
+416 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/pack.h', 438, 420 ]
+417 silly gunzTarPerm extractEntry deps/msgpack/msgpack/pack.hpp
+418 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/pack.hpp', 438, 420 ]
+419 silly gunzTarPerm extractEntry deps/msgpack/msgpack/pack_define.h
+420 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/pack_define.h', 438, 420 ]
+421 silly gunzTarPerm extractEntry deps/msgpack/msgpack/pack_template.h
+422 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/pack_template.h', 438, 420 ]
+423 silly gunzTarPerm extractEntry deps/msgpack/msgpack/sbuffer.h
+424 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/sbuffer.h', 438, 420 ]
+425 silly gunzTarPerm extractEntry deps/msgpack/msgpack/sbuffer.hpp
+426 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/sbuffer.hpp', 438, 420 ]
+427 silly gunzTarPerm extractEntry deps/msgpack/msgpack/sysdep.h
+428 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/sysdep.h', 438, 420 ]
+429 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/nil.hpp
+430 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/nil.hpp', 438, 420 ]
+431 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/bool.hpp
+432 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/bool.hpp', 438, 420 ]
+433 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/deque.hpp
+434 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/deque.hpp', 438, 420 ]
+435 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/float.hpp
+436 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/float.hpp', 438, 420 ]
+437 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/int.hpp
+438 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/int.hpp', 438, 420 ]
+439 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/list.hpp
+440 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/list.hpp', 438, 420 ]
+441 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/map.hpp
+442 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/map.hpp', 438, 420 ]
+443 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/define.hpp
+444 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/define.hpp', 438, 420 ]
+445 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/pair.hpp
+446 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/pair.hpp', 438, 420 ]
+447 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/raw.hpp
+448 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/raw.hpp', 438, 420 ]
+449 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/set.hpp
+450 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/set.hpp', 438, 420 ]
+451 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/string.hpp
+452 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/string.hpp', 438, 420 ]
+453 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/tr1/unordered_map.hpp
+454 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/tr1/unordered_map.hpp', 438, 420 ]
+455 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/tr1/unordered_set.hpp
+456 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/tr1/unordered_set.hpp', 438, 420 ]
+457 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/tuple.hpp
+458 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/tuple.hpp', 438, 420 ]
+459 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/vector.hpp
+460 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/type/vector.hpp', 438, 420 ]
+461 silly gunzTarPerm extractEntry deps/msgpack/msgpack/object.hpp
+462 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/object.hpp', 438, 420 ]
+463 silly gunzTarPerm extractEntry deps/msgpack/msgpack/unpack.h
+464 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/unpack.h', 438, 420 ]
+465 silly gunzTarPerm extractEntry deps/msgpack/msgpack/unpack.hpp
+466 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/unpack.hpp', 438, 420 ]
+467 silly gunzTarPerm extractEntry deps/msgpack/msgpack/unpack_define.h
+468 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/unpack_define.h', 438, 420 ]
+469 silly gunzTarPerm extractEntry deps/msgpack/msgpack/unpack_template.h
+470 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/unpack_template.h', 438, 420 ]
+471 silly gunzTarPerm extractEntry deps/msgpack/msgpack/vrefbuffer.h
+472 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/vrefbuffer.h', 438, 420 ]
+473 silly gunzTarPerm extractEntry deps/msgpack/msgpack/vrefbuffer.hpp
+474 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/vrefbuffer.hpp', 438, 420 ]
+475 silly gunzTarPerm extractEntry deps/msgpack/msgpack/zbuffer.h
+476 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/zbuffer.h', 438, 420 ]
+477 silly gunzTarPerm extractEntry deps/msgpack/msgpack/zbuffer.hpp
+478 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/zbuffer.hpp', 438, 420 ]
+479 silly gunzTarPerm extractEntry deps/msgpack/msgpack/zone.h
+480 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/zone.h', 438, 420 ]
+481 silly gunzTarPerm extractEntry deps/msgpack/msgpack/zone.hpp
+482 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack/zone.hpp', 438, 420 ]
+483 silly gunzTarPerm extractEntry deps/msgpack/msgpack.h
+484 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack.h', 438, 420 ]
+485 silly gunzTarPerm extractEntry deps/msgpack/msgpack.hpp
+486 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack.hpp', 438, 420 ]
+487 silly gunzTarPerm extractEntry deps/msgpack/aclocal.m4
+488 silly gunzTarPerm modified mode [ 'deps/msgpack/aclocal.m4', 438, 420 ]
+489 silly gunzTarPerm extractEntry deps/msgpack/msgpack_test.cpp
+490 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack_test.cpp', 438, 420 ]
+491 silly gunzTarPerm extractEntry deps/msgpack/msgpack_vc8.postbuild.bat
+492 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack_vc8.postbuild.bat', 438, 420 ]
+493 silly gunzTarPerm extractEntry deps/msgpack/msgpack_vc8.sln
+494 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack_vc8.sln', 438, 420 ]
+495 silly gunzTarPerm extractEntry deps/msgpack/msgpack_vc8.vcproj
+496 silly gunzTarPerm modified mode [ 'deps/msgpack/msgpack_vc8.vcproj', 438, 420 ]
+497 silly gunzTarPerm extractEntry deps/msgpack/NEWS
+498 silly gunzTarPerm modified mode [ 'deps/msgpack/NEWS', 438, 420 ]
+499 silly gunzTarPerm extractEntry deps/msgpack/NOTICE
+500 silly gunzTarPerm modified mode [ 'deps/msgpack/NOTICE', 438, 420 ]
+501 silly gunzTarPerm extractEntry deps/msgpack/object.cpp
+502 silly gunzTarPerm modified mode [ 'deps/msgpack/object.cpp', 438, 420 ]
+503 silly gunzTarPerm extractEntry deps/msgpack/objectc.c
+504 silly gunzTarPerm modified mode [ 'deps/msgpack/objectc.c', 438, 420 ]
+505 silly gunzTarPerm extractEntry deps/msgpack/AUTHORS
+506 silly gunzTarPerm modified mode [ 'deps/msgpack/AUTHORS', 438, 420 ]
+507 silly gunzTarPerm extractEntry deps/msgpack/ChangeLog
+508 silly gunzTarPerm modified mode [ 'deps/msgpack/ChangeLog', 438, 420 ]
+509 silly gunzTarPerm extractEntry deps/msgpack/test/buffer.cc
+510 silly gunzTarPerm modified mode [ 'deps/msgpack/test/buffer.cc', 438, 420 ]
+511 silly gunzTarPerm extractEntry deps/msgpack/test/convert.cc
+512 silly gunzTarPerm modified mode [ 'deps/msgpack/test/convert.cc', 438, 420 ]
+513 silly gunzTarPerm extractEntry deps/msgpack/test/Makefile.am
+514 silly gunzTarPerm modified mode [ 'deps/msgpack/test/Makefile.am', 438, 420 ]
+515 silly gunzTarPerm extractEntry deps/msgpack/test/Makefile.in
+516 silly gunzTarPerm modified mode [ 'deps/msgpack/test/Makefile.in', 438, 420 ]
+517 silly gunzTarPerm extractEntry deps/msgpack/test/object.cc
+518 silly gunzTarPerm modified mode [ 'deps/msgpack/test/object.cc', 438, 420 ]
+519 silly gunzTarPerm extractEntry deps/msgpack/test/pack_unpack.cc
+520 silly gunzTarPerm modified mode [ 'deps/msgpack/test/pack_unpack.cc', 438, 420 ]
+521 silly gunzTarPerm extractEntry deps/msgpack/test/streaming.cc
+522 silly gunzTarPerm modified mode [ 'deps/msgpack/test/streaming.cc', 438, 420 ]
+523 silly gunzTarPerm extractEntry deps/msgpack/test/zone.cc
+524 silly gunzTarPerm modified mode [ 'deps/msgpack/test/zone.cc', 438, 420 ]
+525 silly gunzTarPerm extractEntry deps/msgpack/unpack.c
+526 silly gunzTarPerm modified mode [ 'deps/msgpack/unpack.c', 438, 420 ]
+527 silly gunzTarPerm extractEntry deps/msgpack/vrefbuffer.c
+528 silly gunzTarPerm modified mode [ 'deps/msgpack/vrefbuffer.c', 438, 420 ]
+529 silly gunzTarPerm extractEntry deps/msgpack/zone.c
+530 silly gunzTarPerm modified mode [ 'deps/msgpack/zone.c', 438, 420 ]
+531 silly gunzTarPerm extractEntry bin/json2msgpack
+532 silly gunzTarPerm modified mode [ 'bin/json2msgpack', 438, 420 ]
+533 silly gunzTarPerm extractEntry bin/msgpack2json
+534 silly gunzTarPerm modified mode [ 'bin/msgpack2json', 438, 420 ]
+535 silly gunzTarPerm extractEntry src/msgpack.cc
+536 silly gunzTarPerm modified mode [ 'src/msgpack.cc', 438, 420 ]
+537 silly gunzTarPerm extractEntry src/wscript
+538 silly gunzTarPerm modified mode [ 'src/wscript', 438, 420 ]
+539 silly gunzTarPerm extractEntry test/test-stream-disjoint.js
+540 silly gunzTarPerm modified mode [ 'test/test-stream-disjoint.js', 438, 420 ]
+541 silly gunzTarPerm extractEntry test/test-stream.js
+542 silly gunzTarPerm modified mode [ 'test/test-stream.js', 438, 420 ]
+543 silly gunzTarPerm extractEntry test/test-unpack-extra.js
+544 silly gunzTarPerm modified mode [ 'test/test-unpack-extra.js', 438, 420 ]
+545 silly gunzTarPerm extractEntry test/test.js
+546 silly gunzTarPerm modified mode [ 'test/test.js', 438, 420 ]
+547 verbose read json C:\Users\Matt\AppData\Roaming\npm\node_modules\msgpack\package.json
+548 info preinstall msgpack@0.1.3
+549 verbose unsafe-perm in lifecycle true
+550 silly exec cmd "/c" "make"
+551 silly cmd,/c,make,C:\Users\Matt\AppData\Roaming\npm\node_modules\msgpack spawning
+552 info msgpack@0.1.3 Failed to exec preinstall script
+553 info C:\Users\Matt\AppData\Roaming\npm\node_modules\msgpack unbuild
+554 verbose from cache C:\Users\Matt\AppData\Roaming\npm\node_modules\msgpack\package.json
+555 info preuninstall msgpack@0.1.3
+556 verbose unsafe-perm in lifecycle true
+557 silly exec cmd "/c" "make clean"
+558 silly cmd,/c,make clean,C:\Users\Matt\AppData\Roaming\npm\node_modules\msgpack spawning
+559 info msgpack@0.1.3 Failed to exec preuninstall script
+560 warn continuing anyway msgpack@0.1.3 preuninstall: `make clean`
+560 warn continuing anyway `cmd "/c" "make clean"` failed with 1
+561 info uninstall msgpack@0.1.3
+562 verbose true,C:\Users\Matt\AppData\Roaming\npm\node_modules,C:\Users\Matt\AppData\Roaming\npm\node_modules unbuild msgpack@0.1.3
+563 verbose C:\Users\Matt\AppData\Roaming\npm,[object Object] binRoot
+564 info postuninstall msgpack@0.1.3
+565 error msgpack@0.1.3 preinstall: `make`
+565 error `cmd "/c" "make"` failed with 1
+566 error Failed at the msgpack@0.1.3 preinstall script.
+566 error This is most likely a problem with the msgpack package,
+566 error not with npm itself.
+566 error Tell the author that this fails on your system:
+566 error     make
+566 error You can get their info via:
+566 error     npm owner ls msgpack
+566 error There is likely additional logging output above.
+567 error System Windows_NT 6.1.7601
+568 error command "P:\\Program Files (x86)\\nodejs\\\\node.exe" "P:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "-g" "msgpack"
+569 error cwd c:\node\crosma
+570 error node -v v0.8.1
+571 error npm -v 1.1.33
+572 error code ELIFECYCLE
+573 error message msgpack@0.1.3 preinstall: `make`
+573 error message `cmd "/c" "make"` failed with 1
+574 verbose exit [ 1, true ]
