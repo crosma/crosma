@@ -2,7 +2,7 @@ extends ../layout-main
 
 block content
 	.row
-		.span4
+		.offset3.span6
 			form.form-horizontal(method="POST")
 				fieldset.well
 					legend #{method == 'save' ? 'Edit User' : 'Create User'}
@@ -47,10 +47,10 @@ block content
 								.p.help-block Fill both password boxes to change. They are ignored otherwise.
 							
 							
-							
-							
-					.controls
+					.form-actions
 						input(type="submit", value="Save User").btn.btn-primary.btn-large
+						&nbsp;
+						a.btn.btn-large(href="/users") Cancel
 						
 if method == 'save'
 	block scripts

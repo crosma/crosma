@@ -86,7 +86,7 @@ server.locals.use(function(req, res) {
 	res.locals.flash_msgs = req.session.flash_msgs || [];
 	delete req.session.flash_msgs;
 	
-	console.log('Setting up flash messages.');
+	//console.log('Setting up flash messages.');
 });
 
 

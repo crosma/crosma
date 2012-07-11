@@ -178,3 +178,41 @@ page.handles('/user/create', 'post', function(req, res, next) {
 		}
 	}));
 });
+
+
+page.handles('/user/:who/delete', 'get', function(req, res, next) {
+	var who = req.params.who;
+
+	mdb.schema.User.findUnique(who, mdb.handler(req, res, function (user) {
+		if (user) {
+			res.locals.user = user;
+			res.render('./users/delete');
+			
+		} else {
+			res.err('Could not find "' + who + '".');
+			res.redirect('/users');
+		}
+	}));
+	
+});
+
+
+page.handles('/user/:who/delete', 'post', function(req, res, next) {
+	var who = req.params.who;
+	
+	mdb.schema.User.findUnique(who, mdb.handler(req, res, function (user) {
+		if (user) {
+			user.remove();
+			
+			res.msg('The user has been deleted.');
+			
+			res.redirect('/users');
+
+		} else {
+			res.err('Could not find "' + who + '".');
+			res.redirect('/users');
+		}
+	}));
+	
+});
+

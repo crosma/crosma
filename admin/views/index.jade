@@ -1,7 +1,7 @@
 extends layout-main
 block content
 	.row
-		.span5
+		.offset3.span6
 			form.form-horizontal(method="POST")
 				fieldset.well
 					legend Log In
@@ -16,7 +16,7 @@ block content
 							.input-prepend
 								.add-on
 									i.icon-user
-								input.input-large(id="email", name="email", type="text", placeholder="Email Address", size="16")
+								input.input-large(id="email", name="email", type="text", placeholder="Email Address")
 						
 					.control-group
 						label.control-label(for="password") Password

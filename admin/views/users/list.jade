@@ -12,6 +12,7 @@ block content
 			th Created
 			th Object Id
 			th Edit
+			th Delete
 		
 		for user in users
 			tr
@@ -24,10 +25,12 @@ block content
 					code #{user._id}
 				td
 					a(href="/user/" + user._id + "/edit") Edit
+				td
+					a(href="/user/" + user._id + "/delete") Delete
 					
 	.row
-		.span11
+		.span10
 			mixin paginate("/users/", page, page_count)
-		.span1
-			a(href="/user/create") Create User
+		.span2
+			a.pull-right(href="/user/create") Create User
 				
