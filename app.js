@@ -87,15 +87,15 @@ mongoose.connect(uri, function(err) {
 express.logger.format('mydev', function(tokens, req, res){
   var status = res.statusCode
     , color = 32
-	, remote = req.headers['X-Forwarded-For'] || tokens['remote-addr'](req, res)
+	, remote = req.headers['X-Forwarded-For'] || req.headers['x-forwarded-for'] || tokens['remote-addr'](req, res)
+	, referer = req.headers['referer']
 	, vhost = req.vhost_for_logger;
+	
   if (status >= 500) color = 31
   else if (status >= 400) color = 33
   else if (status >= 300) color = 36;
 	
-console.log(util.inspect(req.headers));
-	
-  return '\033[90m' + (new Date().toUTCString()) + ' :' + vhost + ': ' + remote + ' ' + req.method
+  return '\033[90m' + (new Date().toUTCString()) + ' :' + vhost + ': ' + referer + ' (' + remote + ') ' + req.method
     + ' ' + req.originalUrl + ' '
     + '\033[' + color + 'm' + res.statusCode
     + ' \033[90m'
