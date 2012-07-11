@@ -98,8 +98,6 @@ express.logger.format('mydev', function(tokens, req, res){
 	else if (status >= 400) color = 'yellow'
 	else if (status >= 300) color = 'cyan';
 	
-	console.log(req, false, 1, true);
-	
 	return colorize.ansify(
 		  '#gray['
 		+ '#white[' + vhost + ']'
