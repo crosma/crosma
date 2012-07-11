@@ -30,7 +30,7 @@ page.handles('/main', 'get', function(req, res, next) {
 	;
 	
 	query.exec(mdb.handler(req, res, function (posts) {
-		console.log(posts);
+		//console.log(posts);
 	}));
 	
 });
