@@ -1,4 +1,18 @@
 extends layout-main
 
 block content
-	ore #{mongo}
+	.row
+		.offset4.span4
+			h3 MongoDB Tables
+			table.table.table-striped.table-bordered
+				thead
+					tr
+						th Table
+						th Document Count
+				
+				tbody
+					for what in counts
+						tr
+							td #{what[0]} Count
+							td #{what[1]}
+					

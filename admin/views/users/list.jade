@@ -4,29 +4,31 @@ include ../includes/paginate
  
 block content
 	table.table.table-striped.table-bordered.table-condensed
-		tr
-			th Name
-			th Last Name
-			th First Name
-			th Email Address
-			th Created
-			th Object Id
-			th Edit
-			th Delete
-		
-		for user in users
+		thead
 			tr
-				td #{user.name.abbr}
-				td #{user.name.last}
-				td #{user.name.first}
-				td #{user.email}
-				td #{dateFormat(user.registered_date, 'dd/mm/yyyy HH:MM:ss')}
-				td
-					code #{user._id}
-				td
-					a(href="/user/" + user._id + "/edit") Edit
-				td
-					a(href="/user/" + user._id + "/delete") Delete
+				th Name
+				th Last Name
+				th First Name
+				th Email Address
+				th Created
+				th Object Id
+				th Edit
+				th Delete
+				
+		tbody
+			for user in users
+				tr
+					td #{user.name.abbr}
+					td #{user.name.last}
+					td #{user.name.first}
+					td #{user.email}
+					td #{dateFormat(user.registered_date, 'dd/mm/yyyy HH:MM:ss')}
+					td
+						code #{user._id}
+					td
+						a(href="/user/" + user._id + "/edit") Edit
+					td
+						a(href="/user/" + user._id + "/delete") Delete
 					
 	.row
 		.span10

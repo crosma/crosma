@@ -7,6 +7,7 @@ var	 app = require('../../app')
 	})
 ;
 
+
 page.handles('/', 'get', function(req, res, next) {
 	if (req.session.logged_in)
 	{
@@ -30,8 +31,7 @@ page.handles('/', 'login', function(req, res, next) {
 			if (user.length > 0 && user[0].authenticate(password))
 			{
 				req.session.logged_in = true;
-				//req.session._user = user[0]._id;
-				
+
 				res.redirect('/main');
 			}
 			else
@@ -52,9 +52,8 @@ page.handles('/', 'login', function(req, res, next) {
 
 
 page.handles('/logout', 'get', function(req, res, next) {
-	res.msg('You have been logged out.');
-
-	req.session.logged_in = false;
-	
-	res.redirect('/');
+	req.session.regenerate(function(err){
+		res.msg('You have been logged out.');
+		res.render('index.jade');
+	});
 });

@@ -2,13 +2,11 @@ extends layout-main
 block content
 	.row
 		.offset3.span6
-			form.form-horizontal(method="POST")
+			form.form-horizontal(action="/", method="POST")
 				fieldset.well
 					legend Log In
 				
 					input(name="action", value="login", type="hidden")
-					
-					
 					
 					.control-group
 						label.control-label(for="email") Email Address

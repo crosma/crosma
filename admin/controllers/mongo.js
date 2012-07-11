@@ -2,6 +2,7 @@ var	 app = require('../../app')
 	,util = require('util')
 	,crypto = require('crypto')
 	,mongoose = require('mongoose')
+	,mdb = require('mongoose')
 	,page = require('../../lib/controller')(app.servers.admin, {
 		title: 'MongoDB Testing'
 	})
@@ -9,29 +10,20 @@ var	 app = require('../../app')
 
 page.handles('/mongo', 'get', function(req, res, next) {
 
+	var counts = [];
 
-	//console.log(util.inspect(schema, false, 3, true));
+	mdb.schema.User.count({}, mdb.handler(req, res, function (count) {
+		counts.push(['User', count]);
+		
+		mdb.schema.Post.count({}, mdb.handler(req, res, function (count) {
+			counts.push(['Post', count]);
+			
+			counts.sort(function(a, b) {return a[1] > b[1]});
+			
+			
+			res.locals.counts = counts;
+			res.render('mongo');
+		}));
+	}));
 	
-	/*
-	var instance = new schema.User;
-	instance.name.first = 'Some';
-	instance.name.last = 'Guy';
-	instance.email = 'test@two.com';
-	instance.alive = true;
-	instance.save(function (err) {
-		console.error('Error Saving.');
-		console.error(err);
-	});
-	*/
-	
-	//console.log(instance.toJSON());
-
-	
-	//console.log(util.inspect(instance, false, 3, true));
-	
-	
-	
-
-	res.locals.mongo = '';
-	res.render('mongo.jade');
 });
