@@ -2,6 +2,7 @@ var	 app = require('../app')
 	,express = require('express')
 	,server = module.exports = express.createServer()
 	,util = require('util')
+	,MemcachedStore = require('connect-memcached')(express)
 	,versionator = require('../lib/versionator')(app.config.unique)
 ; 
 
