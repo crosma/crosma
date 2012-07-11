@@ -44,7 +44,7 @@ var conf = {
 	
 };
 
-if (process.env.CROSMA_ENV == 'production')
+if (process.env.NODE_ENV == 'production')
 {
 	conf.port = 8000;
 

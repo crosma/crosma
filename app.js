@@ -152,4 +152,4 @@ module.exports.servers.static = require('./vhosts/catchall');
 ******************************************************************************/
 app.listen(config.port);
 
-console.log('CROSMA_ENV = ' + process.env.CROSMA_ENV + ', Port ' + config.port + ', Unique = ' + config.unique);
+console.log('NODE_ENV = ' + process.env.NODE_ENV + ', Port ' + config.port + ', Unique = ' + config.unique);

@@ -20,6 +20,7 @@
 		,"dateformat": "*"
 		,"less": "*"
 		,"colorize": "*"
+		,"async": "*"
 		
 		,"generic-pool" : "*"
 		

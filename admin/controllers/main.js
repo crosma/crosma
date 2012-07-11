@@ -15,11 +15,24 @@ page.handles('/main', 'get', function(req, res, next) {
 		.populate('_poster', ['name'])
 	;
 	
-	query.exec(mdb.handler(req, res, function (posts) {
+	var populate_cb = mdb.handler(req, res, function (posts) {
 		res.locals.posts = posts;
 		
 		res.render('main');
+	});
+	query.exec(populate_cb);
+	
+	
+	var query = mdb.schema.Post
+		.find({})
+		.sort('date', 1)
+		//.populate('_poster', ['name'])
+	;
+	
+	query.exec(mdb.handler(req, res, function (posts) {
+		console.log(posts);
 	}));
+	
 });
 
 /*
