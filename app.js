@@ -15,9 +15,10 @@ var  express = require('express')
 	,crypto = require('crypto')
 	,shasum = crypto.createHash('sha1')
 	,util = require('util')
+	,colorize = require('colorize')
 ;
 
-
+colorize.ansicodes['gray'] = '\033[90m';
 
 
 /*
@@ -85,22 +86,31 @@ mongoose.connect(uri, function(err) {
 ********* Set up dev logger format
 ******************************************************************************/
 express.logger.format('mydev', function(tokens, req, res){
-  var status = res.statusCode
-    , color = 32
-	, remote = req.headers['X-Forwarded-For'] || req.headers['x-forwarded-for'] || tokens['remote-addr'](req, res)
-	, referer = req.headers['referer']
-	, vhost = req.vhost_for_logger;
+	var 
+		 status = res.statusCode
+		,color = 'green'
+		,remote = req.headers['X-Forwarded-For'] || req.headers['x-forwarded-for'] || tokens['remote-addr'](req, res)
+		,referer = req.headers['referer']
+		,vhost = req.vhost_for_logger
+	;
 	
-  if (status >= 500) color = 31
-  else if (status >= 400) color = 33
-  else if (status >= 300) color = 36;
+	if (status >= 500) color = 'red'
+	else if (status >= 400) color = 'yellow'
+	else if (status >= 300) color = 'cyan';
 	
-  return '\033[90m' + (new Date().toUTCString()) + ' :' + vhost + ': ' + referer + ' (' + remote + ') ' + req.method
-    + ' ' + req.originalUrl + ' '
-    + '\033[' + color + 'm' + res.statusCode
-    + ' \033[90m'
-    + (new Date - req._startTime)
-    + 'ms\033[0m';
+	console.log(req, false, 1, true);
+	
+	return colorize.ansify(
+		  '#gray['
+		+ '#white[' + vhost + ']'
+		+ ' | ' + (new Date().toISOString())
+		+ ' | ' + remote
+		+ ' | ' + req.method
+		+ ' | #blue[' + req.originalUrl + ']'
+		+ ' | #' + color + '[' +  + res.statusCode + ']'
+		+ ' | ' + (new Date - req._startTime) + 'ms'
+		+ ']'
+	);
 });
 
 
