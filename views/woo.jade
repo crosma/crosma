@@ -33,3 +33,6 @@ html
 			| Some footer text here. Tasty footer text.
 			br
 			a(href="mailto:vbaspcppguy@gmail.com", target="_blank") vbaspcppguy@gmail.com
+			
+		if config.NODE_ENV == 'production'
+			include includes/google
