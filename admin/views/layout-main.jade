@@ -82,3 +82,6 @@ html
 			script(type="text/javascript", src=config.static_url + '/js/' + js_file)
 			
 		block scripts
+		
+		if config.NODE_ENV == 'production'
+			include ../../views/includes/google

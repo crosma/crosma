@@ -14,9 +14,9 @@ page.handles('/mongo', 'get', function(req, res, next) {
 	
 	var queries = {};
 	
-	for (i=1; i<=100; i++) {
-		queries['User-' + i] = function(callback){ mdb.schema.User.where('name.first').gte(i*Math.random()).count(callback); };
-		queries['Post-' + i] =  function(callback){ mdb.schema.Post.where('title').gte(i*Math.random()).count(callback); }
+	for (i=1; i<=1; i++) {
+		queries['User-' + i] = function(callback){ mdb.schema.User.where('name.first').gte(i).count(callback); };
+		queries['Post-' + i] =  function(callback){ mdb.schema.Post.where('title').gte(i).count(callback); }
 	}
 	
 	async.parallel(queries, function(err, results) {

@@ -21,6 +21,7 @@ var  express = require('express')
 colorize.ansicodes['gray'] = '\033[90m';
 
 
+
 /*
 process.on("uncaughtException", function(err) {
   console.error("[uncaughtException]", err);
@@ -98,13 +99,15 @@ express.logger.format('mydev', function(tokens, req, res){
 	else if (status >= 400) color = 'yellow'
 	else if (status >= 300) color = 'cyan';
 	
+
 	return colorize.ansify(
 		  '#gray['
 		+ '#white[' + vhost + ']'
 		+ ' | ' + (new Date().toISOString())
 		+ ' | ' + remote
 		+ ' | ' + req.method
-		+ ' | #blue[' + req.originalUrl + ']'
+		+ ' | #blue[' + req.headers.host + ']'
+		+ ' | #cyan[' + req.originalUrl + ']'
 		+ ' | #' + color + '[' +  + res.statusCode + ']'
 		+ ' | ' + (new Date - req._startTime) + 'ms'
 		+ ']'

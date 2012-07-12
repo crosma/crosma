@@ -127,6 +127,7 @@ server.use(function(req, res, next) {
 	res.locals.config.static_url = app.config.static_url.slice(0);
 	res.locals.config.css_files = app.config.local_css_files.slice(0);
 	res.locals.config.js_files = app.config.local_js_files.slice(0);
+	res.locals.config.NODE_ENV = process.env.NODE_ENV;
 	
 	next();
 });
