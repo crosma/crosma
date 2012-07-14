@@ -61,10 +61,12 @@ chronicle.setup({
 });
 
 
+exports.staticize = function(url) {
+	return chronicle.chronicle(config.static_url + url);
+};
 
-
-config.local_css_files = config.local_css_files.map(function(f) { return chronicle.chronicle(config.static_url + f); });
-config.local_js_files = config.local_js_files.map(function(f) { return chronicle.chronicle(config.static_url + f); });
+config.local_css_files = config.local_css_files.map(exports.staticize);
+config.local_js_files = config.local_js_files.map(exports.staticize);
 
 /*
 for (i=0; i<app.config.local_js_files.length; i++) {

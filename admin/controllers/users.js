@@ -3,13 +3,31 @@ var	 app = require('../../app')
 	,crypto = require('crypto')
 	,mdb = require('mongoose')
 	,async = require('async')
+	,chronicle = require('chronicle')
 	,page = require('../../lib/controller')(app.servers.admin, {
 		title: 'Users'
 	})
 ;
 
 
+//middleware function to set the statics to custom values
+function set_statics(req, res, next) {
+	res.locals.config.css_files = local_css_files;
+	res.locals.config.js_files = local_js_files;
+	next();
+}
 
+//slice(0) clones an array
+local_css_files = app.config.local_css_files.slice(0).concat([
+	 app.staticize('/css/lib/jquery-ui-timepicker-addon.css')
+	,app.staticize('/css/lib/jquery-ui-1.8.21.custom.css')
+]);
+
+local_js_files = app.config.local_js_files.slice(0).concat([
+	 app.staticize('/js/lib/jquery-ui-1.8.21.custom.min.js')
+	,app.staticize('/js/lib/jquery-ui-sliderAccess.js')
+	,app.staticize('/js/lib/jquery-ui-timepicker-addon.js')
+]);
 
 
 page.handles('/users/:page?', 'get', function(req, res, next) {
@@ -50,18 +68,11 @@ page.handles('/users/:page?', 'get', function(req, res, next) {
 
 
 
-page.handles('/user/:who/edit', 'get', function(req, res, next) {
+page.handles('/user/:who/edit', 'get', set_statics, function(req, res, next) {
 	var who = req.params.who;
 
 	mdb.schema.User.findUnique(who, mdb.handler(req, res, function (user) {
 		if (user) {
-			res.locals.config.css_files.push('lib/jquery-ui-timepicker-addon.css');
-			res.locals.config.css_files.push('lib/jquery-ui-1.8.21.custom.css');
-			
-			res.locals.config.js_files.push('lib/jquery-ui-1.8.21.custom.min.js');
-			res.locals.config.js_files.push('lib/jquery-ui-sliderAccess.js');
-			res.locals.config.js_files.push('lib/jquery-ui-timepicker-addon.js');
-		
 			res.locals.method = 'save';
 			res.locals.user = user;
 			res.render('./users/edit');
@@ -75,7 +86,7 @@ page.handles('/user/:who/edit', 'get', function(req, res, next) {
 });
 
 
-page.handles('/user/:who/edit', 'post', function(req, res, next) {
+page.handles('/user/:who/edit', 'post', set_statics, function(req, res, next) {
 	var who = req.params.who;
 	
 	mdb.schema.User.findUnique(who, mdb.handler(req, res, function (user) {
@@ -125,14 +136,14 @@ page.handles('/user/:who/edit', 'post', function(req, res, next) {
 });
 
 
-page.handles('/user/create', 'get', function(req, res, next) {
+page.handles('/user/create', 'get', set_statics, function(req, res, next) {
 	res.locals.method = 'create';
 	res.locals.user = {name: {first: '', last: ''}, email: ''};
 	res.render('./users/edit');
 });
 
 
-page.handles('/user/create', 'post', function(req, res, next) {
+page.handles('/user/create', 'post', set_statics, function(req, res, next) {
 	var user = new mdb.schema.User;
 	user.email = req.body.email.toString().trim();
 	user.name.first = req.body.firstname.toString().trim();
