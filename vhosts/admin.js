@@ -2,7 +2,7 @@ var	 app = require('../app')
 	,express = require('express')
 	,server = module.exports = express.createServer()
 	,util = require('util')
-	,chronicle = require('../lib/chronicle')
+	,chronicle = require('chronicle')
 	,MemcachedStore = require('connect-memcached')(express)
 	,mongoose = require('mongoose')
 ; 

@@ -16,7 +16,7 @@ var  express = require('express')
 	,shasum = crypto.createHash('sha1')
 	,util = require('util')
 	,colorize = require('colorize')
-	,chronicle = require('./lib/chronicle')
+	,chronicle = require('chronicle')
 ;
 
 

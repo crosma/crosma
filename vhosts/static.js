@@ -2,7 +2,7 @@ var	 app = require('../app')
 	,express = require('express')
 	,server = module.exports = express.createServer()
 	,mime = require('connect').mime 
-	,chronicle = require('../lib/chronicle')
+	,chronicle = require('chronicle')
 	,util = require('util')
 ;  
 

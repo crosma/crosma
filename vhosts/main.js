@@ -3,7 +3,7 @@ var	 app = require('../app')
 	,server = module.exports = express.createServer()
 	,util = require('util')
 	,MemcachedStore = require('connect-memcached')(express)
-	,chronicle = require('../lib/chronicle')
+	,chronicle = require('chronicle')
 ; 
 
 
