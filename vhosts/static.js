@@ -2,7 +2,7 @@ var	 app = require('../app')
 	,express = require('express')
 	,server = module.exports = express.createServer()
 	,mime = require('connect').mime 
-	,versionator = require('../lib/versionator')(app.config.unique)
+	,chronicle = require('../lib/chronicle')
 	,util = require('util')
 ;  
 
@@ -41,7 +41,7 @@ else
 
 server.use(require('../lib/poweredBy')); //Overwrite the x-powered-by header 
 
-server.use(versionator.middleware);
+server.use(chronicle.middleware);
 
 server.use(require('less-middleware')({
 	 src: app.config.root + '/work'

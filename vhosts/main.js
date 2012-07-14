@@ -3,7 +3,7 @@ var	 app = require('../app')
 	,server = module.exports = express.createServer()
 	,util = require('util')
 	,MemcachedStore = require('connect-memcached')(express)
-	,versionator = require('../lib/versionator')(app.config.unique)
+	,chronicle = require('../lib/chronicle')
 ; 
 
 
@@ -41,6 +41,11 @@ if (app.config.cache_views) server.enable('view cache');
 	
 server.set('views', app.config.root + app.config.views_errors);	
 
+server.locals({
+	 chronicle: chronicle.chronicle //helper to add version path to static urls
+	,dateFormat: require('dateformat') //helper for date\time formatting
+});
+
 
 // define a custom res.message() method
 server.response.flash = function(msg) {
@@ -56,10 +61,6 @@ server.locals.use(function(req, res) {
 	res.locals.messages = msgs;
 	res.locals.hasMessages = !! msgs.length;
 	req.session.messages = [];
-});
-
-server.locals({
-	versionPath: versionator.versionPath
 });
 
 

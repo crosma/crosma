@@ -24,8 +24,8 @@ var conf = {
 		,static: 's.violentsoul.com'
 	}
 	
-	,local_css_files: ['lib/bootstrap.css', 'admin.css', 'lib/bootstrap-responsive.css']
-	,local_js_files: ['lib/jquery-1.7.2.js', 'lib/bootstrap.js']
+	,local_css_files: ['/css/lib/bootstrap.css', '/css/admin.css', '/css/lib/bootstrap-responsive.css']
+	,local_js_files: ['/js/lib/jquery-1.7.2.js', '/js/lib/bootstrap.js']
 	
 	,mongodb_uri: 'mongodb://crosma.us/crosma'
 	

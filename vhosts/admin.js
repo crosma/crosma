@@ -2,7 +2,7 @@ var	 app = require('../app')
 	,express = require('express')
 	,server = module.exports = express.createServer()
 	,util = require('util')
-	,versionator = require('../lib/versionator')(app.config.unique)
+	,chronicle = require('../lib/chronicle')
 	,MemcachedStore = require('connect-memcached')(express)
 	,mongoose = require('mongoose')
 ; 
@@ -49,20 +49,10 @@ server.set('view engine', 'jade');
 server.set('views', app.config.root + app.config.admin_views_dir);
 if (app.config.cache_views) server.enable('view cache');
 
-
 server.locals({
-	 versionPath: versionator.versionPath //helper to add version path to static urls
+	 chronicle: chronicle.chronicle //helper to add version path to static urls
 	,dateFormat: require('dateformat') //helper for date\time formatting
 });
-
-//Pre version these so we don't have to every page load.
-for (i=0; i<app.config.local_css_files.length; i++) {
-	app.config.local_css_files[i] = versionator.versionPath(app.config.local_css_files[i]);
-}
-
-for (i=0; i<app.config.local_js_files.length; i++) {
-	app.config.local_js_files[i] = versionator.versionPath(app.config.local_js_files[i]);
-}
 
 
 /******************************************************************************

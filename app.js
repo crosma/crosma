@@ -16,12 +16,22 @@ var  express = require('express')
 	,shasum = crypto.createHash('sha1')
 	,util = require('util')
 	,colorize = require('colorize')
+	,chronicle = require('./lib/chronicle')
 ;
 
+
+/******************************************************************************
+********* Basic little crap
+******************************************************************************/
+module.exports.servers = {};
+
+//add gray to the colors of colorize. Nowhere else for this really
 colorize.ansicodes['gray'] = '\033[90m';
 
 
-
+/******************************************************************************
+********* Process handling that is currently broke in windows.
+******************************************************************************/
 /*
 process.on("uncaughtException", function(err) {
   console.error("[uncaughtException]", err);
@@ -42,6 +52,26 @@ process.on("SIGINT", function() {
   return process.exit(0);
 });
 */
+
+/******************************************************************************
+********* Set up chronicle and static files in config
+******************************************************************************/
+chronicle.setup({
+	basepath: config.root + config.static_dir
+});
+
+
+
+
+config.local_css_files = config.local_css_files.map(function(f) { return chronicle.chronicle(config.static_url + f); });
+config.local_js_files = config.local_js_files.map(function(f) { return chronicle.chronicle(config.static_url + f); });
+
+/*
+for (i=0; i<app.config.local_js_files.length; i++) {
+	app.config.local_js_files[i] = chronicle.chronicle(app.config.static_url + app.config.local_js_files[i]);
+}
+*/
+
 
 /******************************************************************************
 ********* Set up mongoose
@@ -115,14 +145,6 @@ express.logger.format('mydev', function(tokens, req, res){
 });
 
 
-/******************************************************************************
-********* Set some stuff up
-******************************************************************************/
-module.exports.servers = {};
-
-shasum.update((new Date()).getTime().toString());
-config.unique = 'v'+shasum.digest('hex').substr(0, 4);
-
 
 /******************************************************************************
 ********* set up the static content vhost
@@ -155,4 +177,4 @@ module.exports.servers.static = require('./vhosts/catchall');
 ******************************************************************************/
 app.listen(config.port);
 
-console.log('NODE_ENV = ' + process.env.NODE_ENV + ', Port ' + config.port + ', Unique = ' + config.unique);
+console.log('NODE_ENV = ' + process.env.NODE_ENV + ', Port ' + config.port);
