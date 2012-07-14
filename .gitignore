@@ -1,5 +1,5 @@
-node_modules/
-!node_modules/chronicle/ #written by me, so its needed in the repo
+node_modules/*
+!node_modules/chronicle/**/* #written by me, so its needed in the repo
 
 
 #################
