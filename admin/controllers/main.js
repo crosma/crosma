@@ -18,9 +18,6 @@ page.handles('/main', 'get', function(req, res, next) {
 	var populate_cb = mdb.handler(req, res, function (posts) {
 		res.locals.posts = posts;
 		
-		throw new Exception('Testing...');
-		
-		
 		res.render('main');
 	});
 	query.exec(populate_cb);
