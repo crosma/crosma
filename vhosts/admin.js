@@ -152,6 +152,7 @@ module.exports.boot = function()
 	********* ...doesn't seem to working right now
 	******************************************************************************/
 	server.use(function(err, req, res, next){
+		console.log('ERROR');
 		console.error(util.inspect(err, true, 5));
 		
 		res.locals.err = err;

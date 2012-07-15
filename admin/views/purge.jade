@@ -31,13 +31,12 @@ block content
 				
 					input(type="submit", value="Purge Views").btn
 	
-	
+					
 		.span6		
 			form.form-horizontal(method="POST", autocomplete="off")
 				fieldset.well
-			
-					legend Change Static Version
+					legend Clear Chronicle
 					
-					input(name="action", value="change_static", type="hidden")
-				
+					input(name="action", value="purge_chronicle", type="hidden")
+					
 					input(type="submit", value="Change It").btn

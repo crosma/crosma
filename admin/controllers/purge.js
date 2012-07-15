@@ -56,28 +56,18 @@ page.handles('/purge', 'purge_static', setup, function(req, res, next) {
 })
 
 page.handles('/purge', 'purge_views', setup, function(req, res, next) {
-
-	for (var s in app.servers) {
-		console.log(s + ' = ' + app.servers[s]);
-		app.servers[s].cache = {};
-	}
-
-	res.msg('View caches for all servers have been cleared.');
+	require('jade').cache = {};
 	
-	res.err('This doesn\'t seem to actually work.');
+	res.msg('View cache has been cleared.');
 	
 	res.render('purge.jade');
 });
 
-page.handles('/purge', 'change_static', setup, function(req, res, next) {
-	var shasum = crypto.createHash('sha1');
-	shasum.update((new Date()).getTime().toString());
+
+page.handles('/purge', 'purge_chronicle', setup, function(req, res, next) {
+	require('chronicle').clearCache();
 	
-	app.config.unique = 'v' + shasum.digest('hex').substr(0, 8);
-	
-	res.msg('Static version changed.');
-	
-	res.err('Also does not work as versionator doesn\'t account for changing it.');
+	res.msg('Chronicle has been cleared.');
 	
 	res.render('purge.jade');
 });

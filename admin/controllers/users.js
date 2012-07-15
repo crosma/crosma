@@ -30,7 +30,7 @@ local_js_files = app.config.local_js_files.slice(0).concat([
 ]);
 
 
-page.handles('/users/:page?', 'get', function(req, res, next) {
+page.handles(['/users', '/users/page:page?'], 'get', function(req, res, next) {
 	var filter = {};
 	var per_page = 5;
 	
