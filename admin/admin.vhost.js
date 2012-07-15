@@ -5,6 +5,7 @@ var	 app = require('../app')
 	,chronicle = require('chronicle')
 	,MemcachedStore = require('connect-memcached')(express)
 	,mongoose = require('mongoose')
+	,io = require('socket.io').listen(server)
 ; 
 
 
@@ -33,7 +34,8 @@ server.use(express.cookieParser()); //Can take a secret to encrypt them
 server.use(express.session({
 	 secret: 'F5fRU2rap3G7hutR'
 	,key: 'sid'
-	,store: new MemcachedStore 
+	,store: new MemcachedStore
+	,cookie: { maxAge: 1000 * 60 * 60 * 3 }
 })); //,cookie: {maxAge: 60 * 60 * 24 * 1000}}
 
 server.use(require('../lib/poweredBy')); //Overwrite the x-powered-by header
@@ -46,9 +48,10 @@ server.use(express.methodOverride('action')); // support _method input element (
 ********* Set up the view engine
 ******************************************************************************/
 server.set('view engine', 'jade');
-server.set('views', app.config.root + app.config.admin_views_dir);
-if (app.config.cache_views) server.enable('view cache');
+server.set('views', app.config.root + app.config.admin_dir + '/views');
+app.config.cache_views ? server.enable('view cache') : server.disable('view cache');
 
+//helper functions for the views
 server.locals({
 	 chronicle: chronicle.chronicle //helper to add version path to static urls
 	,dateFormat: require('dateformat') //helper for date\time formatting
@@ -126,48 +129,59 @@ server.use(function(req, res, next) {
 /******************************************************************************
 ********* Add vhost to express
 ******************************************************************************/
-app.express.use(express.vhost('*' + app.config.domains.admin , server))
+app.express.use(express.vhost('*' + app.config.domains.admin, server))
 
 
 /******************************************************************************
-********* Load any routes. 
+********* Add the router, it should be the last thing before the routes
+******************************************************************************/
+server.use(server.router);
+
+
+/******************************************************************************
+********* Load the routes and controllers
 ********* This is in a function so that the vhosts router can be set up
 ********* before the controllers try to use it.
 ******************************************************************************/
-module.exports.boot = function()
-{
+module.exports.boot = function() {
 	/******************************************************************************
 	********* Load up the controllers
 	********* ...should probably automate this somehow
 	******************************************************************************/
-	require('../admin/controllers/index');
-	require('../admin/controllers/main');
-	require('../admin/controllers/purge');
-	require('../admin/controllers/mongo');
-	require('../admin/controllers/users');
-
-
+	require('./controllers/index');
+	require('./controllers/main');
+	require('./controllers/purge');
+	require('./controllers/mongo');
+	require('./controllers/users');
+	
+	
+	
+	io.sockets.on('connection', function (socket) {
+		socket.emit('news', { hello: 'world' });
+		
+		socket.on('my other event', function (data) {
+			console.log(data);
+		});
+	});
+	
+	
 	/******************************************************************************
 	********* Error handling middleware, 
 	********* ...doesn't seem to working right now
 	******************************************************************************/
-	server.use(function(err, req, res, next){
-		console.log('ERROR');
-		console.error(util.inspect(err, true, 5));
-		
+	server.use(function(err, req, res, next) {
 		res.locals.err = err;
 		res.locals.inspect_text = util.inspect(err, true, 5);
-		res.status(500).render(app.config.root + app.config.views_errors + '/500');
+		res.status(500).render('errors/500');
 	});
 
-	//server.use(express.errorHandler({dumpExceptions: true, showStack: true}));
-
-
+	
 	/******************************************************************************
 	********* If nothing has responded by now, its a 404
 	******************************************************************************/
 	server.all('*', function(req, res, next) {
-		res.status(404).render(app.config.root + app.config.views_errors + '/404', { url: req.originalUrl });
+		res.locals.url = req.url;
+		res.status(404).render('errors/404');
 	});
 }
 

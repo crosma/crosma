@@ -21,18 +21,6 @@ page.handles('/main', 'get', function(req, res, next) {
 		res.render('main');
 	});
 	query.exec(populate_cb);
-	
-	
-	var query = mdb.schema.Post
-		.find({})
-		.sort('date', 1)
-		//.populate('_poster', ['name'])
-	;
-	
-	query.exec(mdb.handler(req, res, function (posts) {
-		//console.log(posts);
-	}));
-	
 });
 
 /*

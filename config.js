@@ -11,13 +11,10 @@ var conf = {
 			
 	,controllers_dir: '/controllers'
 	
-	,views_dir: '/views'
-	,views_errors: '/views_errors'
 	,cache_views: false
 	
 	,admin_dir: '/admin'
-	,admin_views_dir: '/admin/views'
-	
+
 	,domains: {
 		 main: 'violentsoul.com'
 		,admin: 'admin.violentsoul.com'

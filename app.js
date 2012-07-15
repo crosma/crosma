@@ -157,7 +157,7 @@ module.exports.servers.static = require('./vhosts/static');
 /******************************************************************************
 ********* set up the admin vhost
 *******************************************(**********************************/
-module.exports.servers.admin = require('./vhosts/admin');
+module.exports.servers.admin = require('./admin/admin.vhost');
 module.exports.servers.admin.boot();
 
 /******************************************************************************
@@ -177,6 +177,8 @@ module.exports.servers.static = require('./vhosts/catchall');
 /******************************************************************************
 ********* Go go go go go
 ******************************************************************************/
+app.use(express.errorHandler({dumpExceptions: true, showStack: true}));
+
 app.listen(config.port);
 
 console.log('NODE_ENV = ' + process.env.NODE_ENV + ', Port ' + config.port);

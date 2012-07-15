@@ -7,8 +7,15 @@
 		"start": "always app.js"
 	}
 
+	"repository": { 
+		 "type": "git"
+		,"url": "https://github.com/crosma/crosma.git"
+	}
+	
 	,"dependencies": {
-		 "express": "3.0.0beta4"
+		 "chronicle": "*"
+		 
+		,"express": "3.0.0beta4"
 		,"jade": "*"
 		,"less-middleware": "*"
 		,"connect": "2.3.4"
@@ -21,6 +28,7 @@
 		,"less": "*"
 		,"colorize": "*"
 		,"async": "*"
+		,"socket.io": "*"
 		
 		,"generic-pool" : "*"
 		
