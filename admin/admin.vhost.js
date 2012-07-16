@@ -5,7 +5,6 @@ var	 app = require('../app')
 	,chronicle = require('chronicle')
 	,MemcachedStore = require('connect-memcached')(express)
 	,mongoose = require('mongoose')
-	,io = require('socket.io').listen(server)
 ; 
 
 
@@ -138,12 +137,29 @@ app.express.use(express.vhost('*' + app.config.domains.admin, server))
 server.use(server.router);
 
 
+var chat;
+
 /******************************************************************************
 ********* Load the routes and controllers
 ********* This is in a function so that the vhosts router can be set up
 ********* before the controllers try to use it.
 ******************************************************************************/
-module.exports.boot = function() {
+module.exports.boot = function(io) {
+
+	chat = io
+	  .of('/admin')
+	  .on('connection', function (socket) {
+		socket.emit('a message', {
+			that: 'only'
+		  , '/chat': 'will get'
+		});
+		chat.emit('a message', {
+			everyone: 'in'
+		  , '/chat': 'will get'
+		});
+	});
+	
+	
 	/******************************************************************************
 	********* Load up the controllers
 	********* ...should probably automate this somehow
@@ -155,16 +171,6 @@ module.exports.boot = function() {
 	require('./controllers/users');
 	
 	
-	
-	io.sockets.on('connection', function (socket) {
-		socket.emit('news', { hello: 'world' });
-		
-		socket.on('my other event', function (data) {
-			console.log(data);
-		});
-	});
-	
-	
 	/******************************************************************************
 	********* Error handling middleware, 
 	********* ...doesn't seem to working right now
@@ -174,7 +180,6 @@ module.exports.boot = function() {
 		res.locals.inspect_text = util.inspect(err, true, 5);
 		res.status(500).render('errors/500');
 	});
-
 	
 	/******************************************************************************
 	********* If nothing has responded by now, its a 404

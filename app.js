@@ -1,9 +1,9 @@
-console.log('--------------------------------------------------------------------------------');
-console.log('--------------------------------------------------------------------------------');
-console.log('--------------------------------------------------------------------------------');
+console.log('---------------------------------------------');
+console.log('---------------------------------------------');
+console.log('---------------------------------------------');
 
 var config = module.exports.config = require('./config');
-//console.log(util.inspect(config));
+
 
 /******************************************************************************
 ********* Set up globals
@@ -17,6 +17,7 @@ var  express = require('express')
 	,util = require('util')
 	,colorize = require('colorize')
 	,chronicle = require('chronicle')
+	,socketio = require('socket.io')
 ;
 
 
@@ -147,6 +148,18 @@ express.logger.format('mydev', function(tokens, req, res){
 });
 
 
+/******************************************************************************
+********* start listening and get the http object returned
+******************************************************************************/
+var http_server = app.listen(config.port);
+
+
+/******************************************************************************
+********* Start up socket.io
+******************************************************************************/
+var io = socketio.listen(http_server);
+io.set('resource', '/io');
+
 
 /******************************************************************************
 ********* set up the static content vhost
@@ -158,7 +171,7 @@ module.exports.servers.static = require('./vhosts/static');
 ********* set up the admin vhost
 *******************************************(**********************************/
 module.exports.servers.admin = require('./admin/admin.vhost');
-module.exports.servers.admin.boot();
+module.exports.servers.admin.boot(io);
 
 /******************************************************************************
 ********* set up the main vhost
@@ -179,6 +192,6 @@ module.exports.servers.static = require('./vhosts/catchall');
 ******************************************************************************/
 app.use(express.errorHandler({dumpExceptions: true, showStack: true}));
 
-app.listen(config.port);
+
 
 console.log('NODE_ENV = ' + process.env.NODE_ENV + ', Port ' + config.port);
