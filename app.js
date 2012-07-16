@@ -159,6 +159,7 @@ var http_server = app.listen(config.port);
 ******************************************************************************/
 var io = socketio.listen(http_server);
 io.set('resource', '/io');
+io.set('log level', 2);
 
 
 /******************************************************************************
