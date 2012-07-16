@@ -13,8 +13,7 @@
 	}
 	
 	,"dependencies": {
-		 "chronicle": "*"	
-		,"express": "3.0.0beta4"
+		 "express": "3.0.0beta4"
 		,"jade": "*"
 		,"less-middleware": "*"
 		,"connect": "2.3.4"
@@ -37,6 +36,10 @@
 		,"nodemailer": "*" 
 		,"debug": "*"
 		
+	}
+	
+	,"optionalDependencies": {
+		"chronicle": "*"	
 	}
 }
  
