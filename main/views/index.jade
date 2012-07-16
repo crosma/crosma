@@ -1,0 +1,35 @@
+extends includes/layout-main
+
+block content
+	link(rel="stylesheet", type='text/css', href=chronicle("#{config.static_url}/css/woo.css"))
+	link(rel="stylesheet", type="text/css", href="http://fonts.googleapis.com/css?family=Overlock:700")
+	link(rel="stylesheet", type="text/css", href="http://fonts.googleapis.com/css?family=Dr+Sugiyama")
+
+	#header.bigbox
+		div.name #{config.site_name}
+		div 
+			| Matt's code testing grounds.
+		
+		
+	#desc.bigbox.
+		Node.js and MongoDB developement hosted on Amazon AWS. Maybe MySQL as a backup, we'll see. Memcache and Redis could happen some time.
+			
+	#nodelink.bigbox.logo
+		a(href="http://nodejs.org/", target="_blank")
+		
+	#mongolink.bigbox.logo
+		a(href="http://www.mongodb.org/", target="_blank")
+
+	#amazonlink.bigbox.logo
+		a(href="http://aws.amazon.com/", target="_blank")
+		
+	#nginxlink.bigbox.logo
+		a(href="http://nginx.org/", target="_blank")
+		
+	#footer
+		| Some footer text here. Tasty footer text.
+		br
+		a(href="mailto:vbaspcppguy@gmail.com", target="_blank") vbaspcppguy@gmail.com
+		
+	if config.NODE_ENV == 'production'
+		include includes/google.html

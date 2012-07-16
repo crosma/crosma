@@ -1,11 +1,3 @@
-extends includes/layout-main
+extends includes/layout-admin
 
 block content
-	| <script src="/io/socket.io.js"></script>
-	| <script>
-	|   var socket = io.connect('/admin', {'resource': 'io'});
-	|   socket.on('news', function (data) {
-	| 	  console.log(data);
-	| 	  socket.emit('my other event', { my: 'data' });
-	|   });
-	| </script>

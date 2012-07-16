@@ -174,12 +174,13 @@ module.exports.servers.static = require('./vhosts/static');
 module.exports.servers.admin = require('./admin/admin.vhost');
 module.exports.servers.admin.boot(io);
 
+
 /******************************************************************************
 ********* set up the main vhost
 ********* should be the last before the catchall.
 ******************************************************************************/
-module.exports.servers.main = require('./vhosts/main');
-module.exports.servers.main.boot();
+module.exports.servers.main = require('./main/main.vhost');
+module.exports.servers.main.boot(io);
 
 
 /******************************************************************************

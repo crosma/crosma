@@ -1,0 +1,29 @@
+!!! 5
+html
+	head
+		title #{config.title} - #{config.site_name}
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(name="description", content="")
+		meta(name="author", content="Matt Crossley")
+	
+		each css_file in config.css_files
+			link(rel="stylesheet", type='text/css', href=css_file)
+			
+		block css
+			
+		//if lt IE 8
+			script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
+		
+		block head
+		
+	body
+		block content
+		
+		
+		each js_file in config.js_files
+			script(type="text/javascript", src=js_file)
+		
+		block scripts
+		
+		if config.NODE_ENV == 'production'
+			include ../includes/google.html

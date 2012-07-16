@@ -1,0 +1,10 @@
+extends ../includes/layout-main
+
+block content
+	.hero-unit
+		h1 Fuck.
+		p An error occured. Fix it.
+		
+	if config.NODE_ENV != 'production'
+		pre #{err.stack}
+		pre #{inspect_text}
