@@ -20,7 +20,7 @@ function incomming(req, res, next) {
     req.on('end', function() {
         req.body = data;
 		
-		handle(JSON.parse, req, res, next);
+		handle(JSON.parse(data), req, res, next);
     });
 }
 
@@ -38,7 +38,7 @@ function handle(body, req, res, next) {
 	if (type == 'Notification') {
 	
 	} else if (type == 'SubscriptionConfirmation') {
-	
+		console.log('~~~' + body.SubscribeURL);
 	
 	} else if (type == 'UnsubscribeConfirmation') {
 	
