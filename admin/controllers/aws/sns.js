@@ -55,7 +55,7 @@ function handle(body, req, res, next) {
 	}
 	
 	//Tell amazon that we are good. 
-	res.status(200).send('Ok');
+	res.send('Ok');
 }
 
 page.handles('/aws/sns', 'POST', incomming);
@@ -65,4 +65,6 @@ page.handles('/aws/sns', 'GET', function(req, res, next) {
 	console.log('GET--------------------------------------------------');
 	console.log(util.inspect(req.headers));
 	console.log('GET--------------------------------------------------');
+	
+	console.send('Wut?');
 });
