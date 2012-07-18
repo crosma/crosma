@@ -38,10 +38,17 @@ function handle(body, req, res, next) {
 		console.log('Subscribing to ' + body.TopicArn);
 		console.log('body.SubscribeURL = ' + body.SubscribeURL);
 		
-		https.get(body.SubscribeURL, function(res){})
-			.on('error', function(e) {
-				console.error(e);
-			});
+		https.get(body.SubscribeURL, function(res){
+		  console.log("statusCode: ", res.statusCode);
+		  console.log("headers: ", res.headers);
+
+		  res.on('data', function(d) {
+			process.stdout.write(d);
+		  });
+		  
+		}).on('error', function(e) {
+			console.error(e);
+		});
 		
 	} else if (body.Type == 'UnsubscribeConfirmation') {
 	
