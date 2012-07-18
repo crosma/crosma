@@ -27,11 +27,11 @@ function incomming(req, res, next) {
 }
 
 function handle(body, req, res, next) {
-	console.log('--------------------------------------------------');
+	console.log('POST--------------------------------------------------');
 	console.log(util.inspect(req.headers));
-	console.log('--------------------------------------------------');
+	console.log('POST--------------------------------------------------');
 	console.log(util.inspect(body));
-	console.log('--------------------------------------------------');
+	console.log('POST--------------------------------------------------');
 
 	if (body.Type == 'Notification') {
 	
@@ -59,3 +59,10 @@ function handle(body, req, res, next) {
 }
 
 page.handles('/aws/sns', 'POST', incomming);
+
+
+page.handles('/aws/sns', 'GET', function(req, res, next) {
+	console.log('GET--------------------------------------------------');
+	console.log(util.inspect(req.headers));
+	console.log('GET--------------------------------------------------');
+});
