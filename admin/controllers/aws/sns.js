@@ -34,6 +34,8 @@ function handle(body, req, res, next) {
 	if (body.Type == 'Notification') {
 	
 	} else if (body.Type == 'SubscriptionConfirmation') {
+		console.log('Subscribing to ' + body.TopicArn);
+		
 		http.get(body.SubscribeURL, function(res) { /* Don't give a fuck about the result */ })
 		
 	} else if (body.Type == 'UnsubscribeConfirmation') {
