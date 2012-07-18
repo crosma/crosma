@@ -10,24 +10,24 @@ var	 app = require('../../app')
 ;
 
 
+//slice(0) clones an array
+var local_css_files = app.config.local_css_files.slice(0).concat([
+	 app.staticize('/css/lib/jquery-ui-timepicker-addon.css')
+	,app.staticize('/css/lib/jquery-ui-1.8.21.custom.css')
+]);
+
+var local_js_files = app.config.local_js_files.slice(0).concat([
+	 app.staticize('/js/lib/jquery-ui-1.8.21.custom.min.js')
+	,app.staticize('/js/lib/jquery-ui-sliderAccess.js')
+	,app.staticize('/js/lib/jquery-ui-timepicker-addon.js')
+]);
+
 //middleware function to set the statics to custom values
 function set_statics(req, res, next) {
 	res.locals.config.css_files = local_css_files;
 	res.locals.config.js_files = local_js_files;
 	next();
 }
-
-//slice(0) clones an array
-local_css_files = app.config.local_css_files.slice(0).concat([
-	 app.staticize('/css/lib/jquery-ui-timepicker-addon.css')
-	,app.staticize('/css/lib/jquery-ui-1.8.21.custom.css')
-]);
-
-local_js_files = app.config.local_js_files.slice(0).concat([
-	 app.staticize('/js/lib/jquery-ui-1.8.21.custom.min.js')
-	,app.staticize('/js/lib/jquery-ui-sliderAccess.js')
-	,app.staticize('/js/lib/jquery-ui-timepicker-addon.js')
-]);
 
 
 page.handles('/users/:page?', 'get', function(req, res, next) {
