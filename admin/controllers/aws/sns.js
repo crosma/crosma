@@ -60,7 +60,7 @@ function handle(body, req, res, next) {
 		  
 		}).on('error', function(e) {
 			console.error(e);
-		});
+		}).end();
 		
 	} else if (body.Type == 'UnsubscribeConfirmation') {
 	
