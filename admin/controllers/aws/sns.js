@@ -8,17 +8,32 @@ var	 app = require('../../../app')
 	})
 ;
 
-
-function ugh(req, res, next) {
-	var type = req.header['x-amz-sns-message-type'] || '';
-	var arn = req.header['x-amz-sns-topic-arn'] || '';
-	
+function incomming(req, res, next) {
+    var data='';
+    req.setEncoding('utf8');
 	
 	console.log('--------------------------------------------------');
 	console.log(util.inspect(req.headers));
 	console.log('--------------------------------------------------');
 	console.log(util.inspect(req.body));
 	console.log('--------------------------------------------------');
+	
+    req.on('data', function(chunk) { 
+       data += chunk;
+    });
+
+    req.on('end', function() {
+        req.body = data;
+		
+		console.log(data);
+		
+        next();
+    });
+}
+
+function ugh(req, res, next) {
+	var type = req.header['x-amz-sns-message-type'] || '';
+	var arn = req.header['x-amz-sns-topic-arn'] || '';
 	
 	res.send('Ok');
 	
@@ -37,5 +52,4 @@ function ugh(req, res, next) {
 	//next();
 }
 
-page.handles('/aws/sns', 'GET', ugh);
-page.handles('/aws/sns', 'POST', ugh);
+page.handles('/aws/sns', 'POST', incomming);
