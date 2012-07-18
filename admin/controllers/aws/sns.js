@@ -32,7 +32,10 @@ function handle(body, req, res, next) {
 	console.log('POST--------------------------------------------------');
 	console.log(util.inspect(body));
 	console.log('POST--------------------------------------------------');
-
+	
+	var type = req.headers['x-amz-sns-message-type'];
+	var arn = 
+	
 	if (body.Type == 'Notification') {
 	
 	} else if (body.Type == 'SubscriptionConfirmation') {
@@ -61,6 +64,7 @@ function handle(body, req, res, next) {
 page.handles('/aws/sns', 'POST', incomming);
 
 
+/*
 page.handles('/aws/sns', 'GET', function(req, res, next) {
 	console.log('GET--------------------------------------------------');
 	console.log(util.inspect(req.headers));
@@ -68,3 +72,4 @@ page.handles('/aws/sns', 'GET', function(req, res, next) {
 	
 	res.send('Wut?');
 });
+*/
