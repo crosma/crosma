@@ -170,6 +170,8 @@ module.exports.boot = function(io) {
 	require('./controllers/mongo');
 	require('./controllers/users');
 	
+	require('./controllers/aws/sns');
+	
 	
 	/******************************************************************************
 	********* Error handling middleware, 
