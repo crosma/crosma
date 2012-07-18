@@ -33,8 +33,6 @@ function handle(body, req, res, next) {
 	console.log(util.inspect(body));
 	console.log('POST--------------------------------------------------');
 	
-	var type = req.headers['x-amz-sns-message-type'];
-	var arn = 
 	
 	if (body.Type == 'Notification') {
 	
