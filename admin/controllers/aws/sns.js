@@ -25,8 +25,8 @@ function incomming(req, res, next) {
 }
 
 function handle(body, req, res, next) {
-	var type = req.header['x-amz-sns-message-type'] || '';
-	var arn = req.header['x-amz-sns-topic-arn'] || '';
+	//var type = req.header['x-amz-sns-message-type'] || '';
+	//var arn = req.header['x-amz-sns-topic-arn'] || '';
 	
 	console.log('--------------------------------------------------');
 	console.log(util.inspect(req.headers));
@@ -34,13 +34,14 @@ function handle(body, req, res, next) {
 	console.log(util.inspect(body));
 	console.log('--------------------------------------------------');
 	
+	console.log('```' + body.Type);
 	
-	if (type == 'Notification') {
+	if (body.Type == 'Notification') {
 	
-	} else if (type == 'SubscriptionConfirmation') {
+	} else if (body.Type == 'SubscriptionConfirmation') {
 		console.log('~~~' + body.SubscribeURL);
 	
-	} else if (type == 'UnsubscribeConfirmation') {
+	} else if (body.Type == 'UnsubscribeConfirmation') {
 	
 	
 	} else {
