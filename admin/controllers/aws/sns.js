@@ -66,5 +66,5 @@ page.handles('/aws/sns', 'GET', function(req, res, next) {
 	console.log(util.inspect(req.headers));
 	console.log('GET--------------------------------------------------');
 	
-	console.send('Wut?');
+	res.send('Wut?');
 });
