@@ -2,7 +2,7 @@ var	 app = require('../../../app')
 	,util = require('util')
 	,crypto = require('crypto')
 	,mdb = require('mongoose')
-	,https = require('http')
+	,https = require('https')
 	,page = require('../../../lib/controller')(app.servers.admin, {
 		 title: 'AWS SNS Incomming'
 		,require_auth: false
