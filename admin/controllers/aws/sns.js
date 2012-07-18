@@ -36,29 +36,14 @@ function handle(body, req, res, next) {
 	if (body.Type == 'Notification') {
 	
 	} else if (body.Type == 'SubscriptionConfirmation') {
-		console.log('Subscribing to ' + body.TopicArn);
-		console.log('body.SubscribeURL = ' + body.SubscribeURL);
-		
 		var options = url.parse(body.SubscribeURL);
-		/*
-		var options = {
-			hostname: u.hostname,
-			port: 443,
-			path: '/',
-			method: 'GET'
-		};
-		*/
 
-		var the_req = https.request(options, function(res) {
-			//https.get(body.SubscribeURL, function(the_res){
-			console.log("statusCode: ", res.statusCode);
-			console.log("headers: ", res.headers);
-
+		var the_req = https.request(options, function(the_res) {
 			the_res.on('data', function(d) {
 				process.stdout.write(d);
 			});
-		  
 		}).on('error', function(e) {
+			console.error('ERROR SUBCRIBING TO SNS');
 			console.error(e);
 		}).end();
 		
