@@ -12,12 +12,7 @@ function incomming(req, res, next) {
     var data='';
     req.setEncoding('utf8');
 	
-	console.log('--------------------------------------------------');
-	console.log(util.inspect(req.headers));
-	console.log('--------------------------------------------------');
-	console.log(util.inspect(req.body));
-	console.log('--------------------------------------------------');
-	
+
     req.on('data', function(chunk) { 
        data += chunk;
     });
@@ -25,17 +20,20 @@ function incomming(req, res, next) {
     req.on('end', function() {
         req.body = data;
 		
-		console.log(data);
-		
-        next();
+		handle(JSON.parse, req, res, next);
     });
 }
 
-function ugh(req, res, next) {
+function handle(body, req, res, next) {
 	var type = req.header['x-amz-sns-message-type'] || '';
 	var arn = req.header['x-amz-sns-topic-arn'] || '';
 	
-	res.send('Ok');
+	console.log('--------------------------------------------------');
+	console.log(util.inspect(req.headers));
+	console.log('--------------------------------------------------');
+	console.log(util.inspect(body));
+	console.log('--------------------------------------------------');
+	
 	
 	if (type == 'Notification') {
 	
