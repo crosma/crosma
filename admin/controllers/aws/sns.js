@@ -36,6 +36,7 @@ function handle(body, req, res, next) {
 	
 	} else if (body.Type == 'SubscriptionConfirmation') {
 		console.log('Subscribing to ' + body.TopicArn);
+		console.log('body.SubscribeURL = ' + body.SubscribeURL);
 		
 		http.get(body.SubscribeURL, function(res){});
 		
