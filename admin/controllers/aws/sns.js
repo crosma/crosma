@@ -13,9 +13,12 @@ function ugh(req, res, next) {
 	var type = req.header['x-amz-sns-message-type'] || '';
 	var arn = req.header['x-amz-sns-topic-arn'] || '';
 	
-	console.log('Ok');
 	
-	//console.log(util.inspect(req));
+	console.log('--------------------------------------------------');
+	console.log(util.inspect(req.header['x-amz-sns-topic-arn']));
+	console.log('--------------------------------------------------');
+	console.log(util.inspect(req.body));
+	console.log('--------------------------------------------------');
 	
 	res.send('Ok');
 	
