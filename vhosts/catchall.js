@@ -10,7 +10,7 @@ server.use(express.logger({format: 'mydev'}));
 server.use(require('../lib/poweredBy')); //Overwrite the x-powered-by header
 
 server.all('*', function(req, res){
-	res.redirect('http://violentsoul.com/'); 
+	res.redirect('http://' + app.config.domains.main); 
 });
 
 app.express.use(express.vhost('*' , server))

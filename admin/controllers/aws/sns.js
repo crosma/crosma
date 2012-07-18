@@ -38,11 +38,11 @@ function handle(body, req, res, next) {
 		console.log('Subscribing to ' + body.TopicArn);
 		console.log('body.SubscribeURL = ' + body.SubscribeURL);
 		
-		https.get(body.SubscribeURL, function(res){
+		https.get(body.SubscribeURL, function(r){
 		  console.log("statusCode: ", res.statusCode);
 		  console.log("headers: ", res.headers);
 
-		  res.on('data', function(d) {
+		  r.on('data', function(d) {
 			process.stdout.write(d);
 		  });
 		  
