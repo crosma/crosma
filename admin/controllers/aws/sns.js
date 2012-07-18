@@ -62,12 +62,11 @@ function handle(body, req, res, next) {
 page.handles('/aws/sns', 'POST', incomming);
 
 
-/*
+
 page.handles('/aws/sns', 'GET', function(req, res, next) {
 	console.log('GET--------------------------------------------------');
 	console.log(util.inspect(req.headers));
 	console.log('GET--------------------------------------------------');
 	
-	res.send('Wut?');
+	res.status(500).send('Wut?');
 });
-*/
