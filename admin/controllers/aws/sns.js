@@ -15,7 +15,7 @@ function ugh(req, res, next) {
 	
 	
 	console.log('--------------------------------------------------');
-	console.log(util.inspect(req.header['x-amz-sns-topic-arn']));
+	console.log(util.inspect(req.header));
 	console.log('--------------------------------------------------');
 	console.log(util.inspect(req.body));
 	console.log('--------------------------------------------------');
