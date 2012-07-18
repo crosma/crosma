@@ -25,22 +25,17 @@ function incomming(req, res, next) {
 }
 
 function handle(body, req, res, next) {
-	//var type = req.header['x-amz-sns-message-type'] || '';
-	//var arn = req.header['x-amz-sns-topic-arn'] || '';
-	
 	console.log('--------------------------------------------------');
 	console.log(util.inspect(req.headers));
 	console.log('--------------------------------------------------');
 	console.log(util.inspect(body));
 	console.log('--------------------------------------------------');
-	
-	console.log('```' + body.Type);
-	
+
 	if (body.Type == 'Notification') {
 	
 	} else if (body.Type == 'SubscriptionConfirmation') {
-		console.log('~~~' + body.SubscribeURL);
-	
+		http.get(body.SubscribeURL, function(res) { /* Don't give a fuck about the result */ })
+		
 	} else if (body.Type == 'UnsubscribeConfirmation') {
 	
 	
@@ -48,7 +43,8 @@ function handle(body, req, res, next) {
 		//Wut?
 	}
 	
-	//next();
+	//Tell amazon that we are good. 
+	res.status(200).send('Ok');
 }
 
 page.handles('/aws/sns', 'POST', incomming);
