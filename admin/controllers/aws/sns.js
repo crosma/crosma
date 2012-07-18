@@ -2,7 +2,7 @@ var	 app = require('../../../app')
 	,util = require('util')
 	,crypto = require('crypto')
 	,mdb = require('mongoose')
-	,http = require('http')
+	,https = require('http')
 	,page = require('../../../lib/controller')(app.servers.admin, {
 		 title: 'AWS SNS Incomming'
 		,require_auth: false
@@ -38,7 +38,7 @@ function handle(body, req, res, next) {
 		console.log('Subscribing to ' + body.TopicArn);
 		console.log('body.SubscribeURL = ' + body.SubscribeURL);
 		
-		http.get(body.SubscribeURL, function(res){});
+		https.get(body.SubscribeURL, function(res){});
 		
 	} else if (body.Type == 'UnsubscribeConfirmation') {
 	
