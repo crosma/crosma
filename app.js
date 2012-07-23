@@ -184,13 +184,13 @@ RedisStore = require('socket.io/lib/stores/redis')
   
 */
  
-
+/*
 io.set('store', new RedisStore({
 	 redisPub: pub
 	,redisSub: sub
 	,redisClient: client
 }));
-
+*/
 
 io.set('resource', '/io');
 io.set('log level', 2);
