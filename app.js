@@ -18,7 +18,7 @@ var  express = require('express')
 	,colorize = require('colorize')
 	,chronicle = require('chronicle')
 	,socketio = require('socket.io')
-	,redis = require('redis')
+	//,redis = require('redis')
 ;
 
 
@@ -162,7 +162,9 @@ console.log('---' + config.redis.port + ' --- ' + config.redis.address + ' --- '
 
 
 
-var io = socketio.listen(http_server)
+var io = socketio.listen(http_server);
+
+/*
 	,RedisStore = require('socket.io/lib/stores/redis')
 ;
 
@@ -174,6 +176,7 @@ sub.auth(config.redis.pass, function(){});
 
 var client = redis.createClient(config.redis.port, config.redis.address);
 client.auth(config.redis.pass, function(){});
+*/
 
 /*
 
