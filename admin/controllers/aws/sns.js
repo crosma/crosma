@@ -108,5 +108,45 @@ Message: '{
   SigningCertURL: 'https://sns.us-east-1.amazonaws.com/SimpleNotificationService-f3ecfb7224c7233fe7bb5f59f96de52f.pem',
   UnsubscribeURL: 'https://sns.us-east-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-east-1:718947911325:cromsa_ses:1b36a6e8-d8bd-4d53-a9c3-49e5370bd0fa'
 }
+
+
+
+{ Type: 'Notification',
+  MessageId: '531c4002-92cd-4534-8561-2ecb310d74e7',
+  TopicArn: 'arn:aws:sns:us-east-1:718947911325:cromsa_ses',
+  
+Message: '{
+	"notificationType":"Bounce"
+	,"bounce":{
+		"bounceType":"Transient"
+		,"reportingMTA":"dns; na-mm-outgoing-5102-bacon.iad5.amazon.com"
+		,"bouncedRecipients": [
+			{
+				"emailAddress":"sdfasdfdf@kjjkgfsgdfsdfg.com"
+				,"status":"5.0.0"
+				,"action":"failed"
+				,"diagnosticCode":"smtp; 5.1.2 - Bad destination host \'DNS Hard Error looking up kjjkgfsgdfsdfg.com (MX):  NXDomain\' (delivery attempts: 0)"
+			}
+		]
+		,"bounceSubType":"General"
+		,"timestamp":"2012-07-18T10:09:11.000Z"
+		,"feedbackId":"0000013899900dc3-9d692fc3-d0c0-11e1-827f-0743ea227078-000000"
+	}
+	,"mail": {
+		"timestamp":"2012-07-18T10:09:08.000Z"
+		,"source":"dasfsdf@crosma.us"
+		,"messageId":"0000013899900200-e0358864-60e5-40ca-a8fd-8bc816b5f904-000000"
+		,"destination"["sdfasdfdf@kjjkgfsgdfsdfg.com"]
+	}
+}',
+ 
+
+ Timestamp: '2012-07-18T10:09:11.339Z',
+  SignatureVersion: '1',
+  Signature: 'NVpNsgPlg4a3YiYtpLkcq9D+PdEa0hXO2bKzqZm6/hR/NmsOUQAZ/4Kh+egnylpCthRIqUH977GXFdQPnhJCkQzTYFKqwm91NgvitTLPFhe33onp/IOm9ZvvDqrX2JVN/82gR58zxEbS9Rf3KKN5JGpkYvixdD7j/0LU8oo3klI=',
+  SigningCertURL: 'https://sns.us-east-1.amazonaws.com/SimpleNotificationService-f3ecfb7224c7233fe7bb5f59f96de52f.pem',
+  UnsubscribeURL: 'https://sns.us-east-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-east-1:718947911325:cromsa_ses:1b36a6e8-d8bd-4d53-a9c3-49e5370bd0fa' }
+
+
 */
 

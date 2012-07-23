@@ -11,18 +11,17 @@ var	 app = require('../../app')
 
 //slice(0) clones an array
 var local_css_files = app.config.local_css_files.slice(0).concat([
-	 app.staticize('/css/lib/jquery-ui-timepicker-addon.css')
-	,app.staticize('/css/lib/jquery-ui-1.8.21.custom.css')
+	 app.staticize('/css/chat.css')
 ]);
 
 var local_js_files = app.config.local_js_files.slice(0).concat([
 	 '/io/socket.io/socket.io.js'
-	,app.staticize('/js/chat.js')
+	,app.staticize('/js/chat.client.js')
 ]);
 
 //middleware function to set the statics to custom values
 function set_statics(req, res, next) {
-	//res.locals.config.css_files = local_css_files;
+	res.locals.config.css_files = local_css_files;
 	res.locals.config.js_files = local_js_files;
 	next();
 }
@@ -32,11 +31,16 @@ module.exports = function(socketio) {
 	io = socketio.of('/main');
 	  
 	io.on('connection', function (socket) {
-		socket.on('msg', function (name, fn) {
-			console.log('Got a ferret. Name: ' + name);
-			//fn('woot');
+		socket.broadcast.emit('chat', {'text': '--Someone connected.--'});
+	
+		socket.on('chat', function (args) {
+			console.log('Got chat: ' + util.inspect(args));
+			
+			socket.broadcast.emit('chat', {'text': args.text});
 		});
+		
 	});
+	
 	
 	return module;
 }

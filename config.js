@@ -3,10 +3,10 @@ var conf = {
 	 
 	,root: __dirname
 	
-	,site_name: 'violentsoul.com'
+	,site_name: 'dev.crosma.us'
 	
 	,static_dir: '/static'
-	,static_url: 'http://s.violentsoul.com'
+	,static_url: 'http://static.dev.crosma.us'
 	,cache_static: false
 			
 	,controllers_dir: '/controllers'
@@ -16,9 +16,9 @@ var conf = {
 	,admin_dir: '/admin'
 
 	,domains: {
-		 main: 'violentsoul.com'
-		,admin: 'admin.violentsoul.com'
-		,static: 's.violentsoul.com'
+		 main: 'dev.crosma.us'
+		,admin: 'admin.dev.crosma.us'
+		,static: 'static.dev.crosma.us'
 	}
 	
 	,local_css_files: ['/css/lib/bootstrap.css', '/css/admin.css', '/css/lib/bootstrap-responsive.css']
