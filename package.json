@@ -28,14 +28,14 @@
 		,"async": "*"
 		,"socket.io": "*"
 		,"socket.io-client": "*"
-		
+		,"redis": "0.6.7"
+
 		,"generic-pool" : "*"
 		
 		,"connect-compiler": "*"
 		,"uglify-js": "*"
 		,"nodemailer": "*" 
 		,"debug": "*"
-		
 	}
 	
 	,"optionalDependencies": {

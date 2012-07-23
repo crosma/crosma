@@ -18,6 +18,7 @@ var  express = require('express')
 	,colorize = require('colorize')
 	,chronicle = require('chronicle')
 	,socketio = require('socket.io')
+	,redis = require('redis')
 ;
 
 
@@ -157,7 +158,40 @@ var http_server = app.listen(config.port);
 /******************************************************************************
 ********* Start up socket.io
 ******************************************************************************/
-var io = socketio.listen(http_server);
+console.log('---' + config.redis.port + ' --- ' + config.redis.address + ' --- ' + config.redis.pass);
+
+
+
+var io = socketio.listen(http_server)
+	,RedisStore = require('socket.io/lib/stores/redis')
+;
+
+var pub = redis.createClient(config.redis.port, config.redis.address);
+pub.auth(config.redis.pass, function(){});
+
+var sub = redis.createClient(config.redis.port, config.redis.address);
+sub.auth(config.redis.pass, function(){});
+
+var client = redis.createClient(config.redis.port, config.redis.address);
+client.auth(config.redis.pass, function(){});
+
+/*
+
+RedisStore = require('socket.io/lib/stores/redis')
+  , pub    = redis.createClient()
+  , sub    = redis.createClient()
+  , client = redis.createClient();
+  
+*/
+ 
+
+io.set('store', new RedisStore({
+	 redisPub: pub
+	,redisSub: sub
+	,redisClient: client
+}));
+
+
 io.set('resource', '/io');
 io.set('log level', 2);
 io.set('transports', ['websocket', 'htmlfile', 'xhr-polling', 'jsonp-polling']);

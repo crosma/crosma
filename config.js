@@ -39,6 +39,11 @@ var conf = {
 		,db: process.env.MONGODB_DB
 	}
 	
+	,redis: {
+		 address: process.env.REDIS_ADDRESS
+		,port: process.env.REDIS_PORT
+		,pass: process.env.REDIS_PASSWORD
+	}
 };
 
 if (process.env.NODE_ENV == 'production')
