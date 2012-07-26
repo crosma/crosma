@@ -32,7 +32,7 @@ colorize.ansicodes['gray'] = '\033[90m';
 
 
 /******************************************************************************
-********* Process handling that is currently broke in windows.
+********* Process handling... not yet
 ******************************************************************************/
 /*
 process.on("uncaughtException", function(err) {
@@ -42,18 +42,7 @@ process.on("uncaughtException", function(err) {
 });
 */
 
-//This all doesnt work because of a bug in node
-/*
-process.on("SIGTERM", function() {
-  console.log("SIGTERM (killed by supervisord or another process management tool)");
-  return process.exit(0);
-});
 
-process.on("SIGINT", function() {
-  console.log("SIGINT");
-  return process.exit(0);
-});
-*/
 
 /******************************************************************************
 ********* Set up chronicle and static files in config
@@ -158,10 +147,6 @@ var http_server = app.listen(config.port);
 /******************************************************************************
 ********* Start up socket.io
 ******************************************************************************/
-console.log('---' + config.redis.port + ' --- ' + config.redis.address + ' --- ' + config.redis.pass);
-
-
-
 var io = socketio.listen(http_server);
 
 /*
