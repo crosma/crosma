@@ -18,7 +18,7 @@ var  express = require('express')
 	,colorize = require('colorize')
 	,chronicle = require('chronicle')
 	,socketio = require('socket.io')
-	//,redis = require('redis')
+	,redis = require('redis')
 ;
 
 
@@ -29,6 +29,16 @@ module.exports.servers = {};
 
 //add gray to the colors of colorize. Nowhere else for this really
 colorize.ansicodes['gray'] = '\033[90m';
+
+
+/******************************************************************************
+********* Handle unhandled errors
+******************************************************************************/
+if (!process.listeners('uncaughtException')) {
+	process.on('uncaughtException', function (e) {
+		console.error(e && e.stack ? e.stack : e);
+	});
+}
 
 
 /******************************************************************************
@@ -147,9 +157,7 @@ var http_server = app.listen(config.port);
 /******************************************************************************
 ********* Start up socket.io
 ******************************************************************************/
-var io = socketio.listen(http_server);
-
-/*
+var io = socketio.listen(http_server)
 	,RedisStore = require('socket.io/lib/stores/redis')
 ;
 
@@ -161,7 +169,7 @@ sub.auth(config.redis.pass, function(){});
 
 var client = redis.createClient(config.redis.port, config.redis.address);
 client.auth(config.redis.pass, function(){});
-*/
+
 
 /*
 
@@ -172,13 +180,11 @@ RedisStore = require('socket.io/lib/stores/redis')
   
 */
  
-/*
 io.set('store', new RedisStore({
 	 redisPub: pub
 	,redisSub: sub
 	,redisClient: client
 }));
-*/
 
 io.set('resource', '/io');
 io.set('log level', 2);

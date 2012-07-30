@@ -79,6 +79,7 @@ server.response.msg = function(msg) {
 	return this;
 };
 
+/*
 // expose the "messages" local variable when views are rendered
 server.locals.use(function(req, res) {
 	res.locals.flash_errs = req.session.flash_errs || [];
@@ -89,6 +90,8 @@ server.locals.use(function(req, res) {
 	
 	//console.log('Setting up flash messages.');
 });
+*/
+
 
 
 /******************************************************************************

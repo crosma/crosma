@@ -84,6 +84,7 @@ server.response.msg_count = function() {
 	return (this.req.session.flash_msgs || []).length;
 }
 
+/*
 // expose the "messages" local variable when views are rendered
 server.locals.use(function(req, res) {
 	res.locals.flash_errs = req.session.flash_errs || [];
@@ -94,6 +95,7 @@ server.locals.use(function(req, res) {
 	
 	//console.log('Setting up flash messages.');
 });
+*/
 
 
 /******************************************************************************

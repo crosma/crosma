@@ -13,10 +13,10 @@
 	}
 	
 	,"dependencies": {
-		 "express": "3.0.0beta4"
+		 "express": "*"
 		,"jade": "*"
 		,"less-middleware": "*"
-		,"connect": "2.3.4"
+		,"connect": "*"
 		,"connect-memcached": "*"
 		,"validator": "*"
 		,"express-validator": "*"
@@ -28,7 +28,7 @@
 		,"async": "*"
 		,"socket.io": "*"
 		,"socket.io-client": "*"
-		,"redis": "0.6.7"
+		,"redis": "~0.7.2"
 
 		,"generic-pool" : "*"
 		
