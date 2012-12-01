@@ -7,15 +7,13 @@ var	 app = require('../../app')
 	})
 ;
 
-	
-
 
 page.handles('/', 'get', function(req, res, next) {
-	var password = 'matt00';
+	var password = 'matt003rt3545345345345345353245fvas4(*&%)%*';
 	
 	var start = process.hrtime();
 	
-	crypto.randomBytes(32, function(err, buf) {
+	crypto.randomBytes(240, function(err, buf) {
 		if (err) throw err;
 
 		var salt = buf.toString('hex');

@@ -179,6 +179,8 @@ module.exports.boot = function(socketio) {
 		res.locals.err = err;
 		res.locals.inspect_text = JSON.stringify(err, null, '    '); //util.inspect(err, true, 5);
 		res.status(500).render('errors/500');
+		
+		console.error(err);
 	});
 
 	
