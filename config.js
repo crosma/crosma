@@ -44,6 +44,14 @@ var conf = {
 		,port: process.env.REDIS_PORT
 		,pass: process.env.REDIS_PASSWORD
 	}
+	
+	,mysql: {
+		 address: process.env.MYSQL_ADDRESS
+		,port: process.env.MYSQL_PORT
+		,user: process.env.MYSQL_USER
+		,pass: process.env.MYSQL_PASSWORD
+		,db: process.env.MYSQL_DB
+	}
 };
 
 if (process.env.NODE_ENV == 'production')

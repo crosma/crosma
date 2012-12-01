@@ -6,6 +6,7 @@ var	 app = require('../app')
 	,MemcachedStore = require('connect-memcached')(express)
 	,mongoose = require('mongoose')
 	,io = null
+	,errorface = require("errorface")
 ; 
 
 
@@ -172,11 +173,14 @@ module.exports.boot = function(socketio) {
 	********* Error handling middleware, 
 	********* ...doesn't seem to working right now
 	******************************************************************************/
+	//server.use(errorface.errorHandler());
+	
 	server.use(function(err, req, res, next) {
 		res.locals.err = err;
-		res.locals.inspect_text = util.inspect(err, true, 5);
+		res.locals.inspect_text = JSON.stringify(err, null, '    '); //util.inspect(err, true, 5);
 		res.status(500).render('errors/500');
 	});
+
 	
 	/******************************************************************************
 	********* If nothing has responded by now, its a 404
@@ -186,4 +190,3 @@ module.exports.boot = function(socketio) {
 		res.status(404).render('errors/404');
 	});
 }
-

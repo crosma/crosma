@@ -36,6 +36,10 @@
 		,"uglify-js": "*"
 		,"nodemailer": "*" 
 		,"debug": "*"
+		
+		,"mysql": "*"
+		,"errorface": "*"
+		,"bcrypt": "*"
 	}
 	
 	,"optionalDependencies": {

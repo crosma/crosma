@@ -52,20 +52,20 @@ html
 			
 		.container
 			
-			if !!flash_errs.length
+			if (msgs = flash_errs()) && !!msgs.length
 				.row
 					.offset1.span10
 						.alert.alert-error
 							ul
-								each msg in flash_errs
+								each msg in msgs
 									li!= msg
 			
-			if !!flash_msgs.length
+			if (msgs = flash_msgs()) && !!msgs.length
 				.row
 					.offset1.span10
 						.alert.alert-info
 							ul
-								each msg in flash_msgs
+								each msg in msgs
 									li!= msg
 			
 

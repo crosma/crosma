@@ -79,6 +79,8 @@ server.response.msg = function(msg) {
 	return this;
 };
 
+//Add a function to locals that does this. then in the template do "for flash_msgs()"
+
 /*
 // expose the "messages" local variable when views are rendered
 server.locals.use(function(req, res) {
@@ -93,6 +95,10 @@ server.locals.use(function(req, res) {
 */
 
 
+
+server.viewCallbacks.push(function() {
+	console.log('hrm');
+});
 
 /******************************************************************************
 ********* Set up the form validator
@@ -124,8 +130,36 @@ server.use(function(req, res, next) {
 	res.locals.config.js_files = app.config.local_js_files.slice(0);
 	res.locals.config.NODE_ENV = process.env.NODE_ENV;
 	
+	res.locals.flash_errs = function() {
+		var data = req.session.flash_errs || [];
+		delete req.session.flash_errs;
+		
+		return data;
+	};
+	
+	res.locals.flash_msgs = function() {
+		var data = req.session.flash_msgs || [];
+		delete req.session.flash_msgs;
+		
+		return data;
+	};
+	
 	next();
 });
+
+
+/*
+// expose the "messages" local variable when views are rendered
+server.locals.use(function(req, res) {
+
+	
+	res.locals.flash_msgs = req.session.flash_msgs || [];
+	delete req.session.flash_msgs;
+	
+	//console.log('Setting up flash messages.');
+});
+*/
+
 
 
 /******************************************************************************

@@ -79,6 +79,7 @@ for (i=0; i<app.config.local_js_files.length; i++) {
 /******************************************************************************
 ********* Set up mongoose
 ******************************************************************************/
+/*
 var mongoose = require('mongoose');
 
 mongoose.schema = require('./lib/mongodb/schema');
@@ -86,13 +87,10 @@ mongoose.schema = require('./lib/mongodb/schema');
 mongoose.handler = function CreateHandler(req, res, cb)
 {
 	var hnd = function(err, result) {
-		if (err)
-		{
+		if (err) {
 			console.log('---Mongo---' + err + '---Mongo---');
 			throw Error('MongoDB Error: ' + err);
-		}
-		else
-		{
+		} else {
 			cb(result);
 		}
 	}
@@ -101,19 +99,67 @@ mongoose.handler = function CreateHandler(req, res, cb)
 };
 
 
-var uri = 'mongodb://' + config.mongodb.user + ':' + config.mongodb.pass + '@' + config.mongodb.address + ':' + config.mongodb.port + '/' + config.mongodb.db;
-
-mongoose.connect(uri, function(err) {
-	if (err)
-	{
+var mongoose_uri = 'mongodb://' + config.mongodb.user + ':' + config.mongodb.pass + '@' + config.mongodb.address + ':' + config.mongodb.port + '/' + config.mongodb.db;
+mongoose.connect(mongoose_uri, function(err) {
+	if (err) {
 		console.error('Error connecting to MongoDB');
 		console.error(err);
-	}
-	else
-	{
+	} else {
 		console.log('Connected to MongoDB');
 	}
 });
+*/
+
+
+/******************************************************************************
+********* Set up mysql
+******************************************************************************/
+var mysql = require('mysql');
+var mysql_uri = 'mysql://' + config.mysql.user + ':' + config.mysql.pass + '@' + config.mysql.address + ':' + config.mysql.port + '/' + config.mysql.db;
+
+function createMysqlConnection()
+{
+	exports.mysql = mysql.createConnection(mysql_uri);
+	
+	exports.mysql.on('error', function(err) {
+		if (!err.fatal) {
+			return;
+		}
+
+		if (err.code !== 'PROTOCOL_CONNECTION_LOST') {
+			throw err;
+		}
+		
+		console.log('MySQL reconnecting: ' + err.stack);
+
+		createMysqlConnection();
+	});
+	
+	exports.mysql.real_query = exports.mysql.query;
+	exports.mysql.query = function(sql, callback) {
+		//could also use this setup to time queries?
+		
+		exports.mysql.real_query(sql, function(err, rows, fields) {
+			if (err) {
+				err.query = sql;
+			}
+			
+			callback(err, rows, fields);
+		});
+	}
+	exports.mysql.connect(function(err) {
+		if (err) {
+			console.error('Error connecting to MySQL');
+			console.error(err);
+		} else {
+			console.log('Connected to MySQL');
+		}
+	});
+	
+
+}
+
+createMysqlConnection();
 
 
 /******************************************************************************
@@ -170,16 +216,6 @@ sub.auth(config.redis.pass, function(){});
 var client = redis.createClient(config.redis.port, config.redis.address);
 client.auth(config.redis.pass, function(){});
 
-
-/*
-
-RedisStore = require('socket.io/lib/stores/redis')
-  , pub    = redis.createClient()
-  , sub    = redis.createClient()
-  , client = redis.createClient();
-  
-*/
- 
 io.set('store', new RedisStore({
 	 redisPub: pub
 	,redisSub: sub
