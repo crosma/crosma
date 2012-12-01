@@ -12,7 +12,7 @@ console.log(myutils);
 
 
 var fs = require('fs');
-//console.log(fs.realpathSync('lib/controller'));
+console.log("----- " + fs.realpathSync('./'));
 
 
 page.handles('/', 'get', function(req, res, next) {
