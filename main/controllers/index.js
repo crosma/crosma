@@ -1,42 +1,35 @@
 var	 app = require('../../app')
 	,util = require('util')
 	,crypto = require('crypto')
-	,myutils = ('../../lib/myutils')
+	,tools = require('../../lib/tools')
 	,page = require('../../lib/controller')(app.servers.main, {
 		 title: 'crosma.us'
 		,require_auth: false
 	})
 ;
 
-console.log(myutils);
-
-
-var fs = require('fs');
-console.log("----- " + fs.realpathSync('./'));
-
 
 page.handles('/', 'get', function(req, res, next) {
-	var password = 'matt003rt3545345345345345353245fvas4(*&%)%*';
+	res.render('index.jade');
 	
-	
-	
-	console.log(myutils);
-	
-	console.log('---' + myutils.bah);
-	
-	myutils.createPassword(function(salt, pass) {
-		console.log(salt);
-		console.log(pass);
-	});
 	
 	/*
-	app.mysql.query('SELECT 1 + 1 + AS solution', function(err, rows, fields) {
-		if (err) { next(err); return; }
-		
+	tools.createPassword(password, function(salt, encodedPassword) {
+		app.mysql.query(
+			'INSERT INTO user SET email = :email, password_hashed = :password, password_salt = :salt, name = :name, created_dt = :created_dt'
+			,{email: 'vbaspcppguy@gmail.com', password: encodedPassword, salt: salt, name: 'Matt C', created_dt: tools.timestamp()}
+			,function(err, result) {
+				if (err) { next(err); return; }
+				
 
-		console.log('The solution is: ', rows[0].solution);
+				console.log(result.insertId);
+				
+				res.render('index.jade');
+			}
+		);
 		
-		res.render('index.jade');
+		
+		
 	});
 	*/
 });

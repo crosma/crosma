@@ -32,6 +32,19 @@ colorize.ansicodes['gray'] = '\033[90m';
 
 
 /******************************************************************************
+********* Set up app wide logging
+******************************************************************************/
+module.exports.log = function(text) {
+	console.log(colorize.ansify('#cyan[' + text + ']'));
+};
+module.exports.debug = function(text) {
+	console.log(colorize.ansify('#green[' + text + ']'));
+};
+module.exports.alert = function(text) {
+	console.log(colorize.ansify('#red[' + text + ']'));
+};
+
+/******************************************************************************
 ********* Handle unhandled errors
 ******************************************************************************/
 if (!process.listeners('uncaughtException')) {
@@ -117,6 +130,8 @@ mongoose.connect(mongoose_uri, function(err) {
 var mysql = require('mysql');
 var mysql_uri = 'mysql://' + config.mysql.user + ':' + config.mysql.pass + '@' + config.mysql.address + ':' + config.mysql.port + '/' + config.mysql.db;
 
+
+
 function createMysqlConnection()
 {
 	exports.mysql = mysql.createConnection(mysql_uri);
@@ -136,17 +151,40 @@ function createMysqlConnection()
 	});
 	
 	exports.mysql.real_query = exports.mysql.query;
-	exports.mysql.query = function(sql, callback) {
+	exports.mysql.query = function(sql, values, callback) {
 		//could also use this setup to time queries?
 		
-		exports.mysql.real_query(sql, function(err, rows, fields) {
+		exports.mysql.real_query(sql, values, function(err, rows, fields) {
 			if (err) {
 				err.query = sql;
 			}
 			
 			callback(err, rows, fields);
 		});
-	}
+	};
+	exports.mysql.query_row = function(sql, values, callback) {
+		exports.mysql.query(sql, values, function(err, rows, fields) {
+			var row = null;
+			if (rows.length > 1) {
+				throw "mysql.query_row() got more than one row. LIMIT that shit.";
+			} else if (rows.length == 1) {
+				row = rows[0];
+			}
+			
+			callback(err, row, fields);
+		});
+	};
+
+	exports.mysql.format = function (query, values) {
+		if (!values) return query;
+		return query.replace(/\:(\w+)/g, function (txt, key) {
+			if (values.hasOwnProperty(key)) {
+				return this.escape(values[key]);
+			}
+			return txt;
+		}.bind(this));
+	};
+	
 	exports.mysql.connect(function(err) {
 		if (err) {
 			console.error('Error connecting to MySQL');
