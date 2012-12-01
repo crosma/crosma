@@ -1,49 +1,35 @@
 var	 app = require('../../app')
 	,util = require('util')
 	,crypto = require('crypto')
+	,myutils = ('../../lib/myutils')
 	,page = require('../../lib/controller')(app.servers.main, {
 		 title: 'crosma.us'
 		,require_auth: false
 	})
 ;
 
+console.log(myutils);
+
+
+var fs = require('fs');
+//console.log(fs.realpathSync('lib/controller'));
+
 
 page.handles('/', 'get', function(req, res, next) {
 	var password = 'matt003rt3545345345345345353245fvas4(*&%)%*';
 	
-	var start = process.hrtime();
 	
-	crypto.randomBytes(240, function(err, buf) {
-		if (err) throw err;
-
-		var salt = buf.toString('hex');
-
-		crypto.pbkdf2(password, salt, 1000, 120, function(err, encodedPassword) {
-			if (err) throw err;
-			
-			
-			encodedPassword = Buffer(encodedPassword, 'binary').toString('hex');
-			
-			
-			var end = process.hrtime();
-			var delay = ((end[0] + end[1] / 1000000000) - (start[0] + start[1] / 1000000000)) + 's';
-			console.log('Response Time: ' + delay + '\n');
-			
-			console.log(encodedPassword);
-			console.log(encodedPassword.length);
-			
-			
-			/*
-			password = (encodedPassword.toString('hex')); // this line
-			user.save(function(err, user) {
-				if (!err) return res.send(err, 500);
-				return res.json(user);
-			});
-			*/
-		}.bind(this));
+	
+	console.log(myutils);
+	
+	console.log('---' + myutils.bah);
+	
+	myutils.createPassword(function(salt, pass) {
+		console.log(salt);
+		console.log(pass);
 	});
-
 	
+	/*
 	app.mysql.query('SELECT 1 + 1 + AS solution', function(err, rows, fields) {
 		if (err) { next(err); return; }
 		
@@ -52,5 +38,5 @@ page.handles('/', 'get', function(req, res, next) {
 		
 		res.render('index.jade');
 	});
-
+	*/
 });
