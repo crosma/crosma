@@ -8,15 +8,15 @@ block content
 				p An error occured. Fix it.
 				
 			if config.NODE_ENV != 'production'
-				h3 Message
+				h4 Message
 				pre #{err.message}
 				
 				if err.query
-					h3 Query
+					h4 Query
 					pre #{err.query}
 				
-				h3 Stack Trace
+				h4 Stack Trace
 				pre #{err.stack}
 					
-				h3 The Rest
+				h4 The Rest
 				pre #{inspect_text}

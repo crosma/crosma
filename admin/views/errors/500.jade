@@ -1,10 +1,22 @@
 extends ../includes/layout-admin
 
 block content
-	.hero-unit
-		h1 Fuck.
-		p An error occured. Fix it.
-		
-	if config.NODE_ENV != 'production'
-		pre #{err.stack}
-		pre #{inspect_text}
+	.container
+		.row
+			.hero-unit
+				h1 Fuck.
+				p An error occured. Fix it.
+				
+			if config.NODE_ENV != 'production'
+				h4 Message
+				pre #{err.message}
+				
+				if err.query
+					h4 Query
+					pre #{err.query}
+				
+				h4 Stack Trace
+				pre #{err.stack}
+					
+				h4 The Rest
+				pre #{inspect_text}

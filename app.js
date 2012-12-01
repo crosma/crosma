@@ -136,6 +136,7 @@ function createMysqlConnection()
 {
 	exports.mysql = mysql.createConnection(mysql_uri);
 	
+	//This causes it to try to reconnect automaticly.
 	exports.mysql.on('error', function(err) {
 		if (!err.fatal) {
 			return;
@@ -147,12 +148,14 @@ function createMysqlConnection()
 		
 		console.log('MySQL reconnecting: ' + err.stack);
 
-		createMysqlConnection();
+		setTimeout(createMysqlConnection, 100); //limit how fast it can retry for safety
 	});
 	
 	exports.mysql.real_query = exports.mysql.query;
+	
+	//Wrap the query function to add the sql to the error
 	exports.mysql.query = function(sql, values, callback) {
-		//could also use this setup to time queries?
+		//could also use this to time queries?
 		
 		exports.mysql.real_query(sql, values, function(err, rows, fields) {
 			if (err) {
@@ -162,6 +165,8 @@ function createMysqlConnection()
 			callback(err, rows, fields);
 		});
 	};
+	
+	//Return a single row from a query
 	exports.mysql.query_row = function(sql, values, callback) {
 		exports.mysql.query(sql, values, function(err, rows, fields) {
 			var row = null;
@@ -174,7 +179,31 @@ function createMysqlConnection()
 			callback(err, row, fields);
 		});
 	};
-
+	
+	//return the first value from the first row
+	exports.mysql.query_var = function(sql, values, callback) {
+		exports.mysql.query(sql, values, function(err, rows, fields) {
+			var val = null;
+			if (rows.length > 1) {
+				throw "mysql.query_row() got more than one row. LIMIT that shit.";
+			} else if (rows[0].length > 1) {
+				throw "mysql.query_row() got more than one row. LIMIT that shit.";
+			} else if (rows.length == 1) {
+				val = rows[0][fields[0].name];
+			}
+			
+			callback(err, val);
+		});
+	};
+	
+	//quick FOUND_ROWS() function
+	exports.mysql.query_found_rows = function(callback) {
+		exports.mysql.query_var('SELECT FOUND_ROWS()', {}, function(err, count) {
+			callback(err, count);
+		});
+	};
+	
+	//customize how values are interpolated in the sql
 	exports.mysql.format = function (query, values) {
 		if (!values) return query;
 		return query.replace(/\:(\w+)/g, function (txt, key) {
@@ -185,6 +214,7 @@ function createMysqlConnection()
 		}.bind(this));
 	};
 	
+	//hey, hey, lets go
 	exports.mysql.connect(function(err) {
 		if (err) {
 			console.error('Error connecting to MySQL');

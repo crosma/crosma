@@ -12,7 +12,6 @@ var	 app = require('../../app')
 page.handles('/', 'get', function(req, res, next) {
 	res.render('index.jade');
 	
-	
 	/*
 	tools.createPassword(password, function(salt, encodedPassword) {
 		app.mysql.query(

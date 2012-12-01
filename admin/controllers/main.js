@@ -1,7 +1,7 @@
 var	 app = require('../../app')
 	,util = require('util')
 	,crypto = require('crypto')
-	,mdb = require('mongoose')
+	,tools = require('../../lib/tools')
 	,page = require('../../lib/controller')(app.servers.admin, {
 		title: 'Main'
 	})
@@ -9,18 +9,7 @@ var	 app = require('../../app')
 
 
 page.handles('/main', 'get', function(req, res, next) {
-	var query = mdb.schema.Post
-		.find({})
-		.sort('date', 1)
-		.populate('_poster', ['name'])
-	;
-	
-	var populate_cb = mdb.handler(req, res, function (posts) {
-		res.locals.posts = posts;
-		
-		res.render('main');
-	});
-	query.exec(populate_cb);
+	res.render('main');
 });
 
 /*

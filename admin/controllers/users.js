@@ -1,7 +1,7 @@
 var	 app = require('../../app')
 	,util = require('util')
 	,crypto = require('crypto')
-	,mdb = require('mongoose')
+	,tools = require('../../lib/tools')
 	,async = require('async')
 	,chronicle = require('chronicle')
 	,page = require('../../lib/controller')(app.servers.admin, {
@@ -31,9 +31,40 @@ function set_statics(req, res, next) {
 
 
 page.handles('/users/:page?', 'get', function(req, res, next) {
-	var filter = {};
 	var per_page = 5;
+	var page = Math.max(1, req.params.page ? parseInt(req.params.page) : 1);
 	
+	async.waterfall([
+	function(callback){
+		app.mysql.query(
+			'SELECT SQL_CALC_FOUND_ROWS user_id, email, created_dt, name FROM user ORDER BY user_id ASC LIMIT :start, :count'
+			,{start: page * per_page - per_page, count: per_page}
+			,function(err, result) {
+				callback(err, result);
+			}
+		);
+	},
+	
+	function(users, callback){
+		app.mysql.query_found_rows(
+			function(err, count) {
+				callback(err, users, count);
+			}
+		);
+	},
+	
+	], function (err, users, count) {
+		if (err) { next(err); return; }
+	
+		res.locals.users = users;
+		res.locals.page = page;
+		res.locals.page_count = Math.ceil(count / per_page);
+
+		res.render('./users/list'); 
+	});
+	
+	
+	/*
 	async.waterfall([
 		function(callback) { //get user count
 			mdb.schema.User.count(filter, callback); //just send callback to the query
@@ -63,7 +94,7 @@ page.handles('/users/:page?', 'get', function(req, res, next) {
 
 		res.render('./users/list');
 	});
-	
+	*/
 });
 
 
