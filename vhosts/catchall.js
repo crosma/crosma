@@ -1,6 +1,6 @@
 var	 app = require('../app')
 	,express = require('express')
-	,server = module.exports = express.createServer();
+	,server = module.exports = express();
 ;
 
 //Logger is kind of two parts

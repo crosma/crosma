@@ -1,10 +1,10 @@
 var	 app = require('../app')
 	,express = require('express')
-	,server = module.exports = express.createServer()
+	,server = module.exports = express()
 	,util = require('util')
 	,chronicle = require('chronicle')
 	,MemcachedStore = require('connect-memcached')(express)
-	,mongoose = require('mongoose')
+	,RedisStore = require('connect-redis')(express)
 ; 
 
 
@@ -31,9 +31,9 @@ server.use(express.logger({format: 'mydev'}));
 
 server.use(express.cookieParser()); //Can take a secret to encrypt them
 server.use(express.session({
-	 secret: 'F5fRU2rap3G7hutR'
-	,key: 'sid'
-	,store: new MemcachedStore
+	 secret: 'F5fasdfasd&*^3G7hutR'
+	,key: 'admin_sid'
+	,store: new RedisStore({port: app.config.redis.port, host: app.config.redis.address, pass: app.config.redis.pass, prefix: 'ases'})
 	,cookie: { maxAge: 1000 * 60 * 60 * 3 }
 })); //,cookie: {maxAge: 60 * 60 * 24 * 1000}}
 
@@ -182,7 +182,6 @@ var chat;
 ********* before the controllers try to use it.
 ******************************************************************************/
 module.exports.boot = function(io) {
-
 	chat = io
 	  .of('/admin')
 	  .on('connection', function (socket) {

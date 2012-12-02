@@ -1,6 +1,6 @@
 var	 app = require('../app')
 	,express = require('express')
-	,server = module.exports = express.createServer()
+	,server = module.exports = express()
 	,util = require('util')
 	,chronicle = require('chronicle')
 	,MemcachedStore = require('connect-memcached')(express)
@@ -35,8 +35,8 @@ server.use(express.cookieParser()); //Can take a secret to encrypt them
 server.use(express.session({
 	 secret: 'F5fRU2rap3G7hutR'
 	,key: 'sid'
-	,store: new MemcachedStore
-	,cookie: { maxAge: 1000 * 60 * 60 * 3 }
+	//,store: new MemcachedStore 
+	,cookie: { secure: false, maxAge: 1000 * 60 * 60 * 3 }
 })); //,cookie: {maxAge: 60 * 60 * 24 * 1000}}
 
 server.use(require('../lib/poweredBy')); //Overwrite the x-powered-by header
@@ -156,17 +156,13 @@ var chat;
 module.exports.boot = function(socketio) {
 	io = socketio;
 	
-	
+
 	/******************************************************************************
 	********* Load up the controllers
 	********* ...should probably automate this somehow
 	******************************************************************************/
 	require('./controllers/index');
-	require('./controllers/chat')(io);
-	//require('./controllers/main');
-	//require('./controllers/purge');
-	//require('./controllers/mongo');
-	//require('./controllers/users');
+	//require('./controllers/chat')(io);
 	
 	
 	/******************************************************************************
@@ -179,6 +175,7 @@ module.exports.boot = function(socketio) {
 		res.locals.err = err;
 		res.locals.inspect_text = JSON.stringify(err, null, '    '); //util.inspect(err, true, 5);
 		res.status(500).render('errors/500');
+		res.end();
 		
 		console.error(err);
 	});

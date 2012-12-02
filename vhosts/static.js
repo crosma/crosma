@@ -1,6 +1,6 @@
 var	 app = require('../app')
 	,express = require('express')
-	,server = module.exports = express.createServer()
+	,server = module.exports = express()
 	,mime = require('connect').mime 
 	,chronicle = require('chronicle')
 	,util = require('util')

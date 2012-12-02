@@ -21,9 +21,9 @@ block content
 					td #{dateFormat(new Date(user.created_dt) / 100, 'dd/mm/yyyy HH:MM:ss')}
 					
 					td
-						a(href="/user/" + user._id + "/edit") Edit
+						a(href="/user/" + user.user_id + "/edit") Edit
 					td
-						a(href="/user/" + user._id + "/delete") Delete
+						a(href="/user/" + user.user_id + "/delete") Delete
 					
 	.row
 		.span10

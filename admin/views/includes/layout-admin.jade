@@ -23,32 +23,37 @@ html
 				.container
 					a.brand(href="/") Admin Tools
 					if config.logged_in
-					
+
 						ul.nav
-							li
-								a(href="/mysql")
-									i.icon-info-sign.icon-white
-									|  MySQL
 							li.dropdown
 								a(href="#", data-toggle="dropdown").dropdown-toggle
-									i.icon-tasks.icon-white
-									|  Tools
-									b.caret
+									i.icon-hdd
+									|  Data
+									spam.caret
 								ul.dropdown-menu
 									li
 										a(href="/users")
 											i.icon-user
 											|  Manage Users
+									
+							li.dropdown
+								a(href="#", data-toggle="dropdown").dropdown-toggle
+									i.icon-tasks
+									|  Tools
+									span.caret
+								ul.dropdown-menu
 									li
 										a(href="/purge")
 											i.icon-ban-circle
 											|  Purge Caches
-						ul.nav.pull-right
 							li
-								a(href="/logout") Log Out
+								a(href="/logout")
+									i.icon-off
+									| Log Out
+						form.navbar-search.pull-right
+							input(type="text", class="search-query", placeholder="Search")
 									
-
-						
+	
 			
 		.container
 			

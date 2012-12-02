@@ -29,6 +29,7 @@
 		,"socket.io": "*"
 		,"socket.io-client": "*"
 		,"redis": "~0.7.2"
+		,"connect-redis": "*"
 
 		,"generic-pool" : "*"
 		
@@ -39,7 +40,10 @@
 		
 		,"mysql": "*"
 		,"errorface": "*"
-		,"bcrypt": "*"
+
+		,"cookies": "*"
+		,"cookie-signature": "*"
+		,"jackpot": "*"
 	}
 	
 	,"optionalDependencies": {

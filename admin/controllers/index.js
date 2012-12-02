@@ -67,9 +67,11 @@ page.handles('/', 'login', function(req, res, next) {
 
 
 page.handles('/logout', 'get', function(req, res, next) {
+	delete res.locals.config.logged_in;
+
 	req.session.regenerate(function(err){
 		app.debug('Admin logged out.');
-		
+
 		res.msg('You have been logged out.');
 		res.render('index.jade');
 	});

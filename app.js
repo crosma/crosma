@@ -319,7 +319,7 @@ module.exports.servers.main.boot(io);
 /******************************************************************************
 ********* set up the catchall redirect
 ******************************************************************************/
-module.exports.servers.static = require('./vhosts/catchall');
+module.exports.servers.catchall = require('./vhosts/catchall');
 
  
 /******************************************************************************
