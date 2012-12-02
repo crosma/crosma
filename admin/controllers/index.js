@@ -32,7 +32,7 @@ page.handles('/', 'login', function(req, res, next) {
 				if (err) { next(err); return; }
 				
 				if (result) {
-					tools.checkPassword(password, result.password_hashed, result.password_salt, function(is_good) {
+					tools.checkPassword(password, result.password_hashed, result.password_salt, function(err, is_good) {
 						if (is_good) {
 							app.log('Good admin login from ' + result.name + ' (' + result.email + ')');
 						

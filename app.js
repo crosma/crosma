@@ -186,9 +186,9 @@ function createMysqlConnection()
 			var val = null;
 			if (rows.length > 1) {
 				throw "mysql.query_row() got more than one row. LIMIT that shit.";
-			} else if (rows[0].length > 1) {
+			} else if (rows.length == 1 && rows[0].length > 1) {
 				throw "mysql.query_row() got more than one row. LIMIT that shit.";
-			} else if (rows.length == 1) {
+			} else if (rows.length == 1 && rows.length == 1) {
 				val = rows[0][fields[0].name];
 			}
 			

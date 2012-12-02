@@ -4,9 +4,9 @@ var	 app = require('../app')
 	,util = require('util')
 	,chronicle = require('chronicle')
 	,MemcachedStore = require('connect-memcached')(express)
-	,mongoose = require('mongoose')
 	,io = null
 	,errorface = require("errorface")
+	,RedisStore = require('connect-redis')(express)
 ; 
 
 
@@ -36,7 +36,7 @@ server.use(express.session({
 	 secret: 'F5fRU2rap3G7hutR'
 	,key: 'sid'
 	//,store: new MemcachedStore 
-	,cookie: { secure: false, maxAge: 1000 * 60 * 60 * 3 }
+	,store: new RedisStore({port: app.config.redis.port, host: app.config.redis.address, pass: app.config.redis.pass, prefix: 'ases'})
 })); //,cookie: {maxAge: 60 * 60 * 24 * 1000}}
 
 server.use(require('../lib/poweredBy')); //Overwrite the x-powered-by header

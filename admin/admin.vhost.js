@@ -61,6 +61,8 @@ server.locals({
 ********* Set up res.err() and res.msg() stuff
 ******************************************************************************/
 server.response.err = function(msg) {
+	if (!msg || msg.length == 0) return;
+	
 	var sess = this.req.session;
 	sess.flash_errs = sess.flash_errs || [];
 	sess.flash_errs.push(msg);
@@ -73,6 +75,8 @@ server.response.err_count = function() {
 
 // define a custom res.message() method
 server.response.msg = function(msg) {
+	if (!msg || msg.length == 0) return; 
+	
 	var sess = this.req.session;
 	sess.flash_msgs = sess.flash_msgs || [];
 	sess.flash_msgs.push(msg);

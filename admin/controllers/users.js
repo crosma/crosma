@@ -155,52 +155,76 @@ page.handles('/user/create', 'get', set_statics, function(req, res, next) {
 
 
 page.handles('/user/create', 'post', set_statics, function(req, res, next) {
-	var user = new mdb.schema.User;
-	user.email = req.body.email.toString().trim();
-	user.name.first = req.body.firstname.toString().trim();
-	user.name.last = req.body.lastname.toString().trim();
-	
-	res.locals.method = 'create';
+	var email = req.body.email.toString().trim();
+	var name = req.body.name.toString().trim();
 
-	mdb.schema.User.findUnique(user.email, mdb.handler(req, res, function (exists) {
-		if (exists) {
-			res.err('User with that email already exists.');
-			
-			res.locals.method = 'create';
-			res.locals.user = user;
-			res.render('./users/edit');
-			
+	req.check('email', 'Please enter a valid email.').isEmail();
+	req.check('name', 'Please enter a name.').notEmpty();
+	req.check('password', 'The passwords you entered do not match.').equals(req.body.password2);
+	req.check('password', 'Passwords must be at least 6 characters.').len(6);
+	
+	async.waterfall([
+	function(callback){ //check form
+		if (res.err_count() == 0) {
+			callback();
 		} else {
-			//check the password first so that there can be no errors cluttering it.
-			req.check('password', 'The passwords you entered do not match.').equals(req.body.password2);
-			req.check('password', 'Passwords must be at least 6 characters.').len(6);
-			
-			//only set if no errors
-			if (res.err_count() == 0)
-			{
-				user.password = req.body.password;
-			}
-			
-			req.check('email', 'Please enter a valid email').isEmail();
-			req.check('firstname', 'Please enter a first name').notEmpty();
-			req.check('lastname', 'Please enter a last name').notEmpty();
-			
-			//Woo, we can save
-			if (res.err_count() == 0) {
-				user.save(mdb.handler(req, res, function (exists) {
-					res.msg('The user has been created.');
-					
-					res.redirect('/user/' + user._id + '/edit');
-				}));
-			}
-			else
-			{
-				res.locals.method = 'create';
-				res.locals.user = user;
-				res.render('./users/edit');
-			}
+			callback(new Error(''));
 		}
-	}));
+	},
+	function(callback){ //run email check query
+		app.mysql.query_var(
+			 'SELECT user_id FROM user WHERE email = :email'
+			,{email: email}
+			,function(err, result) {
+				if (err) {
+					throw err;
+				} else {
+					callback(null, result);
+				}
+			}
+		);
+	},
+	function(exists, callback){ //check results
+		if (exists) {
+			callback(new Error('User with that email already exists.'));
+		} else {
+			callback();
+		}
+	},
+	function(callback){ //hash password
+		var pass = req.body.password.toString();
+		
+		tools.createPassword(pass, callback);
+	},
+	function(password_salt, password_hashed, callback){ //seems were good, create the user
+		app.mysql.query(
+			 'INSERT INTO user SET email = :email, password_hashed = :password_hashed, password_salt = :password_salt, name = :name, created_dt = NOW()'
+			,{email: email, password_hashed: password_hashed, password_salt: password_salt, name: name}
+			,function(err, result) {
+				if (err) {
+					throw err;
+				} else {
+					callback(null, result.insertId);
+				}
+			}
+		);
+	},
+	], function (err, user_id) {
+		if (err) {
+			app.debug("Create Error: " + err.message);
+			
+			res.err(err.message);
+			res.locals.method = 'create';
+			res.locals.user = {'name': name, 'email': email};
+			res.render('./users/edit');	
+		} else {
+			app.debug("Create Success: " + user_id);
+
+			res.msg('The user has been created.');
+			res.redirect('/user/' + user_id + '/edit');
+		}
+	});
+	
 });
 
 
