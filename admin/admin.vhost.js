@@ -53,10 +53,30 @@ server.set('view engine', 'jade');
 server.set('views', app.config.root + app.config.admin_dir + '/views');
 app.config.cache_views ? server.enable('view cache') : server.disable('view cache');
 
-
 var ectRenderer = ect({cache: true, watch: true, root: app.config.root + app.config.admin_dir + '/views'});
-
 server.engine('.ect', ectRenderer.render);
+
+
+server.use(function(req, res, next) {
+	res.real_render = res.render;
+	res.render = function() {
+		var start = process.hrtime();
+		
+		res.real_render.apply(this, arguments);
+		
+		var end = process.hrtime();
+		
+		res.render_time = Math.round(((end[0] + end[1] / 1000000000) - (start[0] + start[1] / 1000000000)) * 1000000, 4) / 1000;
+	}
+	
+	res.on('header', function(header){
+		if (res.render_time) {
+			res.setHeader('X-Render-time', res.render_time + 'ms');
+		}
+	});
+
+    next();
+});
 
 
 //helper functions for the views
@@ -92,26 +112,7 @@ server.response.msg = function(msg) {
 	return this;
 };
 
-//Add a function to locals that does this. then in the template do "for flash_msgs()"
 
-/*
-// expose the "messages" local variable when views are rendered
-server.locals.use(function(req, res) {
-	res.locals.flash_errs = req.session.flash_errs || [];
-	delete req.session.flash_errs;
-	
-	res.locals.flash_msgs = req.session.flash_msgs || [];
-	delete req.session.flash_msgs;
-	
-	//console.log('Setting up flash messages.');
-});
-*/
-
-
-
-server.viewCallbacks.push(function() {
-	console.log('hrm');
-});
 
 /******************************************************************************
 ********* Set up the form validator

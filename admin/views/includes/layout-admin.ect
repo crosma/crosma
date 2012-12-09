@@ -1,23 +1,72 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title><%- @config.title %> - <%- @config.site_name %></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="">
-		<meta name="author" content="">
-		
-		<% for css_file in @config.css_files : %>
-		<link rel="stylesheet" type="text/css" href="<%- css_file %>"><% end %>
-		
-		<!--[if lt IE 8]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-		
-		<% content 'head' %>
-	</head>
-	<body>
-		<% include './includes/header.ect' %>
-		
+<head>
+	<title><%- @config.title %> - <%- @config.site_name %></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	
+	<% for css_file in @config.css_files : %>
+	<link rel="stylesheet" type="text/css" href="<%- css_file %>"><% end %>
+	
+	<!--[if lt IE 8]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
+	<% content 'head' %>
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a href="/" class="brand">Admin Tools</a>
+				
+				<ul class="nav">
+				
+					<li class="dropdown">
+						
+						<a href="#" data-toggle="dropdown" class="dropdown-toggle">
+							<i class="icon-hdd"></i> Data <b class="caret"></b>
+						</a>
+						
+						<ul class="dropdown-menu">
+							<li>
+								<a href="/users"><i class="icon-user"></i> Manage Users</a>
+							</li>
+						</ul>
+					</li>
+					
+					<li class="dropdown">
+						<a href="#" data-toggle="dropdown" class="dropdown-toggle">Tools</a>
+						<ul class="dropdown-menu">
+							<li><a href="/purge">Purge Caches</a></li>
+							<li><a href="/crons">Cron Tasks</a></li>
+						</ul>
+					</li>
+					<li> <a href="/logout">Log Out</a></li>
+				</ul>
+				
+				<form class="navbar-search form-search pull-right">
+					<div class="input-prepend"></div>
+					<div class="input-append">
+						<input type="text" class="span2 square"><button type="submit" class="btn">Search</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+	
 		<% content %>
 		
-		
-	</body>
+		<hr>
+		<footer class="muted">
+			<small><p>Company &copy; 2012</p></small>
+		</footer>
+	</div>
+	
+	<% for js_file in @config.js_files : %>
+	<script type="text/javascript" src="<%- js_file %>"></script><% end %>
+	
+	<% include './includes/google.html' %>
+</body>
 </html>
