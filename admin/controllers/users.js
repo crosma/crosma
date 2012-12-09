@@ -42,6 +42,7 @@ page.handles(/^\/users(?:\/page\/(\d+))?(?:\/search\/(.*?))?\/?$/im, 'get', set_
 	var search = req.params[1];
 	var breadcrumb = 'Page: ' + page;
 
+
 	var sql = 'SELECT SQL_CALC_FOUND_ROWS user_id, email, created_dt, name FROM user ORDER BY user_id ASC LIMIT :start_page, :per_page';
 	var data = {start_page: page * per_page - per_page, per_page: per_page};
 	if (search != undefined) {
@@ -59,7 +60,7 @@ page.handles(/^\/users(?:\/page\/(\d+))?(?:\/search\/(.*?))?\/?$/im, 'get', set_
 	
 	async.waterfall([
 	function(callback){
-		app.mysql.query(
+		req.db.query(
 			 sql
 			,data
 			,function(err, users) {
@@ -69,7 +70,7 @@ page.handles(/^\/users(?:\/page\/(\d+))?(?:\/search\/(.*?))?\/?$/im, 'get', set_
 	},
 	
 	function(users, callback){
-		app.mysql.query_found_rows(
+		req.db.query_found_rows(
 			function(err, count) {
 				if (err) {
 					throw err;
@@ -101,7 +102,7 @@ page.handles('/user/:who/edit', 'get', set_statics, breadcrumb, function(req, re
 
 	async.waterfall([
 	function(callback){
-		app.mysql.query_row(
+		req.db.query_row(
 			'SELECT user_id, email, created_dt, name FROM user WHERE user_id = :id'
 			,{id: who}
 			,callback
@@ -205,7 +206,7 @@ page.handles('/user/create', 'post', set_statics, breadcrumb, function(req, res,
 		}
 	},
 	function(callback){ //run email check query
-		app.mysql.query_var(
+		req.db.query_var(
 			 'SELECT user_id FROM user WHERE email = :email'
 			,{email: email}
 			,function(err, result) {
@@ -230,7 +231,7 @@ page.handles('/user/create', 'post', set_statics, breadcrumb, function(req, res,
 		tools.createPassword(pass, callback);
 	},
 	function(password_salt, password_hashed, callback){ //seems were good, create the user
-		app.mysql.query(
+		req.db.query(
 			 'INSERT INTO user SET email = :email, password_hashed = :password_hashed, password_salt = :password_salt, name = :name, created_dt = NOW()'
 			,{email: email, password_hashed: password_hashed, password_salt: password_salt, name: name}
 			,function(err, result) {
@@ -267,7 +268,7 @@ page.handles('/user/create', 'post', set_statics, breadcrumb, function(req, res,
 page.handles('/user/:user_id/delete', 'get', breadcrumb, function(req, res, next) {
 	var user_id = parseInt(req.params.user_id);
 
-	app.mysql.query_row(
+	req.db.query_row(
 		 'SELECT user_id, name, email FROM user WHERE user_id = :user_id'
 		,{user_id: user_id}
 		,function(err, user) {
@@ -291,7 +292,7 @@ page.handles('/user/:user_id/delete', 'post', breadcrumb, function(req, res, nex
 	
 	async.waterfall([
 	function(callback){ //run email check query
-		app.mysql.query_var(
+		req.db.query_var(
 			 'DELETE FROM user WHERE user_id = :user_id'
 			,{user_id: user_id}
 			,function(err) {
@@ -304,7 +305,7 @@ page.handles('/user/:user_id/delete', 'post', breadcrumb, function(req, res, nex
 		);
 	},
 	function(callback){ //check results
-		app.mysql.query_row_count(
+		req.db.query_row_count(
 			function(err, count) {
 				callback(err, count);
 			}

@@ -123,6 +123,8 @@ server.use(function(req, res, next) {
 ********* ...its all stuff needed on every page
 ******************************************************************************/
 server.use(function(req, res, next) {
+	console.log('CONFIG');
+
 	res.locals.config = {};
 	
 	//res.locals.config should consist of things set for every page, making config a reserved global
@@ -150,22 +152,10 @@ server.use(function(req, res, next) {
 		return data;
 	};
 	
+	console.log('--CONFIG');
+	
 	next();
 });
-
-
-/*
-// expose the "messages" local variable when views are rendered
-server.locals.use(function(req, res) {
-
-	
-	res.locals.flash_msgs = req.session.flash_msgs || [];
-	delete req.session.flash_msgs;
-	
-	//console.log('Setting up flash messages.');
-});
-*/
-
 
 
 /******************************************************************************
@@ -214,7 +204,6 @@ module.exports.boot = function(io) {
 	require('./controllers/crons');
 	
 	require('./controllers/aws/sns');
-	
 	
 	/******************************************************************************
 	********* Error handling middleware, 

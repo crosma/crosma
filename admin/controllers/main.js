@@ -7,6 +7,16 @@ var	 app = require('../../app')
 	})
 ;
 
+function middleware1(req, res, next)
+{
+	console.log("middleware1");
+	next();
+}
+function middleware2(req, res, next)
+{
+	console.log("middleware1");
+	next();
+}
 
 page.handles('/main', 'get', function(req, res, next) {
 	res.msg("Ain't nothin' here.");

@@ -7,6 +7,16 @@ var	 app = require('../../app')
 	})
 ;
 
+function middleware1(req, res, next)
+{
+	console.log("middleware1");
+	next();
+}
+function middleware2(req, res, next)
+{
+	console.log("middleware1");
+	next();
+}
 
 page.handles('/', 'get', function(req, res, next) {
 	if (req.session.logged_in) {
@@ -16,12 +26,12 @@ page.handles('/', 'get', function(req, res, next) {
 	}
 });
 
-page.handles('/', 'login', function(req, res, next) {
+page.handles('/', 'login', middleware1, function(req, res, next) {
 	var email = req.body.email.trim();
 	var password = req.body.password;
 
 	if (email != '' && password != '') {
-		app.mysql.query_row(
+		req.db.query_row(
 			 'SELECT * FROM user WHERE email = :email LIMIT 1'
 			,{email: email}
 			,function(err, result, f) {

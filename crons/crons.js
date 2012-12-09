@@ -2,12 +2,10 @@ var	 app = require('../app')
 	,cronJob = require('cron').CronJob
 ;
 
-console.log('Crons!');
-
 var cron_tasks = [
 	{
 		 name: 'twitter'
-		,cronTime: '*/1 * * * *'
+		,cronTime: '*/10 * * * *'
 		,func: require('./tasks/twitter.task')
 		,start: false
 	}

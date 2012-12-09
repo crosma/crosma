@@ -43,11 +43,13 @@
 
 		,"cookies": "*"
 		,"cookie-signature": "*"
-		,"jackpot": "*"
+		,"generic-pool": "*"
 		
 		,"twit": "*"
 		
 		,"cron" : "*"
+		
+		,"generic-pool": "*"
 	}
 	
 	,"optionalDependencies": {

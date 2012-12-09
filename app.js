@@ -89,150 +89,11 @@ for (i=0; i<app.config.local_js_files.length; i++) {
 */
 
 
-/******************************************************************************
-********* Set up mongoose
-******************************************************************************/
-/*
-var mongoose = require('mongoose');
-
-mongoose.schema = require('./lib/mongodb/schema');
-
-mongoose.handler = function CreateHandler(req, res, cb)
-{
-	var hnd = function(err, result) {
-		if (err) {
-			console.log('---Mongo---' + err + '---Mongo---');
-			throw Error('MongoDB Error: ' + err);
-		} else {
-			cb(result);
-		}
-	}
-	
-	return hnd;
-};
-
-
-var mongoose_uri = 'mongodb://' + config.mongodb.user + ':' + config.mongodb.pass + '@' + config.mongodb.address + ':' + config.mongodb.port + '/' + config.mongodb.db;
-mongoose.connect(mongoose_uri, function(err) {
-	if (err) {
-		console.error('Error connecting to MongoDB');
-		console.error(err);
-	} else {
-		console.log('Connected to MongoDB');
-	}
-});
-*/
-
 
 /******************************************************************************
 ********* Set up mysql
 ******************************************************************************/
-var mysql = require('mysql');
-var mysql_uri = 'mysql://' + config.mysql.user + ':' + config.mysql.pass + '@' + config.mysql.address + ':' + config.mysql.port + '/' + config.mysql.db;
-
-function createMysqlConnection()
-{
-	exports.mysql = mysql.createConnection(mysql_uri);
-	
-	//This causes it to try to reconnect automaticly.
-	exports.mysql.on('error', function(err) {
-		if (!err.fatal) {
-			return;
-		}
-
-		if (err.code !== 'PROTOCOL_CONNECTION_LOST') {
-			throw err;
-		}
-		
-		console.log('MySQL reconnecting: ' + err.stack);
-
-		setTimeout(createMysqlConnection, 100); //limit how fast it can retry for safety
-	});
-	
-	exports.mysql.real_query = exports.mysql.query;
-	
-	//Wrap the query function to add the sql to the error
-	exports.mysql.query = function(sql, values, callback) {
-		//could also use this to time queries?
-		
-		exports.mysql.real_query(sql, values, function(err, rows, fields) {
-			if (err) {
-				err.query = sql;
-			}
-			
-			callback(err, rows, fields);
-		});
-	};
-	
-	//Return a single row from a query
-	exports.mysql.query_row = function(sql, values, callback) {
-		exports.mysql.query(sql, values, function(err, rows, fields) {
-			var row = null;
-			if (rows.length > 1) {
-				throw "mysql.query_row() got more than one row. LIMIT that shit.";
-			} else if (rows.length == 1) {
-				row = rows[0];
-			}
-			
-			callback(err, row, fields);
-		});
-	};
-	
-	//return the first value from the first row
-	exports.mysql.query_var = function(sql, values, callback) {
-		exports.mysql.query(sql, values, function(err, rows, fields) {
-			var val = null;
-			if (rows.length > 1) {
-				throw "mysql.query_row() got more than one row. LIMIT that shit.";
-			} else if (rows.length == 1 && rows[0].length > 1) {
-				throw "mysql.query_row() got more than one row. LIMIT that shit.";
-			} else if (rows.length == 1 && rows.length == 1) {
-				val = rows[0][fields[0].name];
-			}
-			
-			callback(err, val);
-		});
-	};
-	
-	//quick FOUND_ROWS() function
-	exports.mysql.query_found_rows = function(callback) {
-		exports.mysql.query_var('SELECT FOUND_ROWS()', {}, function(err, count) {
-			callback(err, count);
-		});
-	};
-	
-	//quick ROW_COUNT() function
-	exports.mysql.query_row_count = function(callback) {
-		exports.mysql.query_var('SELECT ROW_COUNT()', {}, function(err, count) {
-			callback(err, count);
-		});
-	};
-	
-	//customize how values are interpolated in the sql
-	exports.mysql.format = function (query, values) {
-		if (!values) return query;
-		return query.replace(/\:(\w+)/g, function (txt, key) {
-			if (values.hasOwnProperty(key)) {
-				return this.escape(values[key]);
-			}
-			return txt;
-		}.bind(this));
-	};
-	
-	//hey, hey, lets go
-	exports.mysql.connect(function(err) {
-		if (err) {
-			console.error('Error connecting to MySQL');
-			console.error(err);
-		} else {
-			console.log('Connected to MySQL');
-		}
-	});
-	
-
-}
-
-createMysqlConnection();
+exports.mysql_pool = require('./lib/mysql_pool');
 
 
 /******************************************************************************
@@ -317,8 +178,8 @@ module.exports.servers.admin.boot(io);
 ********* set up the main vhost
 ********* should be the last before the catchall.
 ******************************************************************************/
-module.exports.servers.main = require('./main/main.vhost');
-module.exports.servers.main.boot(io);
+//module.exports.servers.main = require('./main/main.vhost');
+//module.exports.servers.main.boot(io);
 
 
 /******************************************************************************
@@ -331,6 +192,7 @@ module.exports.servers.catchall = require('./vhosts/catchall');
 ********* Go go go go go
 ******************************************************************************/
 var crons = require('./crons/crons');
+ 
  
 /******************************************************************************
 ********* Go go go go go
