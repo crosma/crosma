@@ -133,8 +133,6 @@ server.use(function(req, res, next) {
 ********* ...its all stuff needed on every page
 ******************************************************************************/
 server.use(function(req, res, next) {
-	console.log('CONFIG');
-
 	res.locals.config = {};
 	
 	//res.locals.config should consist of things set for every page, making config a reserved global
@@ -161,8 +159,6 @@ server.use(function(req, res, next) {
 		
 		return data;
 	};
-	
-	console.log('--CONFIG');
 	
 	next();
 });

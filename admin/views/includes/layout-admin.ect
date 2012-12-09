@@ -28,17 +28,17 @@
 						</a>
 						
 						<ul class="dropdown-menu">
-							<li>
-								<a href="/users"><i class="icon-user"></i> Manage Users</a>
-							</li>
+							<li><a href="/users"><i class="icon-user"></i> Manage Users</a></li>
 						</ul>
 					</li>
 					
 					<li class="dropdown">
-						<a href="#" data-toggle="dropdown" class="dropdown-toggle">Tools</a>
+						<a href="#" data-toggle="dropdown" class="dropdown-toggle">
+							<i class="icon-tasks"></i> Tools <b class="caret"></b>
+						</a>
 						<ul class="dropdown-menu">
-							<li><a href="/purge">Purge Caches</a></li>
-							<li><a href="/crons">Cron Tasks</a></li>
+							<li><a href="/purge"><i class="icon-ban-circle"></i> Purge Caches</a></li>
+							<li><a href="/crons"><i class="icon-time"></i> Cron Tasks</a></li>
 						</ul>
 					</li>
 					<li> <a href="/logout">Log Out</a></li>
@@ -55,6 +55,50 @@
 	</div>
 
 	<div class="container">
+		<% if @breadcrumbs?.length : %>
+		<ul class="breadcrumb">
+			<% if @breadcrumbs.length > 1 : %>
+			<% for i in [0..@breadcrumbs.length - 2] by 1 : %>
+			<li><a href="<%- @breadcrumbs[i].href %>"><%- @breadcrumbs[i].text %></a><span class="divider">/</span></li>
+			<% end %>
+			<li class="active"><%- @breadcrumbs[@breadcrumbs.length - 1].text %></li>
+			<% end %>
+		</ul>
+		<% end %>
+		
+		<% msgs = @flash_errs null %>
+		<% if msgs?.length : %>
+		<% for msg in msgs : %>
+		<div class="row">
+			<div class="offset1 span10">
+				<div class="alert alert-error">
+					<ul>
+						<% for msg in msgs : %>
+							<li><%- msg %></li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<% end %>
+		<% end %>
+		
+		<% msgs = @flash_msgs null %>
+		<% if msgs?.length : %>
+		<% for msg in msgs : %>
+		<div class="row">
+			<div class="offset1 span10">
+				<div class="alert alert-info">
+					<ul>
+						<% for msg in msgs : %>
+							<li><%- msg %></li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<% end %>
+		<% end %>
 	
 		<% content %>
 		
