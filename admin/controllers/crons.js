@@ -16,8 +16,6 @@ page.handles('/crons/:name/run', 'get', function(req, res, next) {
 	var ran = false;
 
 	crons.tasks.forEach(function(task){
-		console.log(task);
-		
 		if (task.name == req.params.name) {
 			res.msg('Started task "' + req.params.name + '" at ' + (new Date()));
 			task.run_func();

@@ -50,6 +50,8 @@
 		,"cron" : "*"
 		
 		,"generic-pool": "*"
+		
+		,"ect": "*"
 	}
 	
 	,"optionalDependencies": {

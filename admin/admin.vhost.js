@@ -5,6 +5,7 @@ var	 app = require('../app')
 	,chronicle = require('chronicle')
 	,MemcachedStore = require('connect-memcached')(express)
 	,RedisStore = require('connect-redis')(express)
+	,ect = require('ect')
 ; 
 
 
@@ -46,9 +47,17 @@ server.use(express.methodOverride('action')); // support _method input element (
 /******************************************************************************
 ********* Set up the view engine
 ******************************************************************************/
+
+
 server.set('view engine', 'jade');
 server.set('views', app.config.root + app.config.admin_dir + '/views');
 app.config.cache_views ? server.enable('view cache') : server.disable('view cache');
+
+
+var ectRenderer = ect({cache: true, watch: true, root: app.config.root + app.config.admin_dir + '/views'});
+
+server.engine('.ect', ectRenderer.render);
+
 
 //helper functions for the views
 server.locals({

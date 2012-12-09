@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%- @config.title %> - <%- @config.site_name %></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		
+		<% for css_file in @config.css_files : %>
+		<link rel="stylesheet" type="text/css" href="<%- css_file %>"><% end %>
+		
+		<!--[if lt IE 8]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+		
+		<% content 'head' %>
+	</head>
+	<body>
+		<% include './includes/header.ect' %>
+		
+		<% content %>
+		
+		
+	</body>
+</html>
