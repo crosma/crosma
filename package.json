@@ -46,6 +46,7 @@
 		,"generic-pool": "*"
 		
 		,"twit": "*"
+		,"oauth": "*"
 		
 		,"cron" : "*"
 		
