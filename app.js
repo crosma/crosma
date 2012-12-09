@@ -130,8 +130,6 @@ mongoose.connect(mongoose_uri, function(err) {
 var mysql = require('mysql');
 var mysql_uri = 'mysql://' + config.mysql.user + ':' + config.mysql.pass + '@' + config.mysql.address + ':' + config.mysql.port + '/' + config.mysql.db;
 
-
-
 function createMysqlConnection()
 {
 	exports.mysql = mysql.createConnection(mysql_uri);
@@ -199,6 +197,13 @@ function createMysqlConnection()
 	//quick FOUND_ROWS() function
 	exports.mysql.query_found_rows = function(callback) {
 		exports.mysql.query_var('SELECT FOUND_ROWS()', {}, function(err, count) {
+			callback(err, count);
+		});
+	};
+	
+	//quick ROW_COUNT() function
+	exports.mysql.query_row_count = function(callback) {
+		exports.mysql.query_var('SELECT ROW_COUNT()', {}, function(err, count) {
 			callback(err, count);
 		});
 	};
@@ -321,6 +326,11 @@ module.exports.servers.main.boot(io);
 ******************************************************************************/
 module.exports.servers.catchall = require('./vhosts/catchall');
 
+
+/******************************************************************************
+********* Go go go go go
+******************************************************************************/
+var crons = require('./crons/crons');
  
 /******************************************************************************
 ********* Go go go go go

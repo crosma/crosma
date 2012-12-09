@@ -4,48 +4,48 @@ block content
 	.row
 		.offset3.span6
 			form.form-horizontal(method="POST")
-				fieldset.well
-					legend #{method == 'save' ? 'Edit User' : 'Create User'}
-					
-					if method == 'save'
-						.control-group
-							label.control-label User ID
-							.controls
-								code.input-xlarge.objectid #{user.user_id}
-							
+				legend #{method == 'save' ? 'Edit User' : 'Create User'}
+				
+				if method == 'save'
 					.control-group
-						label.control-label(for="email") Email Address
+						label.control-label User ID
 						.controls
-							input.input-xlarge(id="email", name="email", type="text", placeholder="Email Address", value=user.email)
-							
+							code.input-xlarge.objectid #{user.user_id}
+						
+				.control-group
+					label.control-label(for="email") Email Address
+					.controls
+						input.input-xlarge(id="email", name="email", type="text", placeholder="Email Address", value=user.email)
+						
+				.control-group
+					label.control-label(for="name") Name
+					.controls
+						input.input-xlarge(id="name", name="name", type="text", placeholder="Name", value=user.name)
+				
+				if method == 'save'
 					.control-group
-						label.control-label(for="name") Name
+						label.control-label(for="created_dt") Created
 						.controls
-							input.input-xlarge(id="name", name="name", type="text", placeholder="Name", value=user.name)
-					
-					if method == 'save'
-						.control-group
-							label.control-label(for="created_dt") Created
-							.controls
-								input.input-xlarge(id="created_dt", name="created_dt", type="text", placeholder="Created Date\Time", value=dateFormat(new Date(user.created_dt) / 100, 'dd/mm/yyyy HH:MM:ss'))
-								
-					.control-group
-						label.control-label(for="password") Password
-						.controls
-							input.input-xlarge(id="password", name="password", type="password", placeholder="Password", autocomplete="off")
-					
-					.control-group
-						label.control-label(for="password2") Repeat Password
-						.controls
-							input.input-xlarge(id="password2", name="password2", type="password", placeholder="Repeat Password", autocomplete="off")
-							if method == 'save'
-								.p.help-block Fill both password boxes to change. They are ignored otherwise.
+							input.input-xlarge(id="created_dt", name="created_dt", type="text", placeholder="Created Date\Time", value=dateFormat(new Date(user.created_dt) / 100, 'dd/mm/yyyy HH:MM:ss'))
 							
-							
-					.form-actions
-						input(type="submit", value="Save User").btn.btn-primary.btn-large
-						&nbsp;
-						a.btn.btn-large(href="/users") Cancel
+				.control-group
+					label.control-label(for="password") Password
+					.controls
+						input.input-xlarge(id="password", name="password", type="password", placeholder="Password", autocomplete="off")
+				
+				.control-group
+					label.control-label(for="password2") Repeat Password
+					.controls
+						input.input-xlarge(id="password2", name="password2", type="password", placeholder="Repeat Password", autocomplete="off")
+						if method == 'save'
+							.p.help-block Fill both password boxes to change. They are ignored otherwise.
+						
+						
+				.form-actions
+					.btn-group
+						input(type="submit", value="Save User").btn.btn-primary
+						a.btn(href="/users") Cancel
+						
 						
 if method == 'save'
 	block scripts

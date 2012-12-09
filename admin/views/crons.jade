@@ -1,0 +1,31 @@
+extends includes/layout-admin
+ 
+block content
+	table.table.table-striped.table-condensed
+		thead
+			tr
+				th Task Name
+				th Cron Time
+				th Running
+				th Last Started
+				th Run Now
+				
+		tbody
+			for task in tasks
+				tr
+					td #{task.name}
+					td #{task.cronTime}
+					if task.job.running
+						td True
+					else
+						td False
+					
+					if task.last_started
+						td #{dateFormat(task.last_started, 'dd/mm/yyyy HH:MM:ss')}
+					else
+						td Never
+						
+					td
+						a(href="/crons/" + task.name + "/run") Run Now
+
+				

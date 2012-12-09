@@ -1,21 +1,41 @@
-mixin paginate(prepend, page, page_count)
+mixin paginate(prepend, postpend, page, page_count)
+
 	.pagination
 		ul
+			if page - 5 > 1
+				li
+					a(href=prepend + (1) + postpend) &laquo;&laquo;&laquo;
+					
 			if page > 1
 				li
-					a(href=prepend + (page - 1)) &laquo;
-			else
-				li.disabled
-					a(href="#") &laquo;
-				
-			- for(p=1; p<=page_count; p++)
+					a(href=prepend + (Math.max(page - 5, 1)) + postpend) &laquo;&laquo;
+		
+			if page > 1
+				li
+					a(href=prepend + (page - 1) + postpend) &laquo;
+
+			- var page_start = 1;
+			- if (page > 5) {
+			-	page_start = page - 5;
+			- }
+			- var page_end = page_count;
+			- if (page_count - page > 5) {
+			-	page_end = page + 5;
+			- }
+			- for(p=page_start; p<=page_end; p++)
 				li(class=(p==page?"active":null))
-					a(href=prepend + p) #{p}
+					a(href=prepend + p + postpend) #{p}
 			
 					
 			if page < page_count
 				li
-					a(href=prepend + (page + 1)) &raquo;
-			else
-				li.disabled
-					a(href="#") &raquo;
+					a(href=prepend + (page + 1) + postpend) &raquo;
+					
+			if page_count - page > 1
+				li
+					a(href=prepend + (Math.min(page + 5, page_count)) + postpend) &raquo;&raquo;
+					
+			if page_count - page > 5
+				li
+					a(href=prepend + (page_count) + postpend) &raquo;&raquo;&raquo;
+					

@@ -46,17 +46,41 @@ html
 										a(href="/purge")
 											i.icon-ban-circle
 											|  Purge Caches
+									li
+										a(href="/crons")
+											i.icon-time
+											|  Cron Tasks
+											
 							li
 								a(href="/logout")
 									i.icon-off
 									| Log Out
-						form.navbar-search.pull-right
-							input(type="text", class="search-query", placeholder="Search")
 									
-	
+									
+						form.navbar-search.form-search.pull-right
+							.input-prepend
+								span.add-on
+									i.icon-search
+							.input-append
+								input(type="text").span2.square
+								button(type="submit").btn Search
+
+								
 			
 		.container
-			
+			if config.logged_in
+				ul.breadcrumb
+					if breadcrumbs.length == 0
+						li.active  Add a breadcrumb.
+					else if breadcrumbs.length > 1
+						- for (i=0; i<breadcrumbs.length-1; i++)
+							li
+								a(href=breadcrumbs[i].href) #{breadcrumbs[i].text}
+								span.divider /
+								
+					if breadcrumbs.length > 0
+						li.active  #{breadcrumbs[breadcrumbs.length-1].text}
+
 			if (msgs = flash_errs()) && !!msgs.length
 				.row
 					.offset1.span10
@@ -75,6 +99,10 @@ html
 			
 
 			
+
+			
+			
+			
 		
 			block content				
 						
@@ -83,6 +111,9 @@ html
 			footer.muted
 				small
 					p Company &copy; 2012
+				
+
+					
 							
 		each js_file in config.js_files
 			script(type="text/javascript", src=js_file)

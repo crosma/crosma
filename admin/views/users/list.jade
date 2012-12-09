@@ -2,32 +2,31 @@ extends ../includes/layout-admin
 include ../includes/paginate
  
 block content
-	table.table.table-striped.table-bordered.table-condensed
+	table.table.table-striped.table-condensed
 		thead
 			tr
 				th ID
 				th Email Address
+				th Name
 				th Created
-				th Object Id
-				th Edit
-				th Delete
+				th Edit&nbsp\&nbspDelete
 				
 		tbody
 			for user in users
 				tr
 					td #{user.user_id}
-					td #{user.name}
 					td #{user.email}
+					td #{user.name}
 					td #{dateFormat(user.created_dt, 'dd/mm/yyyy HH:MM:ss')}
-					
 					td
 						a(href="/user/" + user.user_id + "/edit") Edit
-					td
+						&nbsp\&nbsp
 						a(href="/user/" + user.user_id + "/delete") Delete
+
 					
 	.row
 		.span10
-			mixin paginate("/users/", page, page_count)
+			mixin paginate("/users/page/", (search ? "/search/" + search : ""), page, page_count)
 		.span2
 			a.pull-right(href="/user/create") Create User
 				

@@ -8,6 +8,7 @@ var	 app = require('../../app')
 
 function setup(req, res, next)
 {
+	res.locals.breadcrumbs.push({text: 'Purge Caches'});
 	res.locals.the_file = '';
 	res.locals.varnish = true;
 	res.locals.cloudfront = true;

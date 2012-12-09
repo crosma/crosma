@@ -67,3 +67,8 @@ body {
 .dropdown-submenu:hover > a > [class*=" icon-"] {
   background-image: url("../../img/glyphicons-halflings-white.png");
 }
+.square {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+}

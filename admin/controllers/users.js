@@ -20,6 +20,7 @@ var local_js_files = app.config.local_js_files.slice(0).concat([
 	 app.staticize('/js/lib/jquery-ui-1.8.21.custom.min.js')
 	,app.staticize('/js/lib/jquery-ui-sliderAccess.js')
 	,app.staticize('/js/lib/jquery-ui-timepicker-addon.js')
+	,app.staticize('/js/lib/jquery.tablesorter.js')
 ]);
 
 //middleware function to set the statics to custom values
@@ -29,18 +30,40 @@ function set_statics(req, res, next) {
 	next();
 }
 
+function breadcrumb(req, res, next) {
+	res.locals.breadcrumbs.push({text: 'Users', href: '/users'});
+	next();
+}
 
-page.handles('/users/:page?', 'get', function(req, res, next) {
+//['/users/:page?/search/:search?', '/users/search/:search', '/users/:page?']
+page.handles(/^\/users(?:\/page\/(\d+))?(?:\/search\/(.*?))?\/?$/im, 'get', set_statics, breadcrumb, function(req, res, next) {
 	var per_page = 25;
-	var page = Math.max(1, req.params.page ? parseInt(req.params.page) : 1);
+	var page = req.params[0] ? parseInt('0' + req.params[0]) : 1;
+	var search = req.params[1];
+	var breadcrumb = 'Page: ' + page;
+
+	var sql = 'SELECT SQL_CALC_FOUND_ROWS user_id, email, created_dt, name FROM user ORDER BY user_id ASC LIMIT :start_page, :per_page';
+	var data = {start_page: page * per_page - per_page, per_page: per_page};
+	if (search != undefined) {
+		breadcrumb += ', Search: "' + search + '"';
+	
+		data.search = search;
+		data.search_str = '%' + search + '%';
+		
+		if (parseInt(search) > 0 && parseInt('0' + search) % 1 === 0) {
+			sql = 'SELECT SQL_CALC_FOUND_ROWS user_id, email, created_dt, name FROM user WHERE user_id = :search ORDER BY user_id ASC LIMIT :start_page, :per_page';
+		} else {
+			sql = 'SELECT SQL_CALC_FOUND_ROWS user_id, email, created_dt, name FROM user WHERE email LIKE :search_str OR name LIKE :search_str ORDER BY user_id ASC LIMIT :start_page, :per_page';
+		}
+	}
 	
 	async.waterfall([
 	function(callback){
 		app.mysql.query(
-			'SELECT SQL_CALC_FOUND_ROWS user_id, email, created_dt, name FROM user ORDER BY user_id ASC LIMIT :start, :count'
-			,{start: page * per_page - per_page, count: per_page}
-			,function(err, result) {
-				callback(err, result);
+			 sql
+			,data
+			,function(err, users) {
+				callback(err, users);
 			}
 		);
 	},
@@ -48,7 +71,11 @@ page.handles('/users/:page?', 'get', function(req, res, next) {
 	function(users, callback){
 		app.mysql.query_found_rows(
 			function(err, count) {
-				callback(err, users, count);
+				if (err) {
+					throw err;
+				} else {
+					callback(err, users, count);
+				}
 			}
 		);
 	},
@@ -56,9 +83,11 @@ page.handles('/users/:page?', 'get', function(req, res, next) {
 	], function (err, users, count) {
 		if (err) { next(err); return; }
 	
+		res.locals.breadcrumbs.push({text: breadcrumb});
 		res.locals.users = users;
 		res.locals.page = page;
 		res.locals.page_count = Math.ceil(count / per_page);
+		res.locals.search = search;
 
 		res.render('./users/list'); 
 	});
@@ -67,7 +96,7 @@ page.handles('/users/:page?', 'get', function(req, res, next) {
 
 
 
-page.handles('/user/:who/edit', 'get', set_statics, function(req, res, next) {
+page.handles('/user/:who/edit', 'get', set_statics, breadcrumb, function(req, res, next) {
 	var who = parseInt(req.params.who);
 
 	async.waterfall([
@@ -80,11 +109,13 @@ page.handles('/user/:who/edit', 'get', set_statics, function(req, res, next) {
 	},
 	
 	], function (err, user) {
-		if (err) { next(err); return; }
-		
-		if (user) {
+		if (err) {
+			throw err;
+		} else if (user) {
+			res.locals.breadcrumbs.push({text: 'Edit: ' + user.user_id});
 			res.locals.method = 'save';
 			res.locals.user = user;
+			
 			res.render('./users/edit');	
 		
 		} else {
@@ -96,7 +127,7 @@ page.handles('/user/:who/edit', 'get', set_statics, function(req, res, next) {
 });
 
 
-page.handles('/user/:who/edit', 'post', set_statics, function(req, res, next) {
+page.handles('/user/:who/edit', 'post', set_statics, breadcrumb, function(req, res, next) {
 	var who = req.params.who;
 	
 	mdb.schema.User.findUnique(who, mdb.handler(req, res, function (user) {
@@ -126,15 +157,16 @@ page.handles('/user/:who/edit', 'post', set_statics, function(req, res, next) {
 			
 			
 			//Woo, we can save
-			if (res.err_count() == 0)
-			{
+			if (res.err_count() == 0) {
 				user.save();
 			
 				res.msg('The user has been saved.');
 			}
 			
+			res.locals.breadcrumbs.push({text: 'Edit: ' + user.user_id});
 			res.locals.method = 'save';
 			res.locals.user = user;
+			
 			res.render('./users/edit');
 
 		} else {
@@ -146,7 +178,8 @@ page.handles('/user/:who/edit', 'post', set_statics, function(req, res, next) {
 });
 
 
-page.handles('/user/create', 'get', set_statics, function(req, res, next) {
+page.handles('/user/create', 'get', set_statics, breadcrumb, function(req, res, next) {
+	res.locals.breadcrumbs.push({text: 'Create User'});
 	res.locals.method = 'create';
 	res.locals.user = {name: '', email: ''};
 	
@@ -154,7 +187,7 @@ page.handles('/user/create', 'get', set_statics, function(req, res, next) {
 });
 
 
-page.handles('/user/create', 'post', set_statics, function(req, res, next) {
+page.handles('/user/create', 'post', set_statics, breadcrumb, function(req, res, next) {
 	var email = req.body.email.toString().trim();
 	var name = req.body.name.toString().trim();
 
@@ -214,8 +247,11 @@ page.handles('/user/create', 'post', set_statics, function(req, res, next) {
 			app.debug("Create Error: " + err.message);
 			
 			res.err(err.message);
+			
+			res.locals.breadcrumbs.push({text: 'Create User'});
 			res.locals.method = 'create';
 			res.locals.user = {'name': name, 'email': email};
+			
 			res.render('./users/edit');	
 		} else {
 			app.debug("Create Success: " + user_id);
@@ -228,39 +264,61 @@ page.handles('/user/create', 'post', set_statics, function(req, res, next) {
 });
 
 
-page.handles('/user/:who/delete', 'get', function(req, res, next) {
-	var who = req.params.who;
+page.handles('/user/:user_id/delete', 'get', breadcrumb, function(req, res, next) {
+	var user_id = parseInt(req.params.user_id);
 
-	mdb.schema.User.findUnique(who, mdb.handler(req, res, function (user) {
-		if (user) {
-			res.locals.user = user;
-			res.render('./users/delete');
-			
-		} else {
-			res.err('Could not find "' + who + '".');
-			res.redirect('/users');
+	app.mysql.query_row(
+		 'SELECT user_id, name, email FROM user WHERE user_id = :user_id'
+		,{user_id: user_id}
+		,function(err, user) {
+			if (err) {
+				throw err;
+			} else if (user) {
+				res.locals.breadcrumbs.push({text: 'Delete: ' + user.user_id});
+				res.locals.user = user;
+				res.render('./users/delete');
+			} else {
+				res.err('Could not find user_id ' + user_id + '.');
+				res.redirect('/users');
+			}
 		}
-	}));
-	
+	);
 });
 
 
-page.handles('/user/:who/delete', 'post', function(req, res, next) {
-	var who = req.params.who;
+page.handles('/user/:user_id/delete', 'post', breadcrumb, function(req, res, next) {
+	var user_id = parseInt(req.params.user_id);
 	
-	mdb.schema.User.findUnique(who, mdb.handler(req, res, function (user) {
-		if (user) {
-			user.remove();
-			
+	async.waterfall([
+	function(callback){ //run email check query
+		app.mysql.query_var(
+			 'DELETE FROM user WHERE user_id = :user_id'
+			,{user_id: user_id}
+			,function(err) {
+				if (err) {
+					throw err;
+				} else {
+					callback(null);
+				}
+			}
+		);
+	},
+	function(callback){ //check results
+		app.mysql.query_row_count(
+			function(err, count) {
+				callback(err, count);
+			}
+		)
+	},
+	], function (err, count) {
+		if (count) {
 			res.msg('The user has been deleted.');
-			
 			res.redirect('/users');
 
 		} else {
-			res.err('Could not find "' + who + '".');
+			res.err('Could not find user_id ' + user_id + '.');
 			res.redirect('/users');
 		}
-	}));
-	
+	});
 });
 

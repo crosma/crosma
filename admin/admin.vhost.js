@@ -134,6 +134,8 @@ server.use(function(req, res, next) {
 	res.locals.config.js_files = app.config.local_js_files.slice(0);
 	res.locals.config.NODE_ENV = process.env.NODE_ENV;
 	
+	res.locals.breadcrumbs = [];
+	
 	res.locals.flash_errs = function() {
 		var data = req.session.flash_errs || [];
 		delete req.session.flash_errs;
@@ -207,8 +209,9 @@ module.exports.boot = function(io) {
 	require('./controllers/index');
 	require('./controllers/main');
 	require('./controllers/purge');
-	require('./controllers/mongo');
 	require('./controllers/users');
+	require('./controllers/twitter');
+	require('./controllers/crons');
 	
 	require('./controllers/aws/sns');
 	

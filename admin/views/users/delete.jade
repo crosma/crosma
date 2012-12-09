@@ -4,11 +4,14 @@ block content
 	.row
 		.offset3.span6
 			form.form-horizontal(method="POST")
-				fieldset.well
-					.help-block.
-						Are you sure you want to delete user #{user.name.first} #{user.name.last} (#{user.email}, <code>#{user._id}</code>)?
+				legend Are you sure?
+				
+				.help-block.
+					Are you sure you want to delete user #{user.name} (#{user.email}, #{user.user_id})?
 
-					.form-actions	
-						input.btn.btn-primary.btn-large(type="submit", value="Delete User")
-						&nbsp;
-						a.btn.btn-large(href="/users") Cancel
+				.form-actions
+					.btn-group
+						button(type="submit").btn.btn-danger Delete User
+						a.btn(href="/users") Cancel
+					
+					

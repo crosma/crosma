@@ -9,12 +9,9 @@ var	 app = require('../../app')
 
 
 page.handles('/', 'get', function(req, res, next) {
-	if (req.session.logged_in)
-	{
+	if (req.session.logged_in) {
 		res.redirect('/main');
-	}
-	else
-	{
+	} else {
 		res.render('index.jade');
 	}
 });
@@ -23,8 +20,7 @@ page.handles('/', 'login', function(req, res, next) {
 	var email = req.body.email.trim();
 	var password = req.body.password;
 
-	if (email != '' && password != '')
-	{
+	if (email != '' && password != '') {
 		app.mysql.query_row(
 			 'SELECT * FROM user WHERE email = :email LIMIT 1'
 			,{email: email}

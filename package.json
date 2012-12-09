@@ -35,7 +35,7 @@
 		
 		,"connect-compiler": "*"
 		,"uglify-js": "*"
-		,"nodemailer": "*" 
+		,"nodemailer": "*"
 		,"debug": "*"
 		
 		,"mysql": "*"
@@ -44,6 +44,10 @@
 		,"cookies": "*"
 		,"cookie-signature": "*"
 		,"jackpot": "*"
+		
+		,"twit": "*"
+		
+		,"cron" : "*"
 	}
 	
 	,"optionalDependencies": {

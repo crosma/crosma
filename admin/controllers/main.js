@@ -9,6 +9,9 @@ var	 app = require('../../app')
 
 
 page.handles('/main', 'get', function(req, res, next) {
+	res.msg("Ain't nothin' here.");
+
+	res.locals.breadcrumbs.push({text: 'Main', href: '/main'});
 	res.render('main');
 });
 
