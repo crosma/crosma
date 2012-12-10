@@ -12,12 +12,12 @@ block content
 				th Edit&nbsp\&nbspDelete
 				
 		tbody
-			for user in users
+			for user in self.users
 				tr
-					td #{user.user_id}
-					td #{user.email}
+					td !{user.user_id}
+					td !{user.email}
 					td #{user.name}
-					td #{date_format.full(user.created_dt)}
+					td !{self.date_format.full(user.created_dt)}
 					td
 						a(href="/user/" + user.user_id + "/edit") Edit
 						&nbsp\&nbsp
@@ -26,7 +26,7 @@ block content
 					
 	.row
 		.span10
-			mixin paginate("/users/page/", (search ? "/search/" + search : ""), page, page_count)
+			mixin paginate("/users/page/", (self.search ? "/search/" + self.search : ""), self.page, self.page_count)
 		.span2
 			a.pull-right(href="/user/create") Create User
 				

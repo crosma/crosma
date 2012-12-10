@@ -90,7 +90,7 @@ page.handles(/^\/users(?:\/page\/(\d+))?(?:\/search\/(.*?))?\/?$/im, 'get', set_
 		res.locals.page_count = Math.ceil(count / per_page);
 		res.locals.search = search;
 
-		res.render('./users/list.jade'); 
+		res.render('./users/list.jade', {self: true}); 
 	});
 
 });

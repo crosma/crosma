@@ -54,9 +54,8 @@ server.set('view engine', 'jade');
 server.set('views', app.config.root + app.config.admin_dir + '/views');
 app.config.cache_views ? server.enable('view cache') : server.disable('view cache');
 
-var ectRenderer = ect({cache: true, watch: true, root: app.config.root + app.config.admin_dir + '/views'});
-server.engine('.ect', ectRenderer.render);
-
+//var ectRenderer = ect({cache: true, watch: true, root: app.config.root + app.config.admin_dir + '/views'});
+//server.engine('.ect', ectRenderer.render);
 
 server.use(function(req, res, next) {
 	res.real_render = res.render;
@@ -220,7 +219,7 @@ module.exports.boot = function(io) {
 	server.use(function(err, req, res, next) {
 		res.locals.err = err;
 		res.locals.inspect_text = JSON.stringify(err, null, '    '); //util.inspect(err, true, 5);
-		res.status(500).render('errors/500');
+		res.status(500).render('errors/500', {self: true});
 		
 		console.error(err);
 	});
@@ -230,7 +229,7 @@ module.exports.boot = function(io) {
 	******************************************************************************/
 	server.all('*', function(req, res, next) {
 		res.locals.url = req.url;
-		res.status(404).render('errors/404');
+		res.status(404).render('errors/404', {self: true});
 	});
 }
 

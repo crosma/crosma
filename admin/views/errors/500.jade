@@ -7,16 +7,16 @@ block content
 				h1 Fuck.
 				p An error occured. Fix it.
 				
-			if config.NODE_ENV != 'production'
+			if self.config.NODE_ENV != 'production'
 				h4 Message
-				pre #{err.message}
+				pre #{self.err.message}
 				
-				if err.query
+				if self.err.query
 					h4 Query
-					pre #{err.query}
+					pre #{self.err.query}
 				
 				h4 Stack Trace
-				pre #{err.stack}
+				pre #{self.err.stack}
 					
 				h4 The Rest
-				pre #{inspect_text}
+				pre #{self.inspect_text}

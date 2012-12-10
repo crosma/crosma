@@ -1,12 +1,12 @@
 !!! 5
 html
 	head
-		title #{config.title} - #{config.site_name}
+		title #{self.config.title} - #{self.config.site_name}
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		meta(name="description", content="")
-		meta(name="author", content="Matt Crossley")
+		meta(name="author", content="Matt Crossley <vbaspcppguy@gmail.com>")
 	
-		each css_file in config.css_files
+		each css_file in self.config.css_files
 			link(rel="stylesheet", type='text/css', href=css_file)
 			
 		block css
@@ -22,7 +22,7 @@ html
 			.navbar-inner
 				.container
 					a.brand(href="/") Admin Tools
-					if config.logged_in
+					if self.config.logged_in
 
 						ul.nav
 							li.dropdown
@@ -68,20 +68,20 @@ html
 								
 			
 		.container
-			if config.logged_in
+			if self.config.logged_in
 				ul.breadcrumb
-					if breadcrumbs.length == 0
+					if self.breadcrumbs.length == 0
 						li.active  Add a breadcrumb.
-					else if breadcrumbs.length > 1
-						- for (i=0; i<breadcrumbs.length-1; i++)
+					else if self.breadcrumbs.length > 1
+						- for (i=0; i<self.breadcrumbs.length-1; i++)
 							li
-								a(href=breadcrumbs[i].href) #{breadcrumbs[i].text}
+								a(href=self.breadcrumbs[i].href) #{self.breadcrumbs[i].text}
 								span.divider /
 								
-					if breadcrumbs.length > 0
-						li.active  #{breadcrumbs[breadcrumbs.length-1].text}
+					if self.breadcrumbs.length > 0
+						li.active  #{self.breadcrumbs[self.breadcrumbs.length-1].text}
 
-			if (msgs = flash_errs()) && !!msgs.length
+			if (msgs = self.flash_errs()) && !!msgs.length
 				.row
 					.offset1.span10
 						.alert.alert-error
@@ -89,7 +89,7 @@ html
 								each msg in msgs
 									li!= msg
 			
-			if (msgs = flash_msgs()) && !!msgs.length
+			if (msgs = self.flash_msgs()) && !!msgs.length
 				.row
 					.offset1.span10
 						.alert.alert-info
@@ -115,10 +115,10 @@ html
 
 					
 							
-		each js_file in config.js_files
+		each js_file in self.config.js_files
 			script(type="text/javascript", src=js_file)
 			
 		block scripts
 		
-		if config.NODE_ENV == 'production'
+		if self.config.NODE_ENV == 'production'
 			include ../includes/google.html
