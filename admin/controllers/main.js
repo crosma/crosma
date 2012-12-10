@@ -22,11 +22,7 @@ page.handles('/main', 'get', function(req, res, next) {
 	res.msg("Ain't nothin' here.");
 
 	res.locals.breadcrumbs.push({text: 'Main', href: '/main'});
-	//res.render('main');
-	
-	res.locals.random = Math.random();
-	
-	res.render('test.ect');
+	res.render('main');
 });
 
 /*

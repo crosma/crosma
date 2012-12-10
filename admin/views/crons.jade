@@ -11,7 +11,7 @@ block content
 				th Run Now
 				
 		tbody
-			for task in tasks
+			for task in self.tasks
 				tr
 					td #{task.name}
 					td #{task.cronTime}

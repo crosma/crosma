@@ -38,11 +38,13 @@ function breadcrumb(req, res, next) {
 //['/users/:page?/search/:search?', '/users/search/:search', '/users/:page?']
 page.handles(/^\/users(?:\/page\/(\d+))?(?:\/search\/(.*?))?\/?$/im, 'get', set_statics, breadcrumb, function(req, res, next) {
 	var per_page = 5;
-	var page = req.params[0] ? parseInt('0' + req.params[0]) : 1;
+	var page = parseInt(req.params[0]) ? parseInt(req.params[0]) : 1;
 	var search = req.params[1];
 	var breadcrumb = 'Page: ' + page;
 
 
+	console.log('page: ' + req.params[0]);
+	
 	var sql = 'SELECT SQL_CALC_FOUND_ROWS user_id, email, created_dt, name FROM user ORDER BY user_id ASC LIMIT :start_page, :per_page';
 	var data = {start_page: page * per_page - per_page, per_page: per_page};
 	if (search != undefined) {
@@ -90,133 +92,10 @@ page.handles(/^\/users(?:\/page\/(\d+))?(?:\/search\/(.*?))?\/?$/im, 'get', set_
 		res.locals.page_count = Math.ceil(count / per_page);
 		res.locals.search = search;
 
-		res.render('./users/list.jade', {self: true}); 
+		res.render('./users/list'); 
 	});
 
 });
-
-
-
-page.handles(/^\/users2(?:\/page\/(\d+))?(?:\/search\/(.*?))?\/?$/im, 'get', set_statics, breadcrumb, function(req, res, next) {
-	var per_page = 5;
-	var page = req.params[0] ? parseInt('0' + req.params[0]) : 1;
-	var search = req.params[1];
-	var breadcrumb = 'Page: ' + page;
-
-
-	var sql = 'SELECT SQL_CALC_FOUND_ROWS user_id, email, created_dt, name FROM user ORDER BY user_id ASC LIMIT :start_page, :per_page';
-	var data = {start_page: page * per_page - per_page, per_page: per_page};
-	if (search != undefined) {
-		breadcrumb += ', Search: "' + search + '"';
-	
-		data.search = search;
-		data.search_str = '%' + search + '%';
-		
-		if (parseInt(search) > 0 && parseInt('0' + search) % 1 === 0) {
-			sql = 'SELECT SQL_CALC_FOUND_ROWS user_id, email, created_dt, name FROM user WHERE user_id = :search ORDER BY user_id ASC LIMIT :start_page, :per_page';
-		} else {
-			sql = 'SELECT SQL_CALC_FOUND_ROWS user_id, email, created_dt, name FROM user WHERE email LIKE :search_str OR name LIKE :search_str ORDER BY user_id ASC LIMIT :start_page, :per_page';
-		}
-	}
-	
-	async.waterfall([
-	function(callback){
-		req.db.query(
-			 sql
-			,data
-			,function(err, users) {
-				callback(err, users);
-			}
-		);
-	},
-	
-	function(users, callback){
-		req.db.query_found_rows(
-			function(err, count) {
-				if (err) {
-					throw err;
-				} else {
-					callback(err, users, count);
-				}
-			}
-		);
-	},
-	
-	], function (err, users, count) {
-		if (err) { next(err); return; }
-	
-		res.locals.breadcrumbs.push({text: breadcrumb});
-		res.locals.users = users;
-		res.locals.page = page;
-		res.locals.page_count = Math.ceil(count / per_page);
-		res.locals.search = search;
-
-		res.render('./users/list2.jade'); 
-	});
-
-});
-
-
-
-page.handles(/^\/users3(?:\/page\/(\d+))?(?:\/search\/(.*?))?\/?$/im, 'get', set_statics, breadcrumb, function(req, res, next) {
-	var per_page = 5;
-	var page = req.params[0] ? parseInt('0' + req.params[0]) : 1;
-	var search = req.params[1];
-	var breadcrumb = 'Page: ' + page;
-
-
-	var sql = 'SELECT SQL_CALC_FOUND_ROWS user_id, email, created_dt, name FROM user ORDER BY user_id ASC LIMIT :start_page, :per_page';
-	var data = {start_page: page * per_page - per_page, per_page: per_page};
-	if (search != undefined) {
-		breadcrumb += ', Search: "' + search + '"';
-	
-		data.search = search;
-		data.search_str = '%' + search + '%';
-		
-		if (parseInt(search) > 0 && parseInt('0' + search) % 1 === 0) {
-			sql = 'SELECT SQL_CALC_FOUND_ROWS user_id, email, created_dt, name FROM user WHERE user_id = :search ORDER BY user_id ASC LIMIT :start_page, :per_page';
-		} else {
-			sql = 'SELECT SQL_CALC_FOUND_ROWS user_id, email, created_dt, name FROM user WHERE email LIKE :search_str OR name LIKE :search_str ORDER BY user_id ASC LIMIT :start_page, :per_page';
-		}
-	}
-	
-	async.waterfall([
-	function(callback){
-		req.db.query(
-			 sql
-			,data
-			,function(err, users) {
-				callback(err, users);
-			}
-		);
-	},
-	
-	function(users, callback){
-		req.db.query_found_rows(
-			function(err, count) {
-				if (err) {
-					throw err;
-				} else {
-					callback(err, users, count);
-				}
-			}
-		);
-	},
-	
-	], function (err, users, count) {
-		if (err) { next(err); return; }
-	
-		res.locals.breadcrumbs.push({text: breadcrumb});
-		res.locals.users = users;
-		res.locals.page = page;
-		res.locals.page_count = Math.ceil(count / per_page);
-		res.locals.search = search;
-
-		res.render('./users/list.ect'); 
-	});
-
-});
-
 
 
 page.handles('/user/:who/edit', 'get', set_statics, breadcrumb, function(req, res, next) {

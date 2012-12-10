@@ -11,14 +11,14 @@ block content
 					input(name="action", value="purge_static", type="hidden")
 				
 					label(for="the_file") File To Purge
-					input(id="the_file", name="the_file", type="text", class="input-xlarge", placeholder="Url...", value=the_file)
+					input(id="the_file", name="the_file", type="text", class="input-xlarge", placeholder="Url...", value=self.the_file)
 					p.help-block Static or relative url to throw a PURGE request at.
 					
 					label.checkbox Purge Varnish
-						input(id="varnish", name="varnish", type="checkbox", value="yes", checked=varnish)
+						input(id="varnish", name="varnish", type="checkbox", value="yes", checked=self.varnish)
 						
 					label.checkbox Invalidate CloudFront
-						input(id="cloudfront", name="cloudfront", type="checkbox", value="yes", checked=cloudfront)
+						input(id="cloudfront", name="cloudfront", type="checkbox", value="yes", checked=self.cloudfront)
 					
 					input(type="submit", value="Purge Static").btn
 				

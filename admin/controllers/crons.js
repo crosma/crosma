@@ -9,7 +9,7 @@ page.handles('/crons', 'get', function(req, res, next) {
 	res.locals.breadcrumbs.push({text: 'Crons', href: '/crons'});
 	res.locals.tasks = crons.tasks;
 	
-	res.render('./crons'); 
+	res.render('crons'); 
 });
 
 page.handles('/crons/:name/run', 'get', function(req, res, next) {

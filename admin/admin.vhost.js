@@ -48,21 +48,19 @@ server.use(express.methodOverride('action')); // support _method input element (
 /******************************************************************************
 ********* Set up the view engine
 ******************************************************************************/
-
-
 server.set('view engine', 'jade');
 server.set('views', app.config.root + app.config.admin_dir + '/views');
+server.set('view options', {self: true, pretty: true});
 app.config.cache_views ? server.enable('view cache') : server.disable('view cache');
 
-//var ectRenderer = ect({cache: true, watch: true, root: app.config.root + app.config.admin_dir + '/views'});
-//server.engine('.ect', ectRenderer.render);
 
+//Wrap the render function to set options and time rendering
 server.use(function(req, res, next) {
 	res.real_render = res.render;
-	res.render = function() {
+	res.render = function(file, cb) {
 		var start = process.hrtime();
 		
-		res.real_render.apply(this, arguments);
+		res.real_render(file, {self: true});
 		
 		var end = process.hrtime();
 		
@@ -77,7 +75,6 @@ server.use(function(req, res, next) {
 
     next();
 });
-
 
 
 //helper functions for the views

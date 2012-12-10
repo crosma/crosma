@@ -14,10 +14,10 @@ block content
 		tbody
 			for user in self.users
 				tr
-					td !{user.user_id}
-					td !{user.email}
-					td #{user.name}
-					td !{self.date_format.full(user.created_dt)}
+					td!= user.user_id
+					td!= user.email
+					td= user.name
+					td!= self.date_format.full(user.created_dt)
 					td
 						a(href="/user/" + user.user_id + "/edit") Edit
 						&nbsp\&nbsp
