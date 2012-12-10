@@ -17,7 +17,7 @@ block content
 					td #{user.user_id}
 					td #{user.email}
 					td #{user.name}
-					td #{dateFormat(user.created_dt, 'dd/mm/yyyy HH:MM:ss')}
+					td #{date_format.full(user.created_dt)}
 					td
 						a(href="/user/" + user.user_id + "/edit") Edit
 						&nbsp\&nbsp

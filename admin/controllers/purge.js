@@ -17,7 +17,7 @@ function setup(req, res, next)
 }
 
 page.handles('/purge', 'get', setup, function(req, res, next) {
-	res.render('purge.jade');
+	res.render('purge.ect');
 });
 
 page.handles('/purge', 'purge_static', setup, function(req, res, next) {
@@ -53,7 +53,7 @@ page.handles('/purge', 'purge_static', setup, function(req, res, next) {
 	res.locals.varnish = varnish;
 	res.locals.cloudfront = cloudfront;
 	
-	res.render('purge.jade');
+	res.render('purge.ect');
 })
 
 page.handles('/purge', 'purge_views', setup, function(req, res, next) {
@@ -61,7 +61,7 @@ page.handles('/purge', 'purge_views', setup, function(req, res, next) {
 	
 	res.msg('View cache has been cleared.');
 	
-	res.render('purge.jade');
+	res.render('purge.ect');
 });
 
 
@@ -70,5 +70,5 @@ page.handles('/purge', 'purge_chronicle', setup, function(req, res, next) {
 	
 	res.msg('Chronicle has been cleared.');
 	
-	res.render('purge.jade');
+	res.render('purge.ect');
 });

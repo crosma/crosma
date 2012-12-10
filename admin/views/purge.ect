@@ -1,0 +1,34 @@
+<% extend './includes/layout-admin.ect' %>
+
+
+<div class="row-fluid">
+
+	<div class="span6">
+		<form method="POST" autocomplete="off" class="form-horizontal">
+		<input name="action" value="purge_static" type="hidden">
+		<fieldset class="well">
+			<legend>Purge Static Caches</legend>
+
+			<label for="the_file">File To Purge</label>
+			<input id="the_file" name="the_file" type="text" placeholder="Url..." value="" class="input-xlarge" value=<%- @the_file %>>
+			
+			<p class="help-block">Static or relative url to throw a PURGE request at.</p>
+			<label class="checkbox">Purge Varnish <input id="varnish" name="varnish" type="checkbox" value="yes" checked=""></label>
+			<label class="checkbox">Invalidate CloudFront <input id="cloudfront" name="cloudfront" type="checkbox" value="yes" checked=""></label>
+			
+			<input type="submit" value="Purge Static" class="btn">
+		</fieldset>
+		</form>
+	</div>
+	
+	<div class="span6">
+		<form method="POST" autocomplete="off" class="form-horizontal">
+		<input name="action" value="purge_chronicle" type="hidden">
+		<fieldset class="well">
+			<legend>Clear Chronicle</legend>
+
+			<input type="submit" value="Change It" class="btn">
+		</fieldset>
+		</form>
+	</div>
+</div>

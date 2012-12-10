@@ -1,0 +1,24 @@
+<div class="pagination">
+	<ul>
+	
+	<% if @page - 5 > 1 : %>
+	<li><a href="<%- @prepend + 1 + @postpend %>">&laquo;&laquo;&laquo;</a></li>
+	<% end %>
+	
+	
+
+	<% if @page < @page_count : %>
+	<li><a href="<%- @prepend + (@page + 1) + @postpend %>">&raquo;</a></li>
+	<% end %>
+
+	<% if @page_count - @page > 1  : %>
+	<li><a href="<%- @prepend + (Math.min (@page + 5), @page_count) + @postpend %>">&raquo;&raquo;</a></li>
+	<% end %>
+	
+	<% if @page_count - @page > 5  : %>
+	<li><a href="<%- @prepend + @page_count + @postpend %>">&raquo;&raquo;&raquo;</a></li>
+	<% end %>
+	
+	</ul>
+</div>
+

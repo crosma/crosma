@@ -6,7 +6,8 @@ var	 app = require('../app')
 	,MemcachedStore = require('connect-memcached')(express)
 	,RedisStore = require('connect-redis')(express)
 	,ect = require('ect')
-; 
+	,date_format = require('../lib/date_format')
+;
 
 
 /******************************************************************************
@@ -79,10 +80,11 @@ server.use(function(req, res, next) {
 });
 
 
+
 //helper functions for the views
 server.locals({
-	 chronicle: chronicle.chronicle //helper to add version path to static urls
-	,dateFormat: require('dateformat') //helper for date\time formatting
+	 chronicle: chronicle.chronicle //helper to add versioning path to static urls
+	,date_format: date_format
 });
 
 

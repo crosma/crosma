@@ -60,15 +60,13 @@
 			<% if @breadcrumbs.length > 1 : %>
 			<% for i in [0..@breadcrumbs.length - 2] by 1 : %>
 			<li><a href="<%- @breadcrumbs[i].href %>"><%- @breadcrumbs[i].text %></a><span class="divider">/</span></li>
-			<% end %>
+			<% end %><% end %>
 			<li class="active"><%- @breadcrumbs[@breadcrumbs.length - 1].text %></li>
-			<% end %>
 		</ul>
 		<% end %>
 		
 		<% msgs = @flash_errs null %>
 		<% if msgs?.length : %>
-		<% for msg in msgs : %>
 		<div class="row">
 			<div class="offset1 span10">
 				<div class="alert alert-error">
@@ -81,11 +79,9 @@
 			</div>
 		</div>
 		<% end %>
-		<% end %>
 		
 		<% msgs = @flash_msgs null %>
 		<% if msgs?.length : %>
-		<% for msg in msgs : %>
 		<div class="row">
 			<div class="offset1 span10">
 				<div class="alert alert-info">
@@ -98,9 +94,12 @@
 			</div>
 		</div>
 		<% end %>
-		<% end %>
-	
-		<% content %>
+
+<!-- START CONTENT -->
+
+<% content %>
+
+<!-- END CONTENT -->	
 		
 		<hr>
 		<footer class="muted">
