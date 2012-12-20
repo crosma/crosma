@@ -22,6 +22,7 @@ var  express = require('express')
 ;
 
 
+
 /******************************************************************************
 ********* Basic little crap
 ******************************************************************************/
@@ -108,8 +109,8 @@ express.logger.format('mydev', function(tokens, req, res){
 		,vhost = req.vhost_for_logger
 	;
 	
-	if (status >= 500) color = 'red'
-	else if (status >= 400) color = 'yellow'
+	if (status >= 500) color = 'red';
+	else if (status >= 400) color = 'yellow';
 	else if (status >= 300) color = 'cyan';
 	
 
