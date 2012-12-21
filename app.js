@@ -9,18 +9,13 @@ var config = module.exports.config = require('./config');
 ********* Set up globals
 ******************************************************************************/
 var  express = require('express')
-	,assert = require('assert')
 	,app = module.exports.express = express()
-	,fs = require('fs')
-	,crypto = require('crypto')
-	,shasum = crypto.createHash('sha1')
 	,util = require('util')
 	,colorize = require('colorize')
 	,chronicle = require('chronicle')
 	,socketio = require('socket.io')
 	,redis = require('redis')
 ;
-
 
 
 /******************************************************************************
