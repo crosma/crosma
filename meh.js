@@ -89,7 +89,7 @@ function meh()
 	var r = Math.random();
 	var t = new timer(r);
 
-	memcached.set('foo', " " + r, 10, function (err) {
+	memcached.set('foo', "asdfasfasdfasdf", 10, function (err) {
 		t.end('set');
 	});
 
