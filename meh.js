@@ -19,7 +19,7 @@ function meh()
 	var r = Math.random();
 
 	var t = new timer(r);
-	console.log('Test');
+	var dsfsdf = Math.random();
 	t.end();
 
 	t = new timer(r);
