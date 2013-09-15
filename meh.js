@@ -19,6 +19,10 @@ function meh()
 	var r = Math.random();
 
 	var t = new timer(r);
+	console.log('Test');
+	t.end();
+
+	t = new timer(r);
 
 	c.query("select 1+"+r+" as qqq")
 	.on('result', function(res) {
