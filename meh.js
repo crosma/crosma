@@ -12,7 +12,10 @@ c.connect({
 });
 
 
-for (i=1; i<=5; i++) {
+
+
+function meh()
+{
 	var r = Math.random();
 
 	var t = new timer(r);
@@ -33,5 +36,9 @@ for (i=1; i<=5; i++) {
 		t.end();
 		console.log('Done with all results');
 	});
+}
 
+for (i=1; i<=5; i++)
+{
+	meh();
 }
