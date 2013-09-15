@@ -59,23 +59,14 @@ function meh()
 		console.log("Error " + err);
 	});
 
-	client.set("string key", "string val", redis.print);
-	client.hset("hash key", "hashtest 1", "some value", redis.print);
-	client.hset(["hash key", "hashtest 2", "some other value"], redis.print);
-
 	var r = Math.random();
 	var t = new timer(r);
-	client.hkeys("hash key", function (err, replies) {
-		if (err) throw err;
 
+	client.set("string key", "string val", function () {
 		t.end('all');
-
-		console.log(replies.length + " replies:");
-		replies.forEach(function (reply, i) {
-			console.log("    " + i + ": " + reply);
-		});
-		client.quit();
 	});
+	//client.hset("hash key", "hashtest 1", "some value", redis.print);
+	//client.hset(["hash key", "hashtest 2", "some other value"], redis.print);
 
 }
 
