@@ -27,18 +27,19 @@ function meh()
 	c.query("select 1+"+r+" as qqq")
 	.on('result', function(res) {
 		res.on('row', function(row) {
-			console.log('Result row: ' + inspect(row));
+			//console.log('Result row: ' + inspect(row));
 		})
 		.on('error', function(err) {
-			console.log('Result error: ' + inspect(err));
+			//console.log('Result error: ' + inspect(err));
 		})
 		.on('end', function(info) {
-			console.log('Result finished successfully');
+			t.end();
+			//console.log('Result finished successfully');
 		});
 	})
 	.on('end', function() {
-		t.end();
-		console.log('Done with all results');
+
+		//console.log('Done with all results');
 	});
 }
 
