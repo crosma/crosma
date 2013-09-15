@@ -33,12 +33,12 @@ function meh()
 			//console.log('Result error: ' + inspect(err));
 		})
 		.on('end', function(info) {
-			t.end();
+			t.end('res');
 			//console.log('Result finished successfully');
 		});
 	})
 	.on('end', function() {
-
+			t.end('all');
 		//console.log('Done with all results');
 	});
 }

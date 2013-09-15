@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="47a53aa5-c1e5-45a6-bdbe-f01a489d5851" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/timer.js" afterPath="$PROJECT_DIR$/lib/timer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meh.js" afterPath="$PROJECT_DIR$/meh.js" />
     </list>
     <ignored path="crosma.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,19 +41,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="meh.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="meh.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/meh.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0">
+            <state line="40" column="22" selection-start="758" selection-end="758" vertical-scroll-proportion="0.74242425">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="timer.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="timer.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/timer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="25" selection-start="546" selection-end="546" vertical-scroll-proportion="0.4755245">
+            <state line="24" column="42" selection-start="547" selection-end="547" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -87,8 +88,8 @@
         <option value="$PROJECT_DIR$/main/controllers/chat.js" />
         <option value="$PROJECT_DIR$/admin/controllers/aws/sns.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/meh.js" />
         <option value="$PROJECT_DIR$/lib/timer.js" />
+        <option value="$PROJECT_DIR$/meh.js" />
       </list>
     </option>
   </component>
@@ -458,16 +459,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/meh.js">
+    <entry file="file://$PROJECT_DIR$/lib/timer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0">
+        <state line="24" column="42" selection-start="547" selection-end="547" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/timer.js">
+    <entry file="file://$PROJECT_DIR$/meh.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="25" selection-start="546" selection-end="546" vertical-scroll-proportion="0.4755245">
+        <state line="40" column="22" selection-start="758" selection-end="758" vertical-scroll-proportion="0.74242425">
           <folding />
         </state>
       </provider>
