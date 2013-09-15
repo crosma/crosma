@@ -102,15 +102,20 @@ exports.mysql_pool = pool;
 setInterval(function() {
 	for (var i=0; i < 5; ++i) {
 		pool.getConnection(function(err, db) {
-			var t = new timer();
-			db.query("select 1+1 as qqq", function(err, rows, fields) {
-				t.end('Yar');
+			var r = Math.random();
+
+			var t = new timer(r);
+			db.query("select 1+"+r+" as qqq", function(err, rows, fields) {
+				t.end();
 				console.log(rows);
 				db.end();
 			});
 		});
 	}
 }, 1000);
+
+
+
 
 
 /******************************************************************************
