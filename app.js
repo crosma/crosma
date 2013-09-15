@@ -15,6 +15,8 @@ var  express = require('express')
 	,chronicle = require('chronicle')
 	,socketio = require('socket.io')
 	,redis = require('redis')
+	,mysql = require('mysql2')
+	,timer = require('./lib/timer')
 ;
 
 
@@ -80,18 +82,35 @@ exports.staticize = function(url) {
 config.local_css_files = config.local_css_files.map(exports.staticize);
 config.local_js_files = config.local_js_files.map(exports.staticize);
 
-/*
-for (i=0; i<app.config.local_js_files.length; i++) {
-	app.config.local_js_files[i] = chronicle.chronicle(app.config.static_url + app.config.local_js_files[i]);
-}
-*/
-
 
 
 /******************************************************************************
 ********* Set up mysql
 ******************************************************************************/
-exports.mysql_pool = require('./lib/mysql_pool');
+var pool = mysql.createPool({
+	host: config.mysql.address,
+	port: config.mysql.port,
+	user: config.mysql.user,
+	password: config.mysql.pass,
+	database: config.mysql.db,
+
+	connectionLimit: 20
+});
+
+exports.mysql_pool = pool;
+
+setInterval(function() {
+	for (var i=0; i < 5; ++i) {
+		pool.getConnection(function(err, db) {
+			var t = new timer();
+			db.execute("select 1+1 as qqq", function(err, rows, fields) {
+				t.end('Yar');
+				console.log(rows);
+				db.end();
+			});
+		});
+	}
+}, 1000);
 
 
 /******************************************************************************
@@ -140,12 +159,21 @@ var io = socketio.listen(http_server)
 ;
 
 var pub = redis.createClient(config.redis.port, config.redis.address);
+pub.on("error", function (err) {
+	console.log("Redis Pub Error " + err);
+});
 pub.auth(config.redis.pass, function(){});
 
 var sub = redis.createClient(config.redis.port, config.redis.address);
+sub.on("error", function (err) {
+	console.log("Redis Sub Error " + err);
+});
 sub.auth(config.redis.pass, function(){});
 
 var client = redis.createClient(config.redis.port, config.redis.address);
+client.on("error", function (err) {
+	console.log("Redis Client Error " + err);
+});
 client.auth(config.redis.pass, function(){});
 
 io.set('store', new RedisStore({

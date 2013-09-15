@@ -16,11 +16,15 @@
 		 "express": "*"
 		,"jade": "*"
 		,"less-middleware": "*"
+
 		,"connect": "*"
 		,"connect-memcached": "*"
+		,"connect-redis": "*"
+
 		,"validator": "*"
+
 		,"express-validator": "*"
-		,"mongoose": "2.7.x"
+
 		,"bootstrap": "*"
 		,"dateformat": "*"
 		,"less": "*"
@@ -29,7 +33,7 @@
 		,"socket.io": "*"
 		,"socket.io-client": "*"
 		,"redis": "~0.7.2"
-		,"connect-redis": "*"
+
 
 		,"generic-pool" : "*"
 		
@@ -38,7 +42,7 @@
 		,"nodemailer": "*"
 		,"debug": "*"
 		
-		,"mysql": "*"
+		,"mysql2": "*"
 		,"errorface": "*"
 
 		,"cookies": "*"
@@ -50,13 +54,10 @@
 		
 		,"cron" : "*"
 		
-		,"generic-pool": "*"
-		
 		,"ect": "*"
+
+		,"chronicle": "https://github.com/crosma/chronicle/tarball/master"
 	}
-	
-	,"optionalDependencies": {
-		"chronicle": "*"	
-	}
+
 }
  

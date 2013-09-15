@@ -1,7 +1,6 @@
 var	 app = require('../../../app')
 	,util = require('util')
 	,crypto = require('crypto')
-	,mdb = require('mongoose')
 	,https = require('https')
 	,url = require('url')
 	,page = require('../../../lib/controller')(app.servers.admin, {

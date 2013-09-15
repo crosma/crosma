@@ -1,6 +1,5 @@
 var	 app = require('../../app')
 	,util = require('util')
-	,mdb = require('mongoose')
 	,io = null
 	,page = require('../../lib/controller')(app.servers.main, {
 		 title: 'crosma.us'
