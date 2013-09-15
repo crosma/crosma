@@ -43,7 +43,7 @@ function meh()
 }
 */
 
-
+/*
 var redis = require("redis"),
 	client = redis.createClient(6379, 'localhost');
 
@@ -53,7 +53,7 @@ function meh()
 {
 
 	// if you'd like to select database 3, instead of 0 (default), call
-	// client.select(3, function() { /* ... */ });
+	// client.select(3, function() { });
 
 	client.on("error", function (err) {
 		console.log("Error " + err);
@@ -76,6 +76,28 @@ function meh()
 
 	//client.hset("hash key", "hashtest 1", "some value", redis.print);
 	//client.hset(["hash key", "hashtest 2", "some other value"], redis.print);
+
+}
+*/
+
+var Memcached = require('memcached');
+var memcached = new Memcached('localhost');
+
+
+function meh()
+{
+	var r = Math.random();
+	var t = new timer(r);
+
+	memcached.set('foo', r, 10, function (err) {
+		t.end('set');
+	});
+
+	r = Math.random();
+	t = new timer(r);
+	memcached.get('foo', function (err, data) {
+		t.end('get');
+	});
 
 }
 

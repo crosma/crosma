@@ -40,6 +40,7 @@
     "ect": "*",
     "chronicle": "https://github.com/crosma/chronicle/tarball/master",
     "redis": "*",
-    "hiredis": "*"
+    "hiredis": "*",
+    "memcached": "*"
   }
 }
