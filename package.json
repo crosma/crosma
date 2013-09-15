@@ -1,63 +1,45 @@
 {
-	 "name": "crosma"
-	,"version": "0.0.1"
-	,"private": true
-
-	,"scripts": {
-		"start": "always app.js"
-	}
-
-	,"repository": { 
-		 "type": "git"
-		,"url": "https://github.com/crosma/crosma.git"
-	}
-	
-	,"dependencies": {
-		 "express": "*"
-		,"jade": "*"
-		,"less-middleware": "*"
-
-		,"connect": "*"
-		,"connect-memcached": "*"
-		,"connect-redis": "*"
-
-		,"validator": "*"
-
-		,"express-validator": "*"
-
-		,"bootstrap": "*"
-		,"dateformat": "*"
-		,"less": "*"
-		,"colorize": "*"
-		,"async": "*"
-		,"socket.io": "*"
-		,"socket.io-client": "*"
-		,"redis": "~0.7.2"
-
-
-		,"generic-pool" : "*"
-		
-		,"connect-compiler": "*"
-		,"uglify-js": "*"
-		,"nodemailer": "*"
-		,"debug": "*"
-		
-		,"mysql2": "*"
-		,"errorface": "*"
-
-		,"cookies": "*"
-		,"cookie-signature": "*"
-		,"generic-pool": "*"
-		
-		,"twit": "*"
-		,"oauth": "*"
-		
-		,"cron" : "*"
-		
-		,"ect": "*"
-
-		,"chronicle": "https://github.com/crosma/chronicle/tarball/master"
-	}
-
+  "name": "crosma",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "always app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crosma/crosma.git"
+  },
+  "dependencies": {
+    "express": "*",
+    "jade": "*",
+    "less-middleware": "*",
+    "connect": "*",
+    "connect-memcached": "*",
+    "connect-redis": "*",
+    "validator": "*",
+    "express-validator": "*",
+    "bootstrap": "*",
+    "dateformat": "*",
+    "less": "*",
+    "colorize": "*",
+    "async": "*",
+    "socket.io": "*",
+    "socket.io-client": "*",
+    "generic-pool": "*",
+    "connect-compiler": "*",
+    "uglify-js": "*",
+    "nodemailer": "*",
+    "debug": "*",
+    "mysql2": "*",
+    "errorface": "*",
+    "cookies": "*",
+    "cookie-signature": "*",
+    "twit": "*",
+    "oauth": "*",
+    "cron": "*",
+    "ect": "*",
+    "chronicle": "https://github.com/crosma/chronicle/tarball/master",
+    "redis": "*",
+    "hiredis": "*"
+  }
 }
- 
