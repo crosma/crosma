@@ -45,7 +45,7 @@ function meh()
 
 
 var redis = require("redis"),
-	client = redis.createClient(6379, 'localhost');
+	client = redis.createClient(6379, 'real.crosma.us');
 
 client.auth('kjhgHGJHG&6759G^%G*&%HG*&');
 
@@ -62,9 +62,18 @@ function meh()
 	var r = Math.random();
 	var t = new timer(r);
 
-	client.set("string key", "string val", function () {
-		t.end('all');
+	client.set("string key", Math.random(), function () {
+		t.end('set');
 	});
+
+	r = Math.random();
+	t = new timer(r);
+
+	client.get("string key", function (err, reply) {
+		t.end('get-'+reply);
+	});
+
+
 	//client.hset("hash key", "hashtest 1", "some value", redis.print);
 	//client.hset(["hash key", "hashtest 2", "some other value"], redis.print);
 
