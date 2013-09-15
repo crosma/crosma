@@ -103,7 +103,7 @@ setInterval(function() {
 	for (var i=0; i < 5; ++i) {
 		pool.getConnection(function(err, db) {
 			var t = new timer();
-			db.execute("select 1+1 as qqq", function(err, rows, fields) {
+			db.query("select 1+1 as qqq", function(err, rows, fields) {
 				t.end('Yar');
 				console.log(rows);
 				db.end();
