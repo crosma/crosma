@@ -45,7 +45,7 @@ function meh()
 
 
 var redis = require("redis"),
-	client = redis.createClient(6379, 'real.crosma.us');
+	client = redis.createClient(6379, 'localhost');
 
 client.auth('kjhgHGJHG&6759G^%G*&%HG*&');
 
