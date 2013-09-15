@@ -1,7 +1,8 @@
-var Client = require('mariasql');
+//var Client = require('mariasql');
 var inspect = require('util').inspect;
 var timer = require('./lib/timer');
 
+/*
 var c = new Client();
 c.connect({
 	host: '127.0.0.1',
@@ -10,8 +11,6 @@ c.connect({
 	password: 'dfmshndfgsdfsdf',
 	database: 'crosma'
 });
-
-
 
 
 function meh()
@@ -41,6 +40,43 @@ function meh()
 			t.end('all');
 		//console.log('Done with all results');
 	});
+}
+*/
+
+
+var redis = require("redis"),
+	client = redis.createClient(6379, 'real.crosma.us');
+
+client.auth('kjhgHGJHG&6759G^%G*&%HG*&');
+
+function meh()
+{
+
+	// if you'd like to select database 3, instead of 0 (default), call
+	// client.select(3, function() { /* ... */ });
+
+	client.on("error", function (err) {
+		console.log("Error " + err);
+	});
+
+	client.set("string key", "string val", redis.print);
+	client.hset("hash key", "hashtest 1", "some value", redis.print);
+	client.hset(["hash key", "hashtest 2", "some other value"], redis.print);
+
+	var r = Math.random();
+	var t = new timer(r);
+	client.hkeys("hash key", function (err, replies) {
+		if (err) throw err;
+
+		t.end('all');
+
+		console.log(replies.length + " replies:");
+		replies.forEach(function (reply, i) {
+			console.log("    " + i + ": " + reply);
+		});
+		client.quit();
+	});
+
 }
 
 for (i=1; i<=5; i++)
